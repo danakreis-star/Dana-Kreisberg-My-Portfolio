@@ -1,0 +1,168 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Poster Design — Dana Kreisberg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:     #ffffff;
+  --paper-2:   #f2f2f2;
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ════════════════════════════
+   TITLE
+════════════════════════════ */
+.title-section { padding: 64px var(--gutter) 56px; }
+.title-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cs-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 400;
+}
+.cs-h1 em { font-style: italic; font-weight: 100; }
+.lede {
+  margin-top: 32px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-60);
+  max-width: 62ch;
+}
+
+/* ════════════════════════════
+   POSTER GRID — full-bleed, no radius, with title placeholders
+════════════════════════════ */
+.poster-grid {
+  padding: 0 var(--gutter) 100px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.poster-item {}
+
+.poster-img {
+  width: 100%;
+  display: block;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.poster-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-40);
+  margin-top: 10px;
+}
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .poster-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .poster-grid { grid-template-columns: 1fr; gap: 16px; }
+}
+  </style>
+</head>
+<body>
+<Nav />
+
+<!-- ── HERO ── -->
+<section class="title-section">
+  <div class="title-meta">
+    <span>Poster Design</span>
+    <span>Mixed media · 2014–2016</span>
+  </div>
+  <h1 class="cs-h1">Poster<br><em>Design</em></h1>
+  <p class="lede">A selection of poster work made at Bezalel Academy of Art &amp; Design, 2014–2016. Mixed media, experimental typography, and editorial systems.</p>
+</section>
+
+<!-- ── GRID ── -->
+<div class="poster-grid">
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-01.jpg" alt="Illustrated poster for Michel Gondry's The Science of Sleep" />
+    <div class="poster-caption">Illustrated poster for Michel Gondry's The Science of Sleep · Mixed media · 2014</div>
+  </div>
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-02.jpg" alt="Illustrated poster for Michel Gondry's Mood Indigo" />
+    <div class="poster-caption">Illustrated poster for Michel Gondry's Mood Indigo · Mixed media · 2014</div>
+  </div>
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-03.jpg" alt="Lettering exploration (Hebrew)" />
+    <div class="poster-caption">Lettering exploration (Hebrew) · Digital · 2013</div>
+  </div>
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-04.jpg" alt="Israel National Library event poster" />
+    <div class="poster-caption">Israel National Library event poster · Digital · 2013</div>
+  </div>
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-05.jpg" alt="Poster 05" />
+  </div>
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-06.jpg" alt="Poster 06" />
+  </div>
+
+  <div class="poster-item">
+    <img class="poster-img" src="/images/Poster_design-07.jpg" alt="Poster 07" />
+  </div>
+
+</div>
+
+</body>
+</html>

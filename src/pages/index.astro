@@ -1,0 +1,550 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dana Kreisberg — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+
+/* ── TOKENS ── */
+:root {
+  --paper:     #ffffff;
+  --paper-2:   #f2f2f2;
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --accent:    oklch(58% 0.14 250);
+  --stripe-a:  oklch(92% 0.004 240);
+  --stripe-b:  oklch(89% 0.005 240);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+  --radius:    30px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ── UTILITIES ── */
+.meta {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
+}
+.mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-40);
+}
+.rule  { height: 1px; background: var(--rule);     border: 0; margin: 0; display: block; }
+.rule-s{ height: 1px; background: var(--rule-soft); border: 0; margin: 0; display: block; }
+
+/* ── PLACEHOLDER ── */
+.ph {
+  position: relative;
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--stripe-a) 0 14px,
+    var(--stripe-b) 14px 28px
+  );
+  overflow: hidden;
+  border-radius: var(--radius);
+  width: 100%;
+}
+
+.ar-16-10 { aspect-ratio: 16 / 10; }
+.ar-4-3   { aspect-ratio: 4 / 3; }
+.ar-3-2   { aspect-ratio: 3 / 2; }
+.ar-16-9  { aspect-ratio: 16 / 9; }
+
+.ph img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center top !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── HERO ── */
+.hero { padding: 80px var(--gutter) 100px; }
+.hero-title {
+  font-family: var(--display);
+  font-size: clamp(40px, 5.6vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  max-width: 16ch;
+}
+.hero-title em { font-style: italic; font-family: var(--display); font-weight: 100 !important; }
+.hero-bottom {
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+}
+.hero-tags {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+.tag-div { color: var(--ink-40); }
+.hero-lede { font-size: 17px; line-height: 1.55; color: var(--ink-60); max-width: 62ch; }
+
+/* ── WORKS HEADER ── */
+.works-header { display: flex; justify-content: space-between; padding: 16px var(--gutter) 56px; }
+
+/* ── FEATURED PROJECTS ── */
+.works { padding: 0 var(--gutter); display: flex; flex-direction: column; gap: 120px; }
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  padding: 14px 0 28px;
+}
+.project-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.project-media { margin-bottom: 32px; }
+.project-foot {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: end;
+}
+.project-title {
+  font-family: var(--display);
+  font-size: clamp(36px, 4.4vw, 72px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-weight: 400;
+}
+.project-sub { margin-top: 10px; color: var(--ink-60); font-size: 18px; }
+.project-right { display: flex; flex-direction: column; gap: 14px; }
+.project-blurb { font-size: 15px; line-height: 1.55; color: var(--ink-60); max-width: 46ch; }
+.open-link {
+  font-size: 13px;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  align-self: flex-start;
+  padding-bottom: 2px;
+  cursor: pointer;
+  display: inline-block;
+}
+.open-link:hover { opacity: 0.6; }
+
+/* ── MORE WORK LIST ── */
+.more-work {
+  padding: 0 var(--gutter);
+  margin-top: 80px;
+}
+.more-work-header {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--rule);
+  padding: 14px 0 0;
+  margin-bottom: 0;
+}
+.mini-project:first-of-type { border-top: none; }
+.mini-project {
+  display: grid;
+  grid-template-columns: 200px 1fr 180px 72px 40px;
+  gap: 0 32px;
+  align-items: center;
+  border-top: 1px solid var(--rule-soft);
+  padding: 24px 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.mini-project:hover .mini-thumb { opacity: 0.85; }
+.mini-project:hover .mini-arrow { transform: translate(4px, -4px); color: var(--ink); }
+.mini-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mini-title {
+  font-family: var(--display);
+  font-size: clamp(24px, 2.4vw, 40px);
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  font-weight: 400;
+  color: var(--ink);
+}
+.mini-sub {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-60);
+}
+.mini-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.mini-tags span {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  font-weight: 500;
+}
+.mini-year {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-40);
+}
+.mini-arrow {
+  font-size: 20px;
+  color: var(--ink-40);
+  transition: transform 0.2s, color 0.2s;
+  text-align: center;
+}
+.mini-thumb {
+  aspect-ratio: 16 / 10;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: opacity 0.2s;
+  position: relative;
+}
+.mini-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* ── ABOUT ── */
+.about {
+  padding: 80px var(--gutter);
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 64px;
+}
+.about-text {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  max-width: 44ch;
+  color: var(--ink);
+  font-weight: 400;
+}
+.about-meta {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  margin-top: 40px;
+}
+.about-row { margin-top: 8px; font-size: 15px; }
+
+/* ── CONTACT ── */
+.contact {
+  padding: 80px var(--gutter) 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.contact-email {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 64px);
+  letter-spacing: -0.03em;
+  margin-top: 12px;
+  display: block;
+}
+.contact-email:hover { opacity: 0.6; }
+.contact-links { display: flex; gap: 28px; }
+.contact-links a { font-size: 15px; color: var(--ink-60); }
+.contact-links a:hover { color: var(--ink); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 40px var(--gutter) 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ── FADE-IN ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fade-up 0.6s ease both; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 40px; }
+  .project-foot { grid-template-columns: 1fr; gap: 24px; }
+  .about { grid-template-columns: 1fr; gap: 32px; }
+  .about-meta { grid-column: 1; grid-template-columns: 1fr 1fr; }
+  .contact { flex-direction: column; gap: 32px; align-items: flex-start; }
+  .mini-project { grid-template-columns: 120px 1fr 100px 56px 40px; gap: 0 20px; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .works { gap: 72px; }
+  .hero { padding: 48px var(--gutter) 72px; }
+  .hero-bottom { margin-top: 40px; }
+  .hero-tags { font-size: 16px; }
+  .mini-tags, .mini-year { display: none; }
+  .mini-project { grid-template-columns: 80px 1fr 40px; gap: 0 16px; padding: 20px 0; }
+}
+
+  /* ── PLACEHOLDER THUMB ── */
+  .placeholder-thumb {
+    background: var(--paper-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-40);
+    letter-spacing: 0.02em;
+  }
+
+  </style>
+</head>
+<body>
+
+<Nav />
+
+<!-- HERO -->
+<section class="hero">
+  <h1 class="hero-title">Lead Product designer shipping <em>AI-powered</em><br>
+    experiences across web and mobile.
+  </h1>
+  <div class="hero-bottom">
+    <div class="hero-tags">
+      <span>AI</span>
+      <span class="tag-div">·</span>
+      <span>SaaS</span>
+      <span class="tag-div">·</span>
+      <span>Fintech</span>
+      <span class="tag-div">·</span>
+      <span>B2B</span>
+    </div>
+    <p class="hero-lede">
+      I design complex products where decisions matter — AI that stays usable, mobile that stays focused, and B2B systems that stay human.
+    </p>
+  </div>
+</section>
+
+<!-- WORKS HEADER -->
+<div class="works-header">
+  <span class="meta">Selected Works</span>
+  <span class="meta">2021 — 2026</span>
+</div>
+
+<!-- FEATURED PROJECTS -->
+<section class="works" id="works">
+
+  <!-- 01 — Bizzabo -->
+  <article class="fade-in">
+    <div class="project-meta">
+      <div class="project-meta-left">
+        <span class="mono">01</span>
+        <span class="mono">Bizzabo</span>
+      </div>
+      <span class="mono">2023</span>
+    </div>
+    <div class="project-media">
+      <a href="/bizzabo" style="display: block;">
+        <div class="ph ar-16-9">
+          <img src="/images/Bizzabo-hero(thumnail).gif" alt="Bizzabo — Event Networking solution">
+        </div>
+      </a>
+    </div>
+    <div class="project-foot">
+      <div>
+        <h2 class="project-title">Bizzabo</h2>
+        <div class="project-sub">Event Networking solution</div>
+      </div>
+      <div class="project-right">
+        <span class="meta" style="display:block">Desktop &amp; Mobile app · Product ideations · User Research</span>
+        <p class="project-blurb">Designing a networking platform from the ground up — helping event attendees discover relevant people, build connections, and navigate large-scale events across web and mobile.</p>
+        <a class="open-link" href="/bizzabo">Open case study ↗</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 — HoneyBook AI -->
+  <article class="fade-in">
+    <div class="project-meta">
+      <div class="project-meta-left">
+        <span class="mono">02</span>
+        <span class="mono">HoneyBook AI</span>
+      </div>
+      <span class="mono">2024</span>
+    </div>
+    <div class="project-media">
+      <a href="/honeybook" style="display: block;">
+        <div class="ph ar-16-9">
+          <img src="/images/HB-thumbnail.png" alt="HoneyBook AI — Gmail Import & Lead Capture">
+        </div>
+      </a>
+    </div>
+    <div class="project-foot">
+      <div>
+        <h2 class="project-title">HoneyBook AI</h2>
+        <div class="project-sub">Gmail Import &amp; Lead Capture</div>
+      </div>
+      <div class="project-right">
+        <span class="meta" style="display:block">AI · Product · Web</span>
+        <p class="project-blurb">End-to-end AI feature for independent creatives. Human-in-the-loop from research to ship.</p>
+        <a class="open-link" href="/honeybook">Open case study ↗</a>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- MORE WORK -->
+<section class="more-work">
+  <div class="more-work-header">
+    <span class="meta">More work</span>
+    <span class="meta">2017 — 2021</span>
+  </div>
+
+  <!-- Melio -->
+  <a href="/melio" class="mini-project fade-in">
+    <div class="mini-thumb">
+      <img src="/images/Melio-thumbnail.png" alt="Melio — Payments &amp; Onboarding">
+    </div>
+    <div class="mini-body">
+      <h3 class="mini-title">Melio</h3>
+      <div class="mini-sub">B2B payment solution</div>
+    </div>
+    <div class="mini-tags">
+      <span>Webapp</span>
+      <span>Mobile web</span>
+    </div>
+    <span class="mini-year">2018</span>
+    <span class="mini-arrow">→</span>
+  </a>
+
+  <!-- Deco -->
+  <a href="/deco" class="mini-project fade-in">
+    <div class="mini-thumb">
+      <img src="/images/Deco-thumnail.png" alt="Deco. — Visual Language &amp; Product Design">
+    </div>
+    <div class="mini-body">
+      <h3 class="mini-title">Deco.</h3>
+      <div class="mini-sub">Visual identity &amp; B2C User portal</div>
+    </div>
+    <div class="mini-tags">
+      <span>Art direction</span>
+      <span>User flow</span>
+    </div>
+    <span class="mini-year">2019</span>
+    <span class="mini-arrow">→</span>
+  </a>
+
+  <!-- Riskified -->
+  <a href="/riskified" class="mini-project fade-in">
+    <div class="mini-thumb">
+      <img src="/images/Riskified-thumbnail.gif" alt="Riskified — Web App &amp; Data Visualization">
+    </div>
+    <div class="mini-body">
+      <h3 class="mini-title">Riskified</h3>
+      <div class="mini-sub">Fraud &amp; Risk Dashboard</div>
+    </div>
+    <div class="mini-tags">
+      <span>B2B</span>
+      <span>SaaS</span>
+    </div>
+    <span class="mini-year">2018</span>
+    <span class="mini-arrow">→</span>
+  </a>
+
+</section>
+
+<hr class="rule" style="margin:80px var(--gutter) 0">
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <span class="meta">About</span>
+  <div>
+    <p class="about-text">
+      I'm a Lead Product Designer with 10+ years of experience specializing in AI product design, SaaS, and Fintech. I design end-to-end AI-powered experiences from research and prototyping through to shipped product, translating complex workflows into clear UI systems. I work closely with product and engineering teams to drive measurable product outcomes that align with business goals.
+      <br><br>
+      I'm drawn to problems where the interface carries judgment — turning AI outputs into actionable decisions, and simplifying enterprise workflows into intuitive interfaces. I believe strong design is grounded in user empathy and real-world challenges, ensuring products are not only usable, but genuinely valuable in people's day-to-day work.
+    </p>
+    <div class="about-meta">
+      <div>
+        <span class="meta">Now</span>
+        <div class="about-row">Self-employed - UX design and strategy</div>
+      </div>
+      <div>
+        <span class="meta">Previously</span>
+        <div class="about-row">HoneyBook · Bizzabo · Melio · Riskified</div>
+      </div>
+      <div>
+        <span class="meta">Based</span>
+        <div class="about-row">Zürich, CH</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" style="margin:0 var(--gutter)">
+
+<!-- CONTACT -->
+<section class="contact">
+  <div>
+    <div class="meta">Contact</div>
+    <a class="contact-email" href="mailto:danakreis@gmail.com">danakreis@gmail.com</a>
+  </div>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/dana-kreisberg-818b96101/" target="_blank">LinkedIn ↗</a>
+    <a href="mailto:danakreis@gmail.com">Email ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span class="mono">© 2026 Dana Kreisberg</span>
+  <span class="mono">Tel Aviv · Zürich</span>
+</footer>
+
+</body>
+</html>

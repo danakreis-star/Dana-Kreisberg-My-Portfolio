@@ -1,0 +1,211 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Explorations — Dana Kreisberg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:     #ffffff;
+  --paper-2:   #f2f2f2;
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.meta {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* ════════════════════════════
+   PAGE HEADER
+════════════════════════════ */
+.exp-header {
+  padding: 72px var(--gutter) 48px;
+  border-bottom: 1px solid var(--rule);
+}
+.exp-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px;
+}
+.exp-lede {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-60);
+  max-width: 580px;
+}
+
+/* ════════════════════════════
+   GALLERY — MASONRY COLUMNS
+════════════════════════════ */
+.exp-gallery {
+  padding: 48px var(--gutter) 100px;
+  columns: 3;
+  column-gap: 16px;
+}
+
+/* ─── Card ─── */
+.exp-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  break-inside: avoid;
+  margin-bottom: 16px;
+}
+.exp-card:hover .exp-thumb-img {
+  transform: scale(1.03);
+}
+
+/* ─── Thumbnail ─── */
+.exp-thumb {
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--paper-2);
+  margin-bottom: 10px;
+}
+.exp-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+/* Varied aspect ratios — the scattered feel */
+.exp-card--natural .exp-thumb { aspect-ratio: unset; }
+.exp-card--natural .exp-thumb-img { height: auto; object-fit: unset; }
+.exp-card--tall   .exp-thumb { aspect-ratio: 2 / 3; }
+.exp-card--portrait .exp-thumb { aspect-ratio: 3 / 4; }
+.exp-card--square  .exp-thumb { aspect-ratio: 1 / 1; }
+.exp-card--land   .exp-thumb { aspect-ratio: 4 / 3; }
+.exp-card--wide   .exp-thumb { aspect-ratio: 16 / 9; }
+
+/* ─── Caption ─── */
+.exp-card-title {
+  font-family: var(--display);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.exp-card-meta {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .exp-gallery { columns: 2; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .exp-gallery { columns: 2; column-gap: 10px; }
+  .exp-card { margin-bottom: 10px; }
+}
+  </style>
+</head>
+<body>
+<Nav />
+
+<header class="exp-header">
+  <h1 class="exp-h1">Explorations</h1>
+  <p class="exp-lede">Visual work from 2013–2016, made at Bezalel Academy of Art &amp; Design. Editorial design, symbol systems, and typographic experimentation.</p>
+</header>
+
+<div class="exp-gallery">
+
+  <!-- 1 — SIMANU · natural ratio -->
+  <a class="exp-card exp-card--natural" href="/simanu">
+    <div class="exp-thumb">
+      <img class="exp-thumb-img" src="/images/Simanu-Thumbnail.gif" alt="SIMANU" />
+    </div>
+    <div class="exp-card-title">SIMANU</div>
+    <div class="exp-card-meta">Final project · Bezalel · 2016</div>
+  </a>
+
+  <!-- 2 — Beit HaTfutsot · landscape -->
+  <a class="exp-card exp-card--land" href="/beit-hatfutsot">
+    <div class="exp-thumb">
+      <img class="exp-thumb-img" src="/images/Beit_Hatfutzot-Thumbnail.gif" alt="Beit HaTfutsot" />
+    </div>
+    <div class="exp-card-title">Beit HaTfutsot</div>
+    <div class="exp-card-meta">Graphic language · ~2016</div>
+  </a>
+
+  <!-- 3 — Fanzine · landscape -->
+  <a class="exp-card exp-card--land" href="/fanzine">
+    <div class="exp-thumb">
+      <img class="exp-thumb-img" src="/images/fanzin-Thumbnail.jpg" alt="Fanzine (Troubles)" />
+    </div>
+    <div class="exp-card-title">Fanzine (Troubles)</div>
+    <div class="exp-card-meta">Print · 2013–2014</div>
+  </a>
+
+  <!-- 4 — Poster Design · portrait -->
+  <a class="exp-card exp-card--portrait" href="/posters">
+    <div class="exp-thumb">
+      <img class="exp-thumb-img" src="/images/Poster_design-Thumbnail.jpg" alt="Poster Design" />
+    </div>
+    <div class="exp-card-title">Poster Design</div>
+    <div class="exp-card-meta">Mixed media · 2014–2016</div>
+  </a>
+
+  <!-- 5 — Text Invaders · square -->
+  <a class="exp-card exp-card--square" href="/text-invaders">
+    <div class="exp-thumb">
+      <img class="exp-thumb-img" src="/images/text-invaders-Thumbnail.jpg" alt="Text Invaders" />
+    </div>
+    <div class="exp-card-title">Text Invaders</div>
+    <div class="exp-card-meta">Experimental typography · 2015</div>
+  </a>
+
+</div>
+
+</body>
+</html>

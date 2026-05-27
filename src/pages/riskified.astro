@@ -1,0 +1,287 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Riskified — Dana Kreisberg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:      #ffffff;
+  --paper-2:    #f5f5f5;
+  --ink:        oklch(14% 0.01 240);
+  --ink-60:     oklch(14% 0.01 240 / 0.62);
+  --ink-40:     oklch(14% 0.01 240 / 0.42);
+  --rule:       oklch(14% 0.01 240 / 0.14);
+  --rule-soft:  oklch(14% 0.01 240 / 0.08);
+  --display:    "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:       "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:       "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:     8%;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── UTILITIES ─── */
+.meta {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* ════════════════════════════
+   TITLE / HERO
+════════════════════════════ */
+.title-section { padding: 64px var(--gutter) 56px; }
+.title-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cs-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 14ch;
+}
+.cs-h1 em { font-style: italic; font-weight: 100; }
+.lede { margin-top: 40px; font-size: 19px; line-height: 1.5; color: var(--ink-60); max-width: 62ch; }
+.meta-row {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.meta-item { display: flex; flex-direction: column; gap: 4px; }
+.meta-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
+.meta-value { font-size: 15px; color: var(--ink); }
+
+/* ════════════════════════════
+   SECTIONS
+════════════════════════════ */
+.page-section {
+  padding: 72px var(--gutter);
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+
+/* ─── Section head (sticky label + rule) ─── */
+.section-head {
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 10;
+  padding: 12px 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  white-space: nowrap;
+}
+.section-rule { flex: 1; height: 1px; background: var(--rule); }
+
+/* ════════════════════════════
+   USER TYPE CARDS
+════════════════════════════ */
+.user-types { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.user-card {
+  background: var(--paper-2);
+  border-radius: 10px;
+  padding: 20px 24px;
+}
+.user-card-title {
+  font-family: var(--display);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.user-card-desc { font-size: 13px; line-height: 1.6; color: var(--ink-60); }
+
+/* ════════════════════════════
+   IMAGE FRAMES
+════════════════════════════ */
+.img-frame { display: flex; flex-direction: column; gap: 10px; }
+.img-frame > img { width: 100%; display: block; border-radius: 12px; }
+.img-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-40);
+  letter-spacing: 0.02em;
+}
+
+/* ════════════════════════════
+   SCREEN STACK
+════════════════════════════ */
+.screen-stack { display: flex; flex-direction: column; gap: 40px; }
+
+/* ════════════════════════════
+   DATA VIZ
+════════════════════════════ */
+.dataviz-intro {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--ink-60);
+  max-width: 660px;
+  margin-bottom: 48px;
+}
+.img-grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.img-grid-2x2 > img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .title-meta { flex-direction: column; gap: 8px; }
+  .meta-row { grid-template-columns: 1fr; }
+  .user-types { grid-template-columns: 1fr; }
+  .img-grid-2x2 { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+<Nav />
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="title-section">
+  <div class="title-meta">
+    <span>Riskified</span>
+    <span>2018–2019</span>
+  </div>
+  <h1 class="cs-h1">Web App Design &amp;<br><em>Data Visualization</em></h1>
+  <p class="lede">Riskified is a SaaS fraud-detection platform used by global e-commerce merchants. I worked across both the core web application and the marketing website, translating complex risk systems into clear, data-driven interfaces.</p>
+  <div class="meta-row">
+    <div class="meta-item">
+      <span class="meta-label">Role</span>
+      <span class="meta-value">Senior Product &amp; Marketing Designer</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Platform</span>
+      <span class="meta-value">Web</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Timeline</span>
+      <span class="meta-value">2018–2019</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── 01 · WEB APPLICATION ──────────────────────────────── -->
+<section class="page-section" style="border-top: none;">
+  <div class="section-head">
+    <span class="section-label">01 · Web application</span>
+    <span class="section-rule"></span>
+  </div>
+
+  <div class="screen-stack">
+    <div class="img-frame">
+      <img src="/images/Riskified-01.gif" alt="Riskified web application dashboard" />
+    </div>
+
+    <p style="font-size: 15px; line-height: 1.65; color: var(--ink-60);">The application was designed to serve two distinct personas with different needs and workflows — each requiring a different primary view into the same underlying data.</p>
+
+    <div class="user-types">
+      <div class="user-card">
+        <div class="user-card-title">Administrators</div>
+        <p class="user-card-desc">Need a high-level overview of transferred orders, approval rates, and reasons for declines. Primarily use the dashboard view.</p>
+      </div>
+      <div class="user-card">
+        <div class="user-card-title">Customer support</div>
+        <p class="user-card-desc">Handle order-level actions such as chargebacks and disputes. Primarily work within the Orders tab to review and manage individual transactions.</p>
+      </div>
+    </div>
+
+    <div class="img-frame">
+      <img src="/images/Riskified-02.png" alt="Declined-order view" />
+      <span class="img-caption">Declined-order view</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── 02 · DATA VISUALIZATION ───────────────────────────── -->
+<section class="page-section" style="border-top: none;">
+  <div class="section-head">
+    <span class="section-label">02 · Data visualization</span>
+    <span class="section-rule"></span>
+  </div>
+
+  <p class="dataviz-intro">Fraud detection is an inherently abstract problem — invisible signals, probabilistic outcomes, money that exists only as data. The design challenge was making risk legible without oversimplifying it. The solution uses dots as a direct metaphor for individual orders: each one a transaction moving through the system, approved or declined, guaranteed or flagged. Motion and density do the explanatory work that numbers alone can't.</p>
+
+  <div class="img-grid-2x2">
+    <img src="/images/Riskified-03.gif" alt="Data visualization — order flow" />
+    <img src="/images/Riskified-04.gif" alt="Data visualization detail" />
+    <img src="/images/Riskified-05.gif" alt="Data visualization detail" />
+    <img src="/images/Riskified-06.gif" alt="Data visualization detail" />
+  </div>
+
+  <div class="img-frame" style="margin-top: 48px;">
+    <img src="/images/Riskified-07.gif" alt="Usage in the Riskified marketing website" />
+    <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
+      <span class="img-caption">Usage in the Riskified marketing website</span>
+      <span style="font-family: var(--mono); font-size: 11px; color: var(--ink-40); letter-spacing: 0.02em; white-space: nowrap;">★ Featured — Website Design Inspiration, 2019</span>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

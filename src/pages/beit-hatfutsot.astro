@@ -1,0 +1,188 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Beit HaTfutsot — Dana Kreisberg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:     #ffffff;
+  --paper-2:   #f2f2f2;
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ════════════════════════════
+   TITLE
+════════════════════════════ */
+.title-section { padding: 64px var(--gutter) 56px; }
+.title-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 20px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cs-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 400;
+}
+.cs-h1 em { font-style: italic; font-weight: 100; }
+.lede {
+  margin-top: 32px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-60);
+  max-width: 62ch;
+}
+
+/* ════════════════════════════
+   SECTIONS
+════════════════════════════ */
+.page-section {
+  padding: 64px var(--gutter);
+  border-top: 1px solid var(--rule);
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 32px;
+  display: block;
+}
+
+/* ════════════════════════════
+   IMAGE LAYOUTS
+════════════════════════════ */
+.img-full {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+.img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.img-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+.img-grid-2 img,
+.img-grid-3 img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .img-grid-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .img-grid-2,
+  .img-grid-3 { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+<Nav />
+
+<!-- ── HERO ── -->
+<section class="title-section">
+  <div class="title-meta">
+    <span>Beit HaTfutsot</span>
+    <span>Graphic language · ~2016</span>
+  </div>
+  <h1 class="cs-h1">Beit<br><em>HaTfutsot</em></h1>
+  <p class="lede">A proposed graphic language for Beit HaTfutsot — the Museum of the Jewish People. The project began as a graphic and formal study of Jewish iconography: dismantling historical symbols into their most basic visual forms, then reassembling them into a coherent, cross-cultural visual system.</p>
+  <p class="lede" style="margin-top: 20px;">The work spans logo design, an iconographic processing study, a calendar application, and poster design.</p>
+</section>
+
+<!-- ── LOGO ── -->
+<section class="page-section">
+  <span class="section-label">Animated logo design</span>
+  <div class="stack">
+    <img class="img-full" src="/images/Beit_Hatfutzot-01.gif" alt="Beit HaTfutsot logo" />
+  </div>
+</section>
+
+<!-- ── CALENDAR ── -->
+<section class="page-section">
+  <span class="section-label">Event Table</span>
+  <div class="stack">
+    <img class="img-full" src="/images/Beit_Hatfutzot-02.gif" alt="Beit HaTfutsot calendar" />
+  </div>
+</section>
+
+<!-- ── ICONOGRAPHY ── -->
+<section class="page-section">
+  <span class="section-label">Iconography research and explorations</span>
+  <div class="img-grid-3">
+    <img src="/images/Beit_Hatfutzot-03.jpg" alt="Beit HaTfutsot icon" />
+    <img src="/images/Beit_Hatfutzot-04.jpg" alt="Beit HaTfutsot icon" />
+    <img src="/images/Beit_Hatfutzot-05.jpg" alt="Beit HaTfutsot icon" />
+  </div>
+</section>
+
+<!-- ── POSTERS ── -->
+<section class="page-section" style="padding-bottom: 100px;">
+  <span class="section-label">Poster designs</span>
+  <div class="img-grid-2">
+    <img src="/images/Beit_Hatfutzot-06.jpg" alt="Beit HaTfutsot poster" />
+    <img src="/images/Beit_Hatfutzot-07.jpg" alt="Beit HaTfutsot poster" />
+  </div>
+</section>
+
+</body>
+</html>

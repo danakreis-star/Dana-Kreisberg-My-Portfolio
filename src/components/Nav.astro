@@ -1,0 +1,67 @@
+---
+const pathname = Astro.url.pathname;
+const isWork        = pathname === '/';
+const isExplore     = pathname === '/explorations' || pathname === '/explorations/';
+const isAbout       = false; // about is an anchor on the homepage, not its own page
+---
+
+<nav class="site-nav">
+  <a class="nav-logo" href="/">Dana Kreisberg</a>
+  <div class="nav-links">
+    <a href="/#works"        class:list={['nav-link', { active: isWork }]}>Work</a>
+    <a href="/explorations"  class:list={['nav-link', { active: isExplore }]}>Explorations</a>
+    <a href="/#about"        class:list={['nav-link', { active: isAbout }]}>About</a>
+  </div>
+</nav>
+
+<style is:global>
+nav.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 20px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.nav-logo:hover { opacity: 0.6; }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink-60);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: var(--ink); }
+.nav-link.active {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+@media (max-width: 600px) {
+  nav.site-nav { padding: 16px var(--gutter); }
+  .nav-logo { font-size: 13px; }
+  .nav-link  { font-size: 12px; }
+  .nav-links { gap: 20px; }
+}
+</style>

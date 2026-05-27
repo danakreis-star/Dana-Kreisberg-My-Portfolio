@@ -1,0 +1,401 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Melio — Dana Kreisberg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:     oklch(98% 0.003 240);
+  --paper-2:   oklch(95% 0.004 240);
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --accent:    oklch(58% 0.14 250);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ─── UTILITIES ─── */
+.meta {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
+  display: inline-block;
+}
+
+/* ════════════════════════════
+   TITLE
+════════════════════════════ */
+.title-section { padding: 64px var(--gutter) 56px; }
+.title-meta { display: flex; justify-content: space-between; margin-bottom: 40px; }
+.cs-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 14ch;
+}
+.cs-h1 em { font-style: italic; font-weight: 100; }
+.lede { margin-top: 40px; font-size: 19px; line-height: 1.5; color: var(--ink-60); max-width: 62ch; }
+.meta-row {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.meta-val { margin-top: 8px; font-size: 15px; }
+
+/* ════════════════════════════
+   SECTIONS
+════════════════════════════ */
+.section { padding: 80px var(--gutter); background: #ffffff; }
+.section-alt {
+  padding: 100px var(--gutter);
+  background: #F5F5F5;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.section-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: inherit;
+  padding: 16px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.ship-stamp { font-family: var(--mono); font-size: 12px; color: var(--ink-40); letter-spacing: 0.04em; }
+
+/* ════════════════════════════
+   HEADINGS & TEXT
+════════════════════════════ */
+.cs-h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 3.8vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 16ch;
+}
+.cs-h2-wide {
+  font-family: var(--display);
+  font-size: clamp(40px, 4.4vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+  margin: 0 0 40px;
+  font-weight: 400;
+  max-width: 24ch;
+}
+.cs-h2-wide em { font-style: italic; font-weight: 300; }
+.body-text { font-size: 16px; line-height: 1.6; color: var(--ink-60); max-width: 56ch; }
+.body-text strong { color: var(--ink); font-weight: 500; }
+
+/* ════════════════════════════
+   LAYOUT
+════════════════════════════ */
+.two-col { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+.feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
+
+/* ════════════════════════════
+   STATS
+════════════════════════════ */
+.stat-row { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.stat { padding: 40px 32px 40px 0; }
+.stat-n { font-family: var(--display); font-size: clamp(64px, 8vw, 128px); letter-spacing: -0.04em; line-height: 1; font-weight: 400; padding-top: 24px; }
+.stat-d { font-family: var(--display); font-size: clamp(28px, 3vw, 48px); color: var(--ink-40); margin-left: 4px; }
+.stat-l { margin-top: 18px; font-size: 15px; line-height: 1.5; color: var(--ink-60); max-width: 28ch; font-family: var(--body); }
+
+/* ════════════════════════════
+   FEATURE BLOCKS
+════════════════════════════ */
+.feature-block { margin-bottom: 80px; }
+.feature-num { font-size: 12px; color: var(--ink-40); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; }
+.feature-h {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.5vw, 32px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-weight: 400;
+  margin: 0 0 20px;
+  max-width: 50ch;
+}
+.insight-box {
+  padding: 16px 20px;
+  border-radius: 0 8px 8px 0;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  background: rgba(0,0,0,0.04);
+  border-left: 3px solid rgba(0,0,0,0.15);
+}
+.insight-box p { font-size: 14px; line-height: 1.6; color: var(--ink-60); margin: 0; }
+.insight-box strong {
+  font-family: var(--display);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ════════════════════════════
+   IMAGE FRAMES
+════════════════════════════ */
+.img-frame { display: flex; flex-direction: column; gap: 10px; }
+.img-frame > img { width: 100%; display: block; border-radius: 12px; border: 1px solid var(--rule); }
+.img-cap { font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em; line-height: 1.4; }
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .two-col, .feat-split { grid-template-columns: 1fr; gap: 32px; }
+  .meta-row, .stat-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .title-meta { flex-direction: column; gap: 8px; }
+  .meta-row, .stat-row { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+<Nav />
+
+<!-- ── § 01 — TITLE ── -->
+<section class="title-section">
+  <div class="title-meta">
+    <span class="meta">Overview</span>
+    <span class="meta">Melio · 2017–2018 · Product Design</span>
+  </div>
+  <h1 class="cs-h1">
+    Bill pay and<br />
+    invoicing for<br />
+    <em>small business.</em>
+  </h1>
+  <p class="lede">
+    Melio's mission is to help small businesses manage their payouts through a smart B2B payment solution built for their needs. As Lead Product Designer in the company's early market-fit stage, I structured and designed the initial user journey — from onboarding through core payment flows.
+  </p>
+  <div class="meta-row">
+    <div>
+      <span class="meta">Role</span>
+      <div class="meta-val">Lead Product Designer, Core Product</div>
+    </div>
+    <div>
+      <span class="meta">Platform</span>
+      <div class="meta-val">Web</div>
+    </div>
+    <div>
+      <span class="meta">Timeline</span>
+      <div class="meta-val">2017–2018 · Early market-fit stage</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 02 — OVERVIEW ── -->
+<section class="section">
+  <div class="section-head">
+    <span class="meta">§ 02 — Overview</span>
+  </div>
+
+  <div class="two-col">
+    <h2 class="cs-h2">A unified dashboard for accounts payable and receivable</h2>
+    <p class="body-text">
+      Small businesses were managing payments across scattered tools — spreadsheets, email threads, manual bank transfers. There was no single surface that gave them visibility and control over both what they owed and what they were owed.
+      <br /><br />
+      Melio's digital A/P and A/R dashboard provided one integrated tool: transfer and receive payments quickly, maintain cash-flow visibility, eliminate late payment costs, and save hours each week.
+    </p>
+  </div>
+
+  <div class="img-frame" style="margin-top: 48px;">
+    <img src="/images/Melio-01.png" alt="Melio dashboard" />
+  </div>
+
+  <div class="feat-split" style="margin-top: 56px;">
+    <div>
+      <div class="feature-num">Product capability</div>
+      <h3 class="feature-h">Upload &amp; convert invoice (IDP + OCR)</h3>
+      <p class="body-text">
+        Users can upload a vendor invoice and have it automatically parsed — vendor name, amount, and due date extracted and pre-filled. Removing manual data entry eliminated the biggest drop-off point in the first payment flow.
+      </p>
+    </div>
+    <div class="img-frame">
+      <img src="/images/Melio-02.gif" alt="Upload and convert invoice — IDP + OCR" />
+      <span class="img-cap">Upload &amp; convert invoice (IDP + OCR)</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 03 — ONBOARDING ── -->
+<section class="section-alt">
+  <div class="section-head">
+    <span class="meta">§ 03 — Case study · Onboarding flow</span>
+  </div>
+  <h2 class="cs-h2-wide">
+    One flow for all users.<br />
+    <em>Progressive by design.</em>
+  </h2>
+  <p class="body-text" style="font-size: 17px; max-width: 64ch; margin-bottom: 64px;">
+    The old flow had two separate onboardings, no persona distinction, and no foundation for progressive engagement. The redesign unified them into a single streamlined path — collecting only what was critical upfront, deferring the rest.
+  </p>
+
+  <div class="feature-block">
+    <div class="feature-num">Final design</div>
+    <h3 class="feature-h">Full flow</h3>
+    <p class="body-text" style="margin-bottom: 32px;">
+      A unified flow replacing two separate entry points. Steps were reduced to the critical minimum; each screen collects one decision, keeping the experience fast and legible across both desktop and mobile.
+    </p>
+    <div class="img-frame">
+      <img src="/images/Melio-03.png" alt="Onboarding full flow" />
+    </div>
+  </div>
+
+  <div class="feature-block">
+    <div class="feature-num">Design detail</div>
+    <h3 class="feature-h">Role selection</h3>
+    <p class="body-text" style="margin-bottom: 20px;">
+      Users select their role (Business owner, Employee, Bookkeeper, Accountant) before the main CTA. An extra layer of contextual information appears on selection — letting users make an informed choice before committing.
+    </p>
+    <div class="insight-box" style="margin-bottom: 32px;">
+      <p><strong>Why it matters:</strong> Role selection unlocks product personalisation from step one — different personas see different default states and feature emphasis throughout the product.</p>
+    </div>
+    <div class="img-frame">
+      <img src="/images/Melio-04.gif" alt="Role selection step" />
+      <span class="img-cap">Role selection step</span>
+    </div>
+  </div>
+
+  <div class="feature-block" style="margin-bottom: 0;">
+    <div class="feature-num">Design detail</div>
+    <h3 class="feature-h">Progressive onboarding</h3>
+    <p class="body-text" style="margin-bottom: 20px;">
+      Deeper questions and feature education are deferred until users are already active in the product. Contextual prompts surface at the right moment — when users are invested enough to engage, not during initial setup.
+    </p>
+    <div class="insight-box" style="margin-bottom: 32px;">
+      <p><strong>Key decision:</strong> Stakeholders wanted more data upfront; users needed less friction. Progressive onboarding resolved the tension — ask more, but ask later.</p>
+    </div>
+    <div class="img-frame">
+      <img src="/images/Melio-05.gif" alt="Progressive onboarding" />
+    </div>
+
+    <div class="stat-row" style="margin-top: 56px;">
+      <div class="stat">
+        <div class="stat-n">80<span class="stat-d">%</span></div>
+        <div class="stat-l">of users completed the onboarding flow</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">82<span class="stat-d">%</span></div>
+        <div class="stat-l">of payees added a receiving method</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">50<span class="stat-d">%</span></div>
+        <div class="stat-l">of payors completed their first payment</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 04 — BATCH PAYMENTS ── -->
+<section class="section">
+  <div class="section-head">
+    <span class="meta">§ 04 — Batch payments</span>
+  </div>
+  <h2 class="cs-h2-wide">
+    Paying multiple vendors<br />
+    <em>in a single run.</em>
+  </h2>
+  <p class="body-text" style="font-size: 17px; max-width: 64ch; margin-bottom: 56px;">
+    As payment volume grew, users were running a full payment wizard for every individual bill. The batch flow introduced a full-screen mode with inline editing, shared defaults, and a happy-path approach: submit all valid bills first, handle missing data after.
+  </p>
+
+  <div class="feat-split">
+    <div>
+      <p class="body-text">
+        Batch settings let users apply a default deduction date and payment method across all bills in a run. Inline error handling surfaces only the bills that need attention — without blocking the rest of the batch.
+      </p>
+      <div class="insight-box">
+        <p><strong>Key decision:</strong> Don't block on errors. Submit what's valid, surface what needs fixing after. Users confirmed they'd rather skip a problematic bill than halt the entire batch.</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: center;">
+      <img src="/images/Melio-07.gif" alt="Batch payments flow" style="max-height: 700px; width: auto; max-width: 100%; display: block; border: none;" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 05 — SUMMARY ── -->
+<section class="section-alt">
+  <div class="section-head">
+    <span class="meta">§ 05 — Summary</span>
+    <span class="ship-stamp">Shipped 2018</span>
+  </div>
+  <h2 class="cs-h2-wide">
+    From scattered tools<br />
+    to a single payment system.
+  </h2>
+  <p class="body-text" style="font-size: 17px; max-width: 64ch;">
+    A unified onboarding with role-based personalisation and progressive disclosure, plus a batch payment flow built around the happy path. Together they established Melio's core interaction model at early market-fit stage.
+  </p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-n">80<span class="stat-d">%</span></div>
+      <div class="stat-l">Onboarding completion rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">82<span class="stat-d">%</span></div>
+      <div class="stat-l">Payees added a receiving method</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">50<span class="stat-d">%</span></div>
+      <div class="stat-l">Payors completed their first payment</div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

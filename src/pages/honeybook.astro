@@ -1,0 +1,669 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HoneyBook AI — Dana Kreisberg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:     oklch(98% 0.003 240);
+  --paper-2:   oklch(95% 0.004 240);
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --accent:    oklch(58% 0.14 250);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* ─── UTILITIES ─── */
+.meta {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
+  display: inline-block;
+}
+.mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-40);
+}
+
+/* ════════════════════════════
+   TITLE
+════════════════════════════ */
+.title-section { padding: 64px var(--gutter) 56px; }
+.title-meta { display: flex; justify-content: space-between; margin-bottom: 40px; }
+.cs-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 14ch;
+}
+.cs-h1 em { font-style: italic; font-weight: 100; }
+.lede { margin-top: 40px; font-size: 19px; line-height: 1.5; color: var(--ink-60); max-width: 62ch; }
+.meta-row {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.meta-val { margin-top: 8px; font-size: 15px; }
+
+/* ════════════════════════════
+   SECTIONS
+════════════════════════════ */
+.section { padding: 80px var(--gutter); }
+.section-alt {
+  padding: 100px var(--gutter);
+  background: oklch(93% 0.006 270);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ════════════════════════════
+   STICKY SECTION HEAD
+════════════════════════════ */
+.section-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: inherit;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 40px;
+  margin-left: calc(-1 * var(--gutter));
+  margin-right: calc(-1 * var(--gutter));
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* ════════════════════════════
+   HEADINGS
+════════════════════════════ */
+.cs-h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 3.8vw, 60px);
+  line-height: 1.02 !important;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 16ch;
+}
+.cs-h2-wide {
+  font-family: var(--display);
+  font-size: clamp(40px, 4.4vw, 72px);
+  line-height: 1.02 !important;
+  letter-spacing: -0.032em;
+  margin: 0 0 40px;
+  font-weight: 400;
+  max-width: 24ch;
+}
+.cs-h2-wide em { font-style: italic; font-weight: 300; }
+.body-text { font-size: 16px; line-height: 1.6; color: var(--ink-60); max-width: 56ch; }
+.body-text strong { color: var(--ink); font-weight: 500; }
+
+/* ════════════════════════════
+   LAYOUT
+════════════════════════════ */
+.two-col { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+.feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
+
+/* ════════════════════════════
+   PERSONA
+════════════════════════════ */
+.persona-block {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 32px;
+  background: rgba(94, 48, 227, 0.06);
+  border-radius: 12px;
+  border: 1px solid rgba(94, 48, 227, 0.12);
+  margin-top: 48px;
+}
+.persona-avatar { border-radius: 50%; overflow: hidden; width: 80px; height: 80px; }
+.persona-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.persona-name { font-family: var(--display); font-size: 20px; letter-spacing: -0.02em; font-weight: 400; margin-bottom: 8px; }
+.persona-text { font-size: 15px; line-height: 1.6; color: var(--ink-60); font-style: normal !important; font-family: var(--body) !important; }
+
+/* ════════════════════════════
+   STATS
+════════════════════════════ */
+.stat-row { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--rule); }
+.stat { padding: 40px 32px 40px 0; border-right: 0; }
+.stat:last-child { border-right: 0; }
+.stat-n { font-family: var(--display); font-size: clamp(48px, 6vw, 96px); letter-spacing: -0.04em; line-height: 1; font-weight: 400; }
+.stat-d { font-family: var(--display); font-size: clamp(20px, 2.5vw, 36px); color: var(--ink-40); margin-left: 2px; }
+.stat-l { margin-top: 14px; font-size: 14px; line-height: 1.5; color: var(--ink-60); max-width: 28ch; font-style: normal !important; font-family: var(--body); }
+
+/* ════════════════════════════
+   SOLUTION SECTIONS
+════════════════════════════ */
+.solution-section { margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.solution-kicker { font-size: 12px; color: var(--ink-40); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.solution-h {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.5vw, 36px);
+  letter-spacing: -0.025em;
+  line-height: 1.1 !important;
+  font-weight: 400;
+  margin: 0 0 24px;
+}
+.solution-h em { font-style: italic; font-weight: 300; }
+.problem-box { padding: 20px 24px; background: rgba(94, 48, 227, 0.06); border-radius: 8px; margin-bottom: 48px; }
+.problem-box p { font-size: 16px; line-height: 1.6; color: var(--ink-60); margin: 0; font-style: normal !important; font-family: var(--body) !important; }
+.problem-box strong { color: var(--ink); }
+.step-badge { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.step-num { font-family: var(--mono); font-size: 11px; color: #5E30E3; letter-spacing: 0.06em; padding: 4px 10px; }
+.step-label { font-family: var(--body); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #5E30E3; opacity: 0.6; }
+
+/* ════════════════════════════
+   IMAGE FRAMES
+════════════════════════════ */
+/* Desktop frames */
+.img-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.img-frame img,
+.img-frame video {
+  width: 100%;
+  display: block;
+  vertical-align: bottom;
+  border-radius: 0;
+}
+.img-frame figcaption { padding: 10px 0 0; margin: 0; font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em; background: none; }
+
+/* Mobile screens */
+.screen-img {
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.screen-img img,
+.screen-img video {
+  width: 100%;
+  max-height: 813px;
+  object-fit: contain;
+  display: block;
+  vertical-align: bottom;
+  border-radius: 35px;
+}
+.screen-img figcaption { padding: 12px 4px 0; margin: 0; font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em; background: none; text-align: center; }
+
+/* ════════════════════════════
+   GRIDS
+════════════════════════════ */
+.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.screens-4up { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+.screens-split-6-3-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+.fig-cap { font-size: 13px; color: var(--ink-40); margin-top: 12px; letter-spacing: 0.01em; }
+
+/* ════════════════════════════
+   INSIGHTS
+════════════════════════════ */
+.insights-block { margin-top: 56px; border-top: 1px solid var(--rule); padding-top: 24px; }
+.insights-head { margin-bottom: 24px; }
+.insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.insight-row { display: grid; grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 32px 24px 0; border-bottom: 1px solid var(--rule-soft); border-right: 1px solid var(--rule-soft); align-items: start; }
+.insight-row:nth-child(even) { border-right: 0; padding-right: 0; padding-left: 32px; }
+.insight-row:nth-last-child(-n+2) { border-bottom: 0; }
+.insight-num { font-family: var(--mono); font-size: 11px; color: var(--ink-40); padding-top: 3px; }
+.insight-title { font-family: var(--display); font-size: 17px; letter-spacing: -0.015em; line-height: 1.2; margin-bottom: 6px; font-weight: 400; }
+.insight-text { font-size: 14px; line-height: 1.55; color: var(--ink-60); margin: 0; }
+.insight-callout { display: flex; gap: 12px; align-items: flex-start; padding: 16px 20px; background: var(--paper-2); border-left: 3px solid var(--rule); border-radius: 0 8px 8px 0; margin-top: 20px; }
+.insight-callout-num { font-family: var(--mono); font-size: 10px; color: var(--ink-40); white-space: nowrap; padding-top: 4px; }
+.insight-callout p { font-size: 14px; line-height: 1.6; color: var(--ink-60); margin: 0; font-family: var(--body) !important; }
+.insight-callout strong {
+  font-family: var(--display);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ════════════════════════════
+   CLOSING
+════════════════════════════ */
+.closing { background: #0b0b0d; color: #e6e6e7; padding: 140px var(--gutter); }
+.closing-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.closing-quote {
+  margin: 32px 0 0;
+  font-family: var(--display);
+  font-size: clamp(32px, 4.4vw, 72px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  max-width: 22ch;
+}
+.closing-quote em { font-style: italic; }
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .two-col, .feat-split { grid-template-columns: 1fr; gap: 32px; }
+  .meta-row { grid-template-columns: 1fr 1fr; }
+  .persona-block { grid-template-columns: 64px 1fr; gap: 16px; }
+  .insights-grid { grid-template-columns: 1fr; }
+  .insight-row { border-right: 0; padding-right: 0; padding-left: 0; }
+  .insight-row:nth-child(even) { padding-left: 0; }
+  .insight-row:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule-soft); }
+  .insight-row:last-child { border-bottom: 0; }
+  .screens-4up { grid-template-columns: repeat(2, 1fr); }
+  .screens-split-6-3-3 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .title-meta { flex-direction: column; gap: 8px; }
+  .meta-row { grid-template-columns: 1fr; }
+  .screens-3up, .screens-2up { grid-template-columns: 1fr 1fr; }
+  .screens-4up { grid-template-columns: 1fr 1fr; }
+  .persona-block { grid-template-columns: 1fr; }
+  .persona-avatar { width: 64px; height: 64px; }
+}
+
+  </style>
+</head>
+<body>
+
+<Nav />
+
+<!-- ── § 01 — TITLE ── -->
+<section class="title-section">
+  <div class="title-meta">
+    <span class="meta">Case Study · 02</span>
+    <span class="meta">HoneyBook · 2022–2025 · Product Design</span>
+  </div>
+  <h1 class="cs-h1">
+    AI tools for people<br>
+    running a <em>business</em><br>
+    of one.
+  </h1>
+  <p class="lede">
+    HoneyBook is an all-in-one business management platform for creative professionals. I led design on its core AI initiatives — helping users capture leads, communicate faster, and stay on top of their work without drowning in admin.
+  </p>
+  <div class="meta-row">
+    <div>
+      <span class="meta">Role</span>
+      <div class="meta-val">Senior Product Designer, Core AI Product</div>
+    </div>
+    <div>
+      <span class="meta">Research</span>
+      <div class="meta-val">Co-led · 26 participants · interviews, usability testing &amp; moderated concept sessions</div>
+    </div>
+    <div>
+      <span class="meta">Years</span>
+      <div class="meta-val">2022–2025</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── HERO ── -->
+<div style="padding: 0 var(--gutter) 80px;">
+  <div class="img-frame">
+    <img src="/images/HB-01.png" alt="HoneyBook AI — overview">
+  </div>
+</div>
+
+
+<!-- ── § 02 — CONTEXT ── -->
+<section class="section-alt">
+  <div class="section-head">
+    <span class="meta">&nbsp;01 — The problem</span>
+  </div>
+  <div class="two-col">
+    <h2 class="cs-h2" style="font-size: clamp(40px, 4.2vw, 68px);">Creative professionals were running their business across too many disconnected tools</h2>
+    <div>
+      <p class="body-text">
+        Leads lived in Gmail, got half-read, then buried. When users joined HoneyBook, their relationships stayed outside it — and the product couldn't prove its value.
+      </p>
+      <p class="body-text" style="margin-top: 20px;">
+        The problem was <strong>discovery friction</strong> — users couldn't find the tools, didn't trust them, or didn't know they were missing anything.
+      </p>
+      <div class="problem-box" style="margin-top: 32px; margin-bottom: 0;">
+        <p>"I was using six or seven programs to communicate with clients, share files, invoice. It was really scattered. My clients didn't have a place where everything was in one spot."</p>
+        <p style="margin-top: 8px; font-size: 13px; color: var(--ink-40);">— Brittany Cheri, Marketing Consultant · research participant</p>
+      </div>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-n" style="padding-top: 24px;">13<span class="stat-d">/13</span></div>
+      <div class="stat-l">Research participants wanted to save time — all relying on 6–7 tools</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n" style="padding-top: 24px;">3<span class="stat-d">%</span></div>
+      <div class="stat-l">Initial Gmail opt-in rate — an awareness gap, not a trust problem. Led to a full onboarding redesign.</div>
+    </div>
+    <div class="stat" style="border-right: 0;">
+      <div class="stat-n" style="padding-top: 24px;">26→40<span class="stat-d">%</span></div>
+      <div class="stat-l">DAU lift when users add a second lead — the single highest-impact retention lever</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── INSIGHTS ── -->
+<section class="section" style="padding-top: 0;">
+  <div class="insights-block" style="margin-top: 0;">
+    <div class="insights-head">
+      <br>
+      <span class="meta">4 insights that drove every design decision</span>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-row">
+        <div class="insight-num">01</div>
+        <div class="insight-body">
+          <div class="insight-title">Scattered workflow is the root cause</div>
+          <p class="insight-text">13/13 participants relied on 6–7 tools, entering leads manually — if at all.</p>
+        </div>
+      </div>
+      <div class="insight-row">
+        <div class="insight-num">02</div>
+        <div class="insight-body">
+          <div class="insight-title">Speed of response is the #1 booking factor</div>
+          <p class="insight-text">Members knew it. They just weren't doing it — inquiries sat in Gmail for days.</p>
+        </div>
+      </div>
+      <div class="insight-row">
+        <div class="insight-num">03</div>
+        <div class="insight-body">
+          <div class="insight-title">Follow-up cadence is pure guesswork</div>
+          <p class="insight-text">2–3 attempts, weekly, then silence. Fear of being annoying paralysed action.</p>
+        </div>
+      </div>
+      <div class="insight-row">
+        <div class="insight-num">04</div>
+        <div class="insight-body">
+          <div class="insight-title">Leads need to be prioritised, not just captured</div>
+          <p class="insight-text">Manual qualifying consumed hours — no visibility into who was actually worth responding to first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 03 — USER JOURNEY ── -->
+<section class="section">
+  <div class="section-head">
+    <span class="meta">&nbsp;02 — User journey</span>
+  </div>
+  <div class="two-col">
+    <h2 style="font-family: var(--display); font-size: clamp(40px, 4.2vw, 68px); line-height: 1.02 !important; letter-spacing: -0.03em; margin: 0; font-weight: 400; max-width: 16ch;">AI-powered lead management, end to end</h2>
+    <p class="body-text">
+      HoneyBook's AI features are designed to act as a business partner — handling the repetitive, time-consuming work so creative professionals can focus on their craft. The features below follow a single user story from first inquiry to closed project.
+    </p>
+  </div>
+  <div class="persona-block">
+    <div class="persona-avatar">
+      <img src="/images/HB-02.png" alt="Anna">
+    </div>
+    <div>
+      <div class="persona-name">Meet Anna</div>
+      <p class="persona-text">
+        A graphic designer and founder of a small studio. Thriving work, growing client base — and a flood of admin threatening to take over..
+      </p>
+      <p class="persona-text" style="margin-top: 12px; color: var(--ink-40);">
+        Anna is a composite built from research across 26 HoneyBook members, trialers, and non-members.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 04 — GMAIL IMPORT ── -->
+<section class="section-alt">
+  <div class="solution-section" style="margin-top: 0; padding-top: 0; border-top: none;">
+    <div class="problem-box">
+      <p>Anna receives a steady stream of client inquiries through email, but struggles to keep track of them. <strong>Some inquiries go unanswered for weeks.</strong></p>
+    </div>
+    <div class="step-badge">
+      <span class="step-num">Step 01</span>
+      <span class="step-label">Capture</span>
+    </div>
+    <div class="solution-kicker">Solution</div>
+    <h2 class="solution-h">AI Gmail import &amp; <em>data enrichment</em></h2>
+    <div class="two-col" style="margin-bottom: 40px;">
+      <p class="body-text">
+        HoneyBook's AI scans Anna's Gmail inbox, importing both past and ongoing inquiries to centralize her lead management in one place. This helps her uncover cold opportunities that might have been lost and enables her to follow up quickly.
+      </p>
+      <p class="body-text">
+        Each lead suggestion is <strong>automatically enriched</strong> with relevant details, saving time and providing a more complete picture of each contact — so Anna can make informed decisions effortlessly.
+      </p>
+    </div>
+    <div class="screens-split-6-3-3">
+      <div class="img-frame" style="border: none;">
+        <img src="/images/HB-03.png" alt="">
+      </div>
+      <div class="screen-img">
+        <img src="/images/HB-04.png" alt="">
+      </div>
+      <div class="screen-img">
+        <video src="/images/HB-05.mov" autoplay loop muted playsinline style="border-radius: 35px;"></video>
+      </div>
+    </div>
+    <p class="fig-cap">Projects / Suggestions page</p>
+    <div class="insight-callout" style="margin-top: 40px;">
+      <span class="insight-callout-num">Insight 01</span>
+      <p><strong>Scattered workflow is the root cause.</strong> All 13 participants relied on 6–7 tools, leads lived in Gmail. Bringing relationships into HoneyBook was the highest-impact first move.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 05 — AI COMPOSER ── -->
+<section class="section">
+  <div class="solution-section" style="margin-top: 0; padding-top: 0; border-top: none;">
+    <div class="problem-box">
+      <p>Anna spends a lot of time drafting client emails — from responding to inquiries to following up on proposals. <strong>Manually writing and personalizing each message delays her responses.</strong></p>
+    </div>
+    <div class="feat-split">
+      <div>
+        <div class="step-badge">
+          <span class="step-num">Step 02</span>
+          <span class="step-label">Respond</span>
+        </div>
+        <div class="solution-kicker">Solution</div>
+        <h2 class="solution-h">AI <em>Composer</em></h2>
+        <p class="body-text">
+          When Anna opens a project, an AI-generated draft instantly appears with a suggested reply. She can quickly review, edit manually, or regenerate a new version — making responses faster and more efficient while maintaining a personal touch.
+        </p>
+        <div class="insight-callout">
+          <span class="insight-callout-num">Insight 02</span>
+          <p><strong>Speed of response is the #1 booking factor.</strong> Members knew it and admitted they were failing. The blank reply screen was the friction — removing it was the fix.</p>
+        </div>
+      </div>
+      <div class="img-frame" style="overflow: hidden;">
+        <img src="/images/HB-06.gif" alt="" style="width: 100%; display: block; transform: scale(1.45); transform-origin: center 42%;">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 06 — MEETING RECAP ── -->
+<section class="section-alt">
+  <div class="solution-section" style="margin-top: 0; padding-top: 0; border-top: none;">
+    <div class="problem-box">
+      <p>Keeping up with client meetings and follow-ups is overwhelming. After each call, <strong>Anna struggles to remember all the action items</strong>, leading to delays in next steps.</p>
+    </div>
+    <div class="step-badge">
+      <span class="step-num">Step 03</span>
+      <span class="step-label">Follow through</span>
+    </div>
+    <div class="solution-kicker">Solution</div>
+    <h2 class="solution-h">AI Meeting Recap &amp; <em>task generator</em></h2>
+    <div class="two-col" style="margin-bottom: 40px;">
+      <p class="body-text">
+        Using the app, Anna records her client meeting, allowing AI to generate a transcript and summarize key points. When she opens the project, an AI-generated recap provides key notes and suggested action items — like generating a tailored proposal or scheduling a follow-up — keeping her organized and ensuring nothing falls through the cracks.
+      </p>
+      <div class="insight-callout" style="margin-top: 0;">
+        <span class="insight-callout-num">Insight 03</span>
+        <p><strong>Follow-up cadence is pure guesswork.</strong> 2–3 attempts, then silence. The recap removes the ambiguity — you know what was agreed and what comes next.</p>
+      </div>
+    </div>
+    <div class="screens-4up">
+      <div class="screen-img">
+        <img src="/images/HB-07.png" alt="">
+      </div>
+      <div class="screen-img">
+        <img src="/images/HB-08.png" alt="">
+      </div>
+      <div class="screen-img">
+        <img src="/images/HB-09.png" alt="">
+      </div>
+      <div class="screen-img">
+        <img src="/images/HB-10.png" alt="">
+      </div>
+    </div>
+    <div class="img-frame" style="margin-top: 16px;">
+      <img src="/images/HB-11.png" alt="AI-generated proposal preview">
+    </div>
+  </div>
+</section>
+
+
+<!-- ── § 07 — RESULTS ── -->
+<section class="section">
+  <div class="section-head">
+    <span class="meta">§ 03 — Results</span>
+  </div>
+  <h2 class="cs-h2-wide">
+    What happened —<br>
+    <em>and what we learned.</em>
+  </h2>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-n">88<span class="stat-d">%</span></div>
+      <div class="stat-l">Of users who opted in received relevant lead suggestions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">7→17<span class="stat-d">%</span></div>
+      <div class="stat-l">"Add to pipeline" rate before → after model improvements</div>
+    </div>
+    <div class="stat" style="border-right: 0;">
+      <div class="stat-n">63<span class="stat-d">%</span></div>
+      <div class="stat-l">Positive feedback rate · only 7 users toggled the feature off</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 64px; border-top: 1px solid var(--rule); padding-top: 24px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 32px;">
+      <span class="meta">Chart — Gmail feature funnel</span>
+      <span class="mono">All users · Gmail integration cohort</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px;">
+      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Signed up</div>
+        <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 100%; background: var(--ink);"></div></div>
+        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">100%</span></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Saw the feature</div>
+        <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 22%; background: var(--ink);"></div></div>
+        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">~22%</span><span style="font-size: 12px; color: var(--ink-40);">discovery gap</span></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Opted in (Gmail)</div>
+        <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 3%; background: var(--ink);"></div></div>
+        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">3%</span><span style="font-size: 12px; color: var(--ink-40);">→ led to redesign</span></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Got suggestions</div>
+        <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 88%; background: #5E30E3;"></div></div>
+        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">88%</span><span style="font-size: 12px; color: var(--ink-40);">of opt-ins</span></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Added to pipeline</div>
+        <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 17%; background: #5E30E3;"></div></div>
+        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">17%</span><span style="font-size: 12px; color: var(--ink-40);">up from 7%</span></div>
+      </div>
+      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px;">
+        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Positive feedback</div>
+        <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 63%; background: #5E30E3;"></div></div>
+        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">63%</span><span style="font-size: 12px; color: var(--ink-40);">7 users toggled off</span></div>
+      </div>
+    </div>
+    <p style="font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em;">Dark bars = all users · Tinted bars = within opt-in cohort only</p>
+  </div>
+
+  <div class="insight-callout" style="margin-top: 56px; border-left-color: var(--accent);">
+    <span class="insight-callout-num">Key learning</span>
+    <p><strong>We were afraid trialers wouldn't opt in to Gmail access — so we made it a separate step.</strong> This created the very problem we feared: not enough data. When we surfaced it as part of the onboarding flow, users weren't bothered at all. Trust is earned through value, not permission flows. Show what it does — then explain what you're doing.</p>
+  </div>
+</section>
+
+
+<!-- ── CLOSING (dark) ── -->
+<section class="closing">
+  <div class="closing-kicker">Design principle</div>
+  <blockquote class="closing-quote">
+    Keep humans<br>
+    <em>in the loop.</em>
+  </blockquote>
+  <p style="margin-top: 40px; font-size: 17px; line-height: 1.6; color: rgba(255,255,255,0.5); max-width: 48ch; font-family: var(--body); font-weight: 400; font-style: normal;">
+    For a creative running their own business, they are the product. Nothing sends without their tap. The AI handles the admin so they stay focused on what actually matters: their craft.
+  </p>
+</section>
+
+
+</body>
+</html>
