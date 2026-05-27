@@ -319,6 +319,22 @@ body {
   .persona-avatar { width: 64px; height: 64px; }
 }
 
+/* ─── Funnel chart ─── */
+.hb-funnel-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 200px;
+  align-items: center;
+  gap: 24px;
+}
+@media (max-width: 700px) {
+  .hb-funnel-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .hb-funnel-label { font-size: 15px !important; }
+  .hb-funnel-pct { justify-content: flex-start !important; }
+}
+
   </style>
 </head>
 <body>
@@ -611,35 +627,35 @@ body {
       <span class="mono">All users · Gmail integration cohort</span>
     </div>
     <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 48px;">
-      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
-        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Signed up</div>
+      <div class="hb-funnel-row" style="padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div class="hb-funnel-label" style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Signed up</div>
         <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 100%; background: var(--ink);"></div></div>
-        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">100%</span></div>
+        <div class="hb-funnel-pct" style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">100%</span></div>
       </div>
-      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
-        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Saw the feature</div>
+      <div class="hb-funnel-row" style="padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div class="hb-funnel-label" style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Saw the feature</div>
         <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 22%; background: var(--ink);"></div></div>
-        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">~22%</span><span style="font-size: 12px; color: var(--ink-40);">discovery gap</span></div>
+        <div class="hb-funnel-pct" style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">~22%</span><span style="font-size: 12px; color: var(--ink-40);">discovery gap</span></div>
       </div>
-      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
-        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Opted in (Gmail)</div>
+      <div class="hb-funnel-row" style="padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div class="hb-funnel-label" style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Opted in (Gmail)</div>
         <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 3%; background: var(--ink);"></div></div>
-        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">3%</span><span style="font-size: 12px; color: var(--ink-40);">→ led to redesign</span></div>
+        <div class="hb-funnel-pct" style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">3%</span><span style="font-size: 12px; color: var(--ink-40);">→ led to redesign</span></div>
       </div>
-      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
-        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Got suggestions</div>
+      <div class="hb-funnel-row" style="padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div class="hb-funnel-label" style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Got suggestions</div>
         <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 88%; background: #5E30E3;"></div></div>
-        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">88%</span><span style="font-size: 12px; color: var(--ink-40);">of opt-ins</span></div>
+        <div class="hb-funnel-pct" style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">88%</span><span style="font-size: 12px; color: var(--ink-40);">of opt-ins</span></div>
       </div>
-      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
-        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Added to pipeline</div>
+      <div class="hb-funnel-row" style="padding-bottom: 12px; border-bottom: 1px solid var(--rule-soft);">
+        <div class="hb-funnel-label" style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Added to pipeline</div>
         <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 17%; background: #5E30E3;"></div></div>
-        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">17%</span><span style="font-size: 12px; color: var(--ink-40);">up from 7%</span></div>
+        <div class="hb-funnel-pct" style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">17%</span><span style="font-size: 12px; color: var(--ink-40);">up from 7%</span></div>
       </div>
-      <div style="display: grid; grid-template-columns: 220px 1fr 200px; align-items: center; gap: 24px;">
-        <div style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Positive feedback</div>
+      <div class="hb-funnel-row">
+        <div class="hb-funnel-label" style="font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;">Positive feedback</div>
         <div style="height: 20px; background: var(--paper-2); border: 1px solid var(--rule-soft); position: relative;"><div style="height: 100%; width: 63%; background: #5E30E3;"></div></div>
-        <div style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">63%</span><span style="font-size: 12px; color: var(--ink-40);">7 users toggled off</span></div>
+        <div class="hb-funnel-pct" style="display: flex; justify-content: flex-end; align-items: baseline; gap: 16px; font-family: var(--mono);"><span style="font-size: 15px; color: var(--ink);">63%</span><span style="font-size: 12px; color: var(--ink-40);">7 users toggled off</span></div>
       </div>
     </div>
     <p style="font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em;">Dark bars = all users · Tinted bars = within opt-in cohort only</p>
