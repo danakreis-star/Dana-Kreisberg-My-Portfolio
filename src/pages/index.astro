@@ -260,13 +260,13 @@ body {
   grid-template-columns: 200px 1fr;
   gap: 64px;
 }
-.about-left { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
 .about-photo {
   width: 48px;
   height: 48px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
+  flex-shrink: 0;
 }
 .about-text {
   font-family: var(--display);
@@ -280,9 +280,10 @@ body {
 .about-meta {
   grid-column: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 48px 1fr 1fr 1fr;
   gap: 32px;
   margin-top: 40px;
+  align-items: start;
 }
 .about-row { margin-top: 8px; font-size: 15px; }
 
@@ -325,8 +326,7 @@ footer {
   .hero-bottom { grid-template-columns: 1fr; gap: 40px; }
   .project-foot { grid-template-columns: 1fr; gap: 24px; }
   .about { grid-template-columns: 1fr; gap: 32px; }
-  .about-left { flex-direction: row; align-items: center; gap: 12px; }
-  .about-meta { grid-column: 1; grid-template-columns: 1fr 1fr; }
+  .about-meta { grid-column: 1; grid-template-columns: 48px 1fr 1fr; }
   .contact { flex-direction: column; gap: 32px; align-items: flex-start; }
   .mini-project { grid-template-columns: 120px 1fr 100px 56px 40px; gap: 0 20px; }
 }
@@ -338,7 +338,8 @@ footer {
   .hero-tags { font-size: 16px; }
   .mini-tags, .mini-year { display: none; }
   .mini-project { grid-template-columns: 80px 1fr 40px; gap: 0 16px; padding: 20px 0; }
-  .about-meta { grid-template-columns: 1fr; gap: 24px; }
+  .about-meta { grid-template-columns: 48px 1fr; gap: 16px 24px; }
+  .about-photo { grid-row: 1 / 4; }
 }
 
   /* ── PLACEHOLDER THUMB ── */
@@ -513,10 +514,7 @@ footer {
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <div class="about-left">
-    <span class="meta">About</span>
-    <img class="about-photo" src="/images/dana-photo.jpg" alt="Dana Kreisberg" />
-  </div>
+  <span class="meta">About</span>
   <div>
     <p class="about-text">
       I'm a Lead Product Designer with 10+ years of experience specializing in AI product design, SaaS, and Fintech. I design end-to-end AI-powered experiences from research and prototyping through to shipped product, translating complex workflows into clear UI systems. I work closely with product and engineering teams to drive measurable product outcomes that align with business goals.
@@ -524,6 +522,7 @@ footer {
       I'm drawn to problems where the interface carries judgment — turning AI outputs into actionable decisions, and simplifying enterprise workflows into intuitive interfaces. I believe strong design is grounded in user empathy and real-world challenges, ensuring products are not only usable, but genuinely valuable in people's day-to-day work.
     </p>
     <div class="about-meta">
+      <img class="about-photo" src="/images/dana-photo.jpg" alt="Dana Kreisberg" />
       <div>
         <span class="meta">Now</span>
         <div class="about-row">Self-employed - UX design and strategy</div>
