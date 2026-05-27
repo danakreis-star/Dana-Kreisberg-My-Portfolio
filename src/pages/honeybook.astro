@@ -234,7 +234,7 @@ body {
 .screen-img img,
 .screen-img video {
   width: 100%;
-  max-height: 813px;
+  max-height: 800px;
   object-fit: contain;
   display: block;
   vertical-align: bottom;
@@ -245,8 +245,8 @@ body {
 /* ════════════════════════════
    GRIDS
 ════════════════════════════ */
-.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
-.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 24px; }
+.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 24px; }
 .screens-4up { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
 .screens-split-6-3-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; margin-top: 24px; }
 .fig-cap { font-size: 13px; color: var(--ink-40); margin-top: 12px; letter-spacing: 0.01em; }
@@ -317,6 +317,37 @@ body {
   .screens-4up { grid-template-columns: 1fr 1fr; }
   .persona-block { grid-template-columns: 1fr; }
   .persona-avatar { width: 64px; height: 64px; }
+}
+
+/* ── NEXT PROJECT ── */
+.next-project-bar {
+  display: block;
+  padding: 48px var(--gutter) 80px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 0.2s;
+}
+.next-project-bar:hover { opacity: 0.6; }
+.next-project-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  display: block;
+  margin-bottom: 16px;
+}
+.next-project-title {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 64px);
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 /* ─── Funnel chart ─── */
@@ -680,6 +711,10 @@ body {
   </p>
 </section>
 
+<a class="next-project-bar" href="/melio">
+  <span class="next-project-label">Next project</span>
+  <div class="next-project-title">Melio →</div>
+</a>
 
 </body>
 </html>

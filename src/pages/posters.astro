@@ -80,8 +80,8 @@ body {
 .poster-grid {
   padding: 0 var(--gutter) 100px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }
 
 .poster-item {}
@@ -106,11 +106,10 @@ body {
 ════════════════════════════ */
 @media (max-width: 900px) {
   :root { --gutter: 5%; }
-  .poster-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
   :root { --gutter: 20px; }
-  .poster-grid { grid-template-columns: 1fr; gap: 16px; }
+  .poster-grid { grid-template-columns: 1fr; gap: 20px; }
 }
   </style>
 </head>
@@ -150,17 +149,6 @@ body {
     <div class="poster-caption">Israel National Library event poster · Digital · 2013</div>
   </div>
 
-  <div class="poster-item">
-    <img class="poster-img" src="/images/Poster_design-05.jpg" alt="Poster 05" />
-  </div>
-
-  <div class="poster-item">
-    <img class="poster-img" src="/images/Poster_design-06.jpg" alt="Poster 06" />
-  </div>
-
-  <div class="poster-item">
-    <img class="poster-img" src="/images/Poster_design-07.jpg" alt="Poster 07" />
-  </div>
 
 </div>
 

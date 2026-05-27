@@ -196,6 +196,43 @@ body {
   :root { --gutter: 20px; }
   .title-meta { flex-direction: column; gap: 8px; }
   .meta-row, .stat-row { grid-template-columns: 1fr; }
+  .screens-3up { grid-template-columns: 1fr; }
+}
+
+/* ── SCREENS ── */
+.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.screen-img { overflow: visible; display: flex; flex-direction: column; }
+.screen-img img { width: 100%; display: block; border-radius: 30px; max-height: 800px; object-fit: contain; }
+
+/* ── NEXT PROJECT ── */
+.next-project-bar {
+  display: block;
+  padding: 48px var(--gutter) 80px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 0.2s;
+}
+.next-project-bar:hover { opacity: 0.6; }
+.next-project-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  display: block;
+  margin-bottom: 16px;
+}
+.next-project-title {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 64px);
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
   </style>
 </head>
@@ -396,6 +433,11 @@ body {
     </div>
   </div>
 </section>
+
+<a class="next-project-bar" href="/deco">
+  <span class="next-project-label">Next project</span>
+  <div class="next-project-title">Deco. →</div>
+</a>
 
 </body>
 </html>

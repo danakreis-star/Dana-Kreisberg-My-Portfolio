@@ -255,8 +255,8 @@ body {
    LAYOUT HELPERS
 ════════════════════════════ */
 .feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
-.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: flex-start; }
-.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 24px; align-items: flex-start; }
+.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start; }
+.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 24px; align-items: flex-start; }
 
 /* Mobile screens — transparent bg, caption outside */
 .screen-img {
@@ -268,7 +268,7 @@ body {
 }
 .screen-img img,
 .screen-img video {
-  max-height: 700px;
+  max-height: 800px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -406,6 +406,37 @@ body {
   .feat-split,
   .desktop-plus-mobile,
   .research-grid-bizzabo { grid-template-columns: 1fr; gap: 24px; }
+}
+
+/* ── NEXT PROJECT ── */
+.next-project-bar {
+  display: block;
+  padding: 48px var(--gutter) 80px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
+  text-decoration: none;
+  color: var(--ink);
+  transition: opacity 0.2s;
+}
+.next-project-bar:hover { opacity: 0.6; }
+.next-project-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  display: block;
+  margin-bottom: 16px;
+}
+.next-project-title {
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 64px);
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
   </style>
@@ -810,6 +841,10 @@ body {
   </blockquote>
 </section>
 
+<a class="next-project-bar" href="/honeybook">
+  <span class="next-project-label">Next project</span>
+  <div class="next-project-title">HoneyBook AI →</div>
+</a>
 
 </body>
 </html>
