@@ -2,7 +2,7 @@
 const pathname = Astro.url.pathname;
 const isWork        = pathname === '/';
 const isExplore     = pathname === '/explorations' || pathname === '/explorations/';
-const isAbout       = false; // about is an anchor on the homepage, not its own page
+const isAbout       = false;
 ---
 
 <nav class="site-nav">
@@ -12,7 +12,37 @@ const isAbout       = false; // about is an anchor on the homepage, not its own 
     <a href="/explorations"  class:list={['nav-link', { active: isExplore }]}>Explorations</a>
     <a href="/#about"        class:list={['nav-link', { active: isAbout }]}>About</a>
   </div>
+  <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<div class="nav-mobile-menu" aria-hidden="true">
+  <a href="/#works"       class="nav-mobile-link">Work</a>
+  <a href="/explorations" class="nav-mobile-link">Explorations</a>
+  <a href="/#about"       class="nav-mobile-link">About</a>
+</div>
+
+<script>
+  const burger = document.querySelector('.nav-burger');
+  const menu   = document.querySelector('.nav-mobile-menu');
+  const links  = document.querySelectorAll('.nav-mobile-link');
+
+  burger?.addEventListener('click', () => {
+    const open = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!open));
+    burger.classList.toggle('open', !open);
+    menu?.classList.toggle('open', !open);
+    document.body.style.overflow = open ? '' : 'hidden';
+  });
+
+  links.forEach(l => l.addEventListener('click', () => {
+    burger?.setAttribute('aria-expanded', 'false');
+    burger?.classList.remove('open');
+    menu?.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+</script>
 
 <style is:global>
 nav.site-nav {
@@ -58,10 +88,63 @@ nav.site-nav {
   border-bottom: 1px solid var(--ink);
 }
 
+/* ── HAMBURGER BUTTON ── */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.25s, opacity 0.25s;
+  transform-origin: center;
+}
+.nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity: 0; }
+.nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── MOBILE MENU OVERLAY ── */
+.nav-mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 57px;
+  background: var(--paper);
+  z-index: 99;
+  flex-direction: column;
+  padding: 48px var(--gutter);
+  gap: 0;
+}
+.nav-mobile-menu.open { display: flex; }
+
+.nav-mobile-link {
+  font-family: var(--display);
+  font-size: clamp(40px, 11vw, 60px);
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  transition: opacity 0.15s;
+}
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-link:hover { opacity: 0.5; }
+
 @media (max-width: 600px) {
   nav.site-nav { padding: 16px var(--gutter); }
-  .nav-logo { font-size: 13px; }
-  .nav-link  { font-size: 12px; }
-  .nav-links { gap: 20px; }
+  .nav-logo { font-size: 15px; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
 }
 </style>

@@ -79,7 +79,7 @@ body {
 .ar-16-10 { aspect-ratio: 16 / 10; }
 .ar-4-3   { aspect-ratio: 4 / 3; }
 .ar-3-2   { aspect-ratio: 3 / 2; }
-.ar-16-9  { aspect-ratio: 16 / 9; }
+.ar-16-9  { aspect-ratio: 16 / 7; }
 
 .ph img {
   position: absolute !important;
@@ -127,7 +127,7 @@ body {
 .works-header { display: flex; justify-content: space-between; padding: 16px var(--gutter) 56px; }
 
 /* ── FEATURED PROJECTS ── */
-.works { padding: 0 var(--gutter); display: flex; flex-direction: column; gap: 120px; }
+.works { padding: 0 var(--gutter); display: flex; flex-direction: column; gap: 80px; }
 .project-meta {
   display: flex;
   justify-content: space-between;
@@ -280,7 +280,7 @@ body {
 .about-meta {
   grid-column: 2;
   display: grid;
-  grid-template-columns: 48px 1fr 1fr 1fr;
+  grid-template-columns: 48px 1fr 1fr;
   gap: 32px;
   margin-top: 40px;
   align-items: start;
@@ -331,11 +331,10 @@ footer {
   .mini-project { grid-template-columns: 120px 1fr 100px 56px 40px; gap: 0 20px; }
 }
 @media (max-width: 600px) {
-  :root { --gutter: 20px; }
-  .works { gap: 72px; }
-  .hero { padding: 48px var(--gutter) 72px; }
-  .hero-bottom { margin-top: 40px; }
-  .hero-tags { font-size: 16px; }
+  :root { --gutter: 20px; --radius: 20px; }
+  .works { gap: 56px; }
+  .hero { padding: 40px var(--gutter) 56px; }
+  .hero-tags { font-size: 16px; margin-top: 32px; }
   .mini-tags, .mini-year { display: none; }
   .mini-project { grid-template-columns: 80px 1fr 40px; gap: 0 16px; padding: 20px 0; }
   .about-meta { grid-template-columns: 48px 1fr; gap: 16px 24px; }
@@ -365,19 +364,14 @@ footer {
   <h1 class="hero-title">Lead Product designer shipping <em>AI-powered</em><br>
     experiences across web and mobile.
   </h1>
-  <div class="hero-bottom">
-    <div class="hero-tags">
-      <span>AI</span>
-      <span class="tag-div">·</span>
-      <span>SaaS</span>
-      <span class="tag-div">·</span>
-      <span>Fintech</span>
-      <span class="tag-div">·</span>
-      <span>B2B</span>
-    </div>
-    <p class="hero-lede">
-      I design complex products where decisions matter — AI that stays usable, mobile that stays focused, and B2B systems that stay human.
-    </p>
+  <div class="hero-tags">
+    <span>AI</span>
+    <span class="tag-div">·</span>
+    <span>SaaS</span>
+    <span class="tag-div">·</span>
+    <span>Fintech</span>
+    <span class="tag-div">·</span>
+    <span>B2B</span>
   </div>
 </section>
 
@@ -519,17 +513,13 @@ footer {
     <p class="about-text">
       I'm a Lead Product Designer with 10+ years of experience specializing in AI product design, SaaS, and Fintech. I design end-to-end AI-powered experiences from research and prototyping through to shipped product, translating complex workflows into clear UI systems. I work closely with product and engineering teams to drive measurable product outcomes that align with business goals.
       <br><br>
-      I'm drawn to problems where the interface carries judgment — turning AI outputs into actionable decisions, and simplifying enterprise workflows into intuitive interfaces. I believe strong design is grounded in user empathy and real-world challenges, ensuring products are not only usable, but genuinely valuable in people's day-to-day work.
+      I'm drawn to problems where the interface carries judgment — turning AI outputs into actionable decisions, and simplifying enterprise workflows into intuitive interfaces. I believe strong design is grounded in user empathy and real-world challenges, ensuring products are not only usable, but genuinely valuable in people's day-to-day.
     </p>
     <div class="about-meta">
       <img class="about-photo" src="/images/dana-photo.jpg" alt="Dana Kreisberg" />
       <div>
         <span class="meta">Now</span>
         <div class="about-row">Self-employed - UX design and strategy</div>
-      </div>
-      <div>
-        <span class="meta">Previously</span>
-        <div class="about-row">HoneyBook · Bizzabo · Melio · Riskified</div>
       </div>
       <div>
         <span class="meta">Based</span>
