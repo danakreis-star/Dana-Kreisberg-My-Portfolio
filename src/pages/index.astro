@@ -80,7 +80,14 @@ body {
 .ar-16-10 { aspect-ratio: 16 / 10; }
 .ar-4-3   { aspect-ratio: 4 / 3; }
 .ar-3-2   { aspect-ratio: 3 / 2; }
-.ar-16-9  { aspect-ratio: 16 / 7; }
+.ar-16-9  { aspect-ratio: unset; }
+.ar-16-9 img {
+  position: static !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: unset !important;
+}
 
 .ph img {
   position: absolute !important;
