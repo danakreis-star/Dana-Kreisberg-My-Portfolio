@@ -80,13 +80,13 @@ body {
 .ar-16-10 { aspect-ratio: 16 / 10; }
 .ar-4-3   { aspect-ratio: 4 / 3; }
 .ar-3-2   { aspect-ratio: 3 / 2; }
-.ar-16-9  { aspect-ratio: unset; }
-.ar-16-9 img {
-  position: static !important;
-  inset: auto !important;
-  width: 100% !important;
-  height: auto !important;
-  object-fit: unset !important;
+.ar-16-9  { aspect-ratio: 16 / 9; }
+
+.project-thumb {
+  width: 88%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius);
 }
 
 .ph img {
@@ -149,7 +149,7 @@ body {
   align-items: center;
   gap: 16px;
 }
-.project-media { margin-bottom: 32px; }
+.project-media { margin-bottom: 24px; }
 .project-foot {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -404,9 +404,7 @@ footer {
     </div>
     <div class="project-media">
       <a href="/bizzabo" style="display: block;">
-        <div class="ph ar-16-9">
-          <img src="/images/Bizzabo-hero(thumnail).gif" alt="Bizzabo — Event Networking solution">
-        </div>
+        <img class="project-thumb" src="/images/Bizzabo-hero(thumnail).gif" alt="Bizzabo — Event Networking solution">
       </a>
     </div>
     <div class="project-foot">
@@ -433,9 +431,7 @@ footer {
     </div>
     <div class="project-media">
       <a href="/honeybook" style="display: block;">
-        <div class="ph ar-16-9">
-          <img src="/images/HB-thumbnail.png" alt="HoneyBook AI — Gmail Import & Lead Capture">
-        </div>
+        <img class="project-thumb" src="/images/HB-thumbnail.png" alt="HoneyBook AI — Gmail Import & Lead Capture">
       </a>
     </div>
     <div class="project-foot">
