@@ -265,36 +265,60 @@ body {
 /* ── ABOUT ── */
 .about {
   padding: 80px var(--gutter);
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 64px;
 }
-.about-photo {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  object-fit: cover;
+.about-label {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
   display: block;
-  flex-shrink: 0;
+  margin-bottom: 32px;
+}
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 32px;
+  align-items: start;
 }
 .about-text {
   font-family: var(--display);
   font-size: 26px;
   line-height: 1.35;
   letter-spacing: -0.015em;
-  max-width: 44ch;
   color: var(--ink);
   font-weight: 400;
 }
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.about-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
 .about-meta {
-  grid-column: 2;
   display: grid;
-  grid-template-columns: 48px 1fr 1fr;
-  gap: 32px;
-  margin-top: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
   align-items: start;
 }
-.about-row { margin-top: 8px; font-size: 15px; }
+.about-row { margin-top: 4px; font-size: 14px; }
+
+@media (max-width: 900px) {
+  .about-body { grid-template-columns: 1fr; gap: 40px; }
+  .about-right { flex-direction: row; align-items: flex-start; gap: 24px; }
+  .about-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+}
+@media (max-width: 600px) {
+  .about-right { flex-direction: column; }
+  .about-photo { width: 64px; height: 64px; }
+}
 
 /* ── CONTACT ── */
 .contact {
@@ -334,8 +358,6 @@ footer {
   :root { --gutter: 5%; }
   .hero-bottom { grid-template-columns: 1fr; gap: 40px; }
   .project-foot { grid-template-columns: 1fr; gap: 24px; }
-  .about { grid-template-columns: 1fr; gap: 32px; }
-  .about-meta { grid-column: 1; grid-template-columns: 48px 1fr 1fr; }
   .contact { flex-direction: column; gap: 32px; align-items: flex-start; }
   .mini-project { grid-template-columns: 120px 1fr 100px 56px 40px; gap: 0 20px; }
 }
@@ -346,8 +368,7 @@ footer {
   .hero-tags { font-size: 16px; margin-top: 32px; }
   .mini-tags, .mini-year { display: none; }
   .mini-project { grid-template-columns: 80px 1fr 40px; gap: 0 16px; padding: 20px 0; }
-  .about-meta { grid-template-columns: 48px 1fr; gap: 16px 24px; }
-  .about-photo { grid-row: 1 / 4; }
+  .mini-thumb { border-radius: 12px; }
 }
 
   /* ── PLACEHOLDER THUMB ── */
@@ -513,22 +534,24 @@ footer {
 
 <!-- ABOUT -->
 <section class="about" id="about">
-  <span class="meta">About</span>
-  <div>
+  <span class="about-label">About</span>
+  <div class="about-body">
     <p class="about-text">
       I'm a Lead Product Designer with 10+ years of experience specializing in AI product design, SaaS, and Fintech. I design end-to-end AI-powered experiences from research and prototyping through to shipped product, translating complex workflows into clear UI systems. I work closely with product and engineering teams to drive measurable product outcomes that align with business goals.
       <br><br>
-      I'm drawn to problems where the interface carries judgment — turning AI outputs into actionable decisions, and simplifying enterprise workflows into intuitive interfaces. I believe strong design is grounded in user empathy and real-world challenges, ensuring products are not only usable, but genuinely valuable in people's day-to-day.
+      I'm drawn to complex products and the challenge of making them intuitive. Whether designing AI-powered features or simplifying dense workflows, I focus on understanding how people work and creating experiences that feel natural, useful, and easy to adopt.
     </p>
-    <div class="about-meta">
+    <div class="about-right">
       <img class="about-photo" src="/images/dana-photo.jpg" alt="Dana Kreisberg" />
-      <div>
-        <span class="meta">Now</span>
-        <div class="about-row">Self-employed - UX design and strategy</div>
-      </div>
-      <div>
-        <span class="meta">Based</span>
-        <div class="about-row">Zürich, CH</div>
+      <div class="about-meta">
+        <div>
+          <span class="meta">Now</span>
+          <div class="about-row">Self-employed - UX design and strategy</div>
+        </div>
+        <div>
+          <span class="meta">Based</span>
+          <div class="about-row">Zürich, CH</div>
+        </div>
       </div>
     </div>
   </div>
