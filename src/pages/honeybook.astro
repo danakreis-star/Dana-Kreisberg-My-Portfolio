@@ -234,8 +234,9 @@ body {
 }
 .screen-img img,
 .screen-img video {
-  width: 100%;
-  max-height: 800px;
+  width: auto;
+  max-width: 100%;
+  max-height: 750px;
   object-fit: contain;
   display: block;
   vertical-align: bottom;
@@ -246,10 +247,10 @@ body {
 /* ════════════════════════════
    GRIDS
 ════════════════════════════ */
-.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
-.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 24px; }
-.screens-4up { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
-.screens-split-6-3-3 { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+.screens-2up { display: flex; gap: 24px; margin-top: 24px; align-items: flex-start; justify-content: flex-start; }
+.screens-3up { display: flex; gap: 24px; margin-top: 24px; align-items: flex-start; justify-content: flex-start; }
+.screens-4up { display: flex; gap: 24px; margin-top: 24px; align-items: flex-start; justify-content: flex-start; }
+.screens-split-6-3-3 { display: flex; gap: 24px; margin-top: 24px; align-items: flex-start; justify-content: flex-start; }
 .fig-cap { font-size: 13px; color: var(--ink-40); margin-top: 12px; letter-spacing: 0.01em; }
 
 /* ════════════════════════════
@@ -542,10 +543,10 @@ body {
         <img src="/images/HB-03.png" alt="">
       </div>
       <div class="screen-img">
-        <img src="/images/HB-04.png" alt="">
+        <img src="/images/HB-04.png" alt="" style="border-radius: 30px; border: 3px solid #000000; max-height: 750px; width: auto;">
       </div>
       <div class="screen-img">
-        <video src="/images/HB-05.mov" autoplay loop muted playsinline style="border-radius: 35px;"></video>
+        <video src="/images/HB-05.mov" autoplay loop muted playsinline style="border-radius: 30px; border: 3px solid #000000; max-height: 750px; width: auto; display: block;"></video>
       </div>
     </div>
     <p class="fig-cap">Projects / Suggestions page</p>
@@ -610,16 +611,16 @@ body {
     </div>
     <div class="screens-4up">
       <div class="screen-img">
-        <img src="/images/HB-07.png" alt="">
+        <img src="/images/HB-07.png" alt="" style="border-radius: 30px; border: 3px solid #000000; max-height: 750px; width: auto;">
       </div>
       <div class="screen-img">
-        <img src="/images/HB-08.png" alt="">
+        <img src="/images/HB-08.png" alt="" style="border-radius: 30px; border: 3px solid #000000; max-height: 750px; width: auto;">
       </div>
       <div class="screen-img">
-        <img src="/images/HB-09.png" alt="">
+        <img src="/images/HB-09.png" alt="" style="border-radius: 30px; border: 3px solid #000000; max-height: 750px; width: auto;">
       </div>
       <div class="screen-img">
-        <img src="/images/HB-10.png" alt="">
+        <img src="/images/HB-10.png" alt="" style="border-radius: 30px; border: 3px solid #000000; max-height: 750px; width: auto;">
       </div>
     </div>
     <div class="img-frame" style="margin-top: 16px;">

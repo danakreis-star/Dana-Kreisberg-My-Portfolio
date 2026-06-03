@@ -148,7 +148,7 @@ body {
 ════════════════════════════ */
 .two-col   { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
 .feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
-.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.screens-3up { display: flex; gap: 24px; align-items: flex-start; justify-content: flex-start; }
 .feature-block { margin-bottom: 72px; }
 .feature-block:last-child { margin-bottom: 0; }
 
@@ -222,7 +222,7 @@ body {
 .img-bare img { width: 100%; display: block; border-radius: 12px; }
 .img-caption { font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em; }
 .screen-img { overflow: visible; display: flex; flex-direction: column; }
-.screen-img img { width: 100%; display: block; border-radius: 30px; max-height: 800px; object-fit: contain; }
+.screen-img img { width: auto; max-width: 100%; display: block; border-radius: 30px; max-height: 750px; object-fit: contain; }
 
 /* ════════════════════════════
    RESPONSIVE

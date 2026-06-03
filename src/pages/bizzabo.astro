@@ -141,7 +141,7 @@ body {
 .phase-during .insight-box p { color: var(--ink-60); }
 .phase-during .insight-box strong { color: var(--ink); }
 .phase-during .phase-section { border-top-color: var(--rule); }
-.phase-after { padding: 80px var(--gutter); background: #F5F5F5; }
+.phase-after { padding: 80px var(--gutter); background: #ffffff; }
 
 .section-head {
   position: sticky;
@@ -256,8 +256,8 @@ body {
    LAYOUT HELPERS
 ════════════════════════════ */
 .feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
-.screens-2up { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: flex-start; }
-.screens-3up { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 24px; align-items: flex-start; }
+.screens-2up { display: flex; gap: 24px; align-items: flex-start; justify-content: flex-start; }
+.screens-3up { display: flex; gap: 24px; margin-top: 24px; align-items: flex-start; justify-content: flex-start; }
 
 /* Mobile screens — transparent bg, caption outside */
 .screen-img {
@@ -269,7 +269,7 @@ body {
 }
 .screen-img img,
 .screen-img video {
-  max-height: 800px;
+  max-height: 750px;
   width: auto;
   max-width: 100%;
   object-fit: contain;
@@ -345,11 +345,12 @@ body {
    RESEARCH GRID (§ 03)
 ════════════════════════════ */
 .research-grid-bizzabo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
   margin-top: 40px;
-  align-items: start;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .research-screen-wrap {
   display: inline-block !important;
@@ -691,8 +692,8 @@ body {
           <img src="/images/Bizzabo-05.png" alt="" style="max-height: 400px; object-fit: contain; align-self: flex-start;">
         </div>
       </div>
-      <div class="desktop-frame-wrap" style="margin-top: 32px;">
-        <video src="/images/Bizzabo-06.mov" autoplay loop muted playsinline></video>
+      <div class="desktop-frame-wrap" style="margin-top: 32px; border-radius: 40px; overflow: hidden;">
+        <video src="/images/Bizzabo-06.mov" autoplay loop muted playsinline style="margin-left: -8px; width: calc(100% + 8px); display: block;"></video>
       </div>
       <p class="fig-cap">Community exploration → attendee profile view</p>
     </div>
@@ -706,12 +707,12 @@ body {
       <div class="insight-box insight-box-before">
         <p><strong>Design principle:</strong> Suggest the slot, don't ask the user to negotiate it. Mutual availability turns scheduling from friction into a single tap.</p>
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin-top: 24px;">
-        <div class="img-frame">
-          <img src="/images/Bizzabo-07.png" alt="" style="max-height: 813px; width: 100%; object-fit: cover; object-position: top;">
+      <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 24px;">
+        <div class="img-frame" style="flex: 1;">
+          <img src="/images/Bizzabo-07.png" alt="" style="width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 12px;">
         </div>
-        <div style="border-radius: 30px; overflow: hidden; display: inline-block; max-height: 700px;">
-          <video class="mobile-video" src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="border-radius: 30px; overflow: hidden; max-height: 700px; width: auto; display: block;"></video>
+        <div style="flex-shrink: 0; display: inline-block; line-height: 0;">
+          <video class="mobile-video" src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="border-radius: 30px; max-height: 520px; width: auto; display: block; border: 3px solid #000000;"></video>
         </div>
       </div>
       <p class="fig-cap">Availability setup → mutual slot proposal → one-tap meeting confirmation</p>
@@ -738,12 +739,12 @@ body {
         <p><strong>23% of connections</strong> in our survey were due to a shared comment or question. This feature puts that signal front and centre.</p>
       </div>
       <div class="desktop-frame-wrap" style="margin-top: 32px;">
-        <img src="/images/Bizzabo-09.jpg" alt="Session page">
+        <img src="/images/Bizzabo-9.jpg" alt="Session page">
       </div>
       <div class="screens-3up">
-        <div class="screen-img"><img src="/images/Bizzabo-10.png" alt=""></div>
-        <div class="screen-img"><img src="/images/Bizzabo-11.png" alt=""></div>
-        <div class="screen-img"><img src="/images/Bizzabo-12.png" alt=""></div>
+        <div class="screen-img"><img src="/images/Bizzabo-10.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
+        <div class="screen-img"><img src="/images/Bizzabo-11.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
+        <div class="screen-img"><img src="/images/Bizzabo-12.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
       </div>
       <p class="fig-cap">Push notification → attendees wall → session impression</p>
     </div>
@@ -760,11 +761,11 @@ body {
       <div class="screens-3up">
         <div class="screen-img">
           <div style="border-radius: 30px; overflow: hidden; display: inline-block; max-height: 700px;">
-            <video class="mobile-video" src="/images/Bizzabo-13.mov" autoplay loop muted playsinline style="border-radius: 30px; overflow: hidden; max-height: 700px; width: auto; display: block;"></video>
+            <video class="mobile-video" src="/images/Bizzabo-13.mov" autoplay loop muted playsinline style="border-radius: 30px; overflow: hidden; max-height: 750px; width: auto; display: block; border: 3px solid #000000;"></video>
           </div>
         </div>
-        <div class="screen-img"><img src="/images/Bizzabo-14.png" alt=""></div>
-        <div class="screen-img"><img src="/images/Bizzabo-15.png" alt=""></div>
+        <div class="screen-img"><img src="/images/Bizzabo-14.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
+        <div class="screen-img"><img src="/images/Bizzabo-15.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
       </div>
       <p class="fig-cap">Quick invite with location → online meeting call UI</p>
     </div>
@@ -793,7 +794,7 @@ body {
           </div>
         </div>
         <div class="img-frame">
-          <img src="/images/Bizzabo-16.png" alt="Personalised recap email — connections made, status, suggested next steps">
+          <img src="/images/Bizzabo-16.png" alt="Personalised recap email — connections made, status, suggested next steps" style="clip-path: inset(0 0 0 6px);">
         </div>
       </div>
     </div>
