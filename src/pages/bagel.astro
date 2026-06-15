@@ -741,36 +741,6 @@ body {
     <div class="fig-cap">PM mental model and JTBD definition — mapped before touching the product.</div>
   </div>
 
-  <div style="margin-top:48px; margin-bottom:4px;">
-    <span class="mono" style="color: var(--bagel-purple); letter-spacing: 0.08em;">3 Jobs to Be Done</span>
-  </div>
-  <div class="jtbd-grid">
-    <div class="jtbd-card">
-      <div class="jtbd-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-      </div>
-      <span class="jtbd-num">JTBD 01</span>
-      <div class="jtbd-head">"Tell me what my problem is"</div>
-      <p class="jtbd-body">When I discover a new problem, I want to validate its merit so I can separate signal from noise.</p>
-    </div>
-    <div class="jtbd-card">
-      <div class="jtbd-icon">
-        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-      </div>
-      <span class="jtbd-num">JTBD 02</span>
-      <div class="jtbd-head">"I know what my problem is"</div>
-      <p class="jtbd-body">When I build a roadmap, I want to research my options effectively so I can create the most impact.</p>
-    </div>
-    <div class="jtbd-card">
-      <div class="jtbd-icon">
-        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <span class="jtbd-num">JTBD 03</span>
-      <div class="jtbd-head">"Tell me my problem's status"</div>
-      <p class="jtbd-body">When I review released features, I want to measure their impact to improve future prioritization.</p>
-    </div>
-  </div>
-
   <div style="display:flex; gap:24px; margin-top:40px; align-items:flex-start;">
     <div class="img-frame" style="flex:1;">
       <img src="/images/bagel-research-quarterly-loop.png" alt="Quarterly PM cycle">
@@ -788,23 +758,44 @@ body {
 ══════════════════════════════════════ -->
 <section class="section" style="background: var(--paper-2);">
   <h2 class="cs-h2-wide" style="max-width: none;">Four spaces. Same data. No coherent path between them.</h2>
-  <p class="body-text" style="max-width: none;">Ideas, Trends, and Customer segments are all expressions of the same underlying PM job. Discovery 2.0 unifies them under two modes of entry.</p>
+  <p class="body-text">The product had four separate spaces — all drawing from the same evidence pool, none connected to each other.</p>
 
-  <div class="reframe-split">
-    <div class="rf-before">
-      <span class="rf-tag">Before</span>
-      <div class="rf-title">Three spaces, no connection</div>
-      <div class="rf-item">Ideas backlog — a flat list with no discovery path</div>
-      <div class="rf-item">Trends — isolated view, no link to action</div>
-      <div class="rf-item">Customer 360 — same evidence, different packaging</div>
-      <div class="rf-item">Discovery — most powerful, barely accessed</div>
+  <div class="rf-before" style="margin-top: 28px; max-width: 560px;">
+    <span class="rf-tag">Before</span>
+    <div class="rf-title">Three spaces, no connection</div>
+    <div class="rf-item">Ideas backlog — flat list, no discovery path</div>
+    <div class="rf-item">Trends — isolated, no link to action</div>
+    <div class="rf-item">Customer 360 — same evidence, different packaging</div>
+    <div class="rf-item">Discovery — most powerful, barely accessed</div>
+  </div>
+
+  <div style="margin-top: 56px; margin-bottom: 4px;">
+    <span class="mono" style="color: var(--bagel-purple); letter-spacing: 0.08em;">What users actually needed to do</span>
+  </div>
+  <div class="jtbd-grid">
+    <div class="jtbd-card">
+      <div class="jtbd-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;stroke:var(--bagel-purple)"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      </div>
+      <span class="jtbd-num">JTBD 01</span>
+      <div class="jtbd-head">"Tell me what my problem is"</div>
+      <p class="jtbd-body">When I discover a new problem, I want to validate its merit so I can separate signal from noise.</p>
     </div>
-    <div class="rf-after">
-      <span class="rf-tag">After — Discovery 2.0</span>
-      <div class="rf-title">Two mindsets, one flow</div>
-      <div class="rf-item"><strong>"I want to explore"</strong> — broad or no query; biggest gaps surfaced by evidence and ARR</div>
-      <div class="rf-item"><strong>"I know what I'm looking for"</strong> — targeted query; ranked themes with full evidence trail</div>
-      <div class="rf-item">Every theme is actionable — create, enrich, or track without leaving the flow</div>
+    <div class="jtbd-card">
+      <div class="jtbd-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;stroke:var(--bagel-purple)"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
+      <span class="jtbd-num">JTBD 02</span>
+      <div class="jtbd-head">"I know what my problem is"</div>
+      <p class="jtbd-body">When I build a roadmap, I want to research my options effectively so I can create the most impact.</p>
+    </div>
+    <div class="jtbd-card">
+      <div class="jtbd-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;stroke:var(--bagel-purple)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <span class="jtbd-num">JTBD 03</span>
+      <div class="jtbd-head">"Tell me my problem's status"</div>
+      <p class="jtbd-body">When I review released features, I want to measure their impact to improve future prioritization.</p>
     </div>
   </div>
 </section>
