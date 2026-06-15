@@ -470,6 +470,55 @@ body {
 }
 
 /* ════════════════════════════
+   ACT DIVIDERS
+════════════════════════════ */
+.act-divider {
+  padding: 56px var(--gutter) 48px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+.act-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  white-space: nowrap;
+  padding-top: 6px;
+}
+.act-title {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 6vw, 5.2rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.jtbd-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--bagel-purple-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.jtbd-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--bagel-purple);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ════════════════════════════
    PASSWORD GATE
 ════════════════════════════ */
 #bagel-gate {
@@ -650,186 +699,11 @@ body {
 </div>
 
 <!-- ══════════════════════════════════════
-     § 01 · CONTEXT
-══════════════════════════════════════ -->
-<section class="section">
-  <div class="two-col">
-    <h2 class="cs-h2">A product intelligence tool for product managers</h2>
-    <div>
-      <p class="body-text">Bagel.AI aggregates customer feedback from calls, support tickets, and CRM — then uses AI to surface themes and insights. The promise: help PMs validate problems, prioritize their roadmap, and build a case for what to ship next.</p>
-      <p class="body-text" style="margin-top:16px;">The core product had four separate spaces — <strong>Ideas, Discovery, Trends, Customer 360</strong> — all drawing from the same evidence pool. Discovery was supposed to be the most powerful. It was barely used.</p>
-    </div>
-  </div>
-
-  <!-- ── Context diagram ── -->
-  <div class="ctx-diagram">
-    <!-- Left: inputs -->
-    <div class="ctx-col">
-      <div class="ctx-col-label">Customer signals</div>
-      <div class="ctx-node ctx-node-in">Customer calls</div>
-      <div class="ctx-node ctx-node-in">Support tickets</div>
-      <div class="ctx-node ctx-node-in">CRM data</div>
-    </div>
-
-    <!-- Arrows in -->
-    <div class="ctx-arrows">
-      <svg width="60" height="180" viewBox="0 0 60 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <line x1="4"  y1="30"  x2="56" y2="90"  stroke="#999" stroke-width="1.2"/>
-        <line x1="4"  y1="90"  x2="56" y2="90"  stroke="#999" stroke-width="1.2"/>
-        <line x1="4"  y1="150" x2="56" y2="90"  stroke="#999" stroke-width="1.2"/>
-        <polygon points="50,86 60,90 50,94" fill="#999"/>
-      </svg>
-    </div>
-
-    <!-- Center: Bagel.ai -->
-    <div class="ctx-center">
-      <div class="ctx-bagel-box">
-        <span class="ctx-bagel-name">Bagel.ai</span>
-        <span class="ctx-bagel-sub">AI surfaces themes<br>and insights</span>
-      </div>
-    </div>
-
-    <!-- Arrows out -->
-    <div class="ctx-arrows">
-      <svg width="60" height="180" viewBox="0 0 60 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <line x1="4"  y1="90"  x2="56" y2="30"  stroke="#999" stroke-width="1.2"/>
-        <line x1="4"  y1="90"  x2="56" y2="90"  stroke="#999" stroke-width="1.2"/>
-        <line x1="4"  y1="90"  x2="56" y2="150" stroke="#999" stroke-width="1.2"/>
-        <polygon points="50,26 60,30 50,34" fill="#999"/>
-        <polygon points="50,86 60,90 50,94" fill="#999"/>
-        <polygon points="50,146 60,150 50,154" fill="#999"/>
-      </svg>
-    </div>
-
-    <!-- Right: outcomes -->
-    <div class="ctx-col">
-      <div class="ctx-col-label">PM outcomes</div>
-      <div class="ctx-node ctx-node-out">Validate problems</div>
-      <div class="ctx-node ctx-node-out">Prioritize roadmap</div>
-      <div class="ctx-node ctx-node-out">Build a case to ship</div>
-    </div>
-  </div>
-
-  <style>
-    .ctx-diagram {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0;
-      margin-top: 56px;
-      padding: 40px 32px;
-    }
-    .ctx-col {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-width: 160px;
-    }
-    .ctx-col-label {
-      font-family: var(--body);
-      font-size: 13px;
-      color: var(--ink-40);
-      font-weight: 400;
-      margin-bottom: 4px;
-    }
-    .ctx-node {
-      font-family: var(--body);
-      font-size: 14px;
-      font-weight: 500;
-      padding: 12px 18px;
-      border-radius: 8px;
-      line-height: 1.3;
-    }
-    .ctx-node-in {
-      background: #ffffff;
-      border: 1px solid var(--rule);
-      color: var(--ink);
-    }
-    .ctx-node-out {
-      background: rgba(72,183,163,0.1);
-      border: 1px solid rgba(72,183,163,0.3);
-      color: #1a7a6a;
-    }
-    .ctx-arrows {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-    .ctx-center {
-      flex-shrink: 0;
-      padding: 0 8px;
-    }
-    .ctx-bagel-box {
-      background: rgba(92,92,235,0.1);
-      border: 1.5px solid var(--bagel-purple-border);
-      border-radius: 16px;
-      padding: 28px 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      min-width: 160px;
-      text-align: center;
-    }
-    .ctx-bagel-name {
-      font-family: var(--display);
-      font-size: 17px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--bagel-purple);
-    }
-    .ctx-bagel-sub {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--bagel-purple);
-      opacity: 0.75;
-    }
-    @media (max-width: 700px) {
-      .ctx-diagram { flex-direction: column; gap: 16px; }
-      .ctx-arrows { display: none; }
-      .ctx-col { min-width: unset; width: 100%; }
-    }
-  </style>
-</section>
-
-<!-- ══════════════════════════════════════
      § 02 · PROBLEM
 ══════════════════════════════════════ -->
 
 <section class="section-alt">
   <h2 class="cs-h2-wide">Four spaces. One evidence source. Zero coherent path.</h2>
-  <p class="body-text">PMs had no end-to-end workflow. Every space packaged the same customer data differently but nothing connected them.</p>
-
-  <div class="disconnect">
-    <div class="d-node">Search Trends</div>
-    <span class="d-arr">→</span>
-    <div class="d-node">Search Customers</div>
-    <span class="d-arr">→</span>
-    <div class="d-node">Search Evidence</div>
-    <span class="d-arr">→</span>
-    <div class="d-node dest">Prioritize for Roadmap</div>
-    <span class="no-path">✕ No path</span>
-  </div>
-
-  <div class="quote-grid">
-    <div class="q-card">
-      <blockquote>"A lot of the data is hidden in endless lists of ideas. Too many ideas in the backlog with little way to know what's valuable."</blockquote>
-      <cite>— Neta &amp; Ori, Tipalti · JTBD interviews</cite>
-    </div>
-    <div class="q-card">
-      <blockquote>"Current tools reflect only what PMs already consider — no idea generation support."</blockquote>
-      <cite>— Carmel, HoneyBook · JTBD interviews</cite>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     § 03 · DATA
-══════════════════════════════════════ -->
-<section class="section">
-  <h2 class="cs-h2-wide">The most powerful space was barely used.</h2>
-  <p class="body-text">Discovery had the highest potential — but nearly no traction. The Ideas page carried almost all weekly engagement while Discovery sat at near-zero.</p>
-
   <div class="stat-row">
     <div class="stat">
       <div class="stat-n">248</div>
@@ -839,29 +713,28 @@ body {
       <div class="stat-n">4.4<span class="stat-d">%</span></div>
       <div class="stat-l">Of queries converted to an idea — the core intended action</div>
     </div>
-    <div class="stat">
+    <div class="stat" style="border-right:0;">
       <div class="stat-n">~140</div>
       <div class="stat-l">Avg. weekly Idea page views, vs. near-zero for Discovery</div>
     </div>
   </div>
 
-  <div class="bagel-callout">
-    <p>Users look for proactive insights — asking Bagel to surface trends, themes, and segments that need attention. They already know what their problem is; they need Bagel to help them go deeper.</p>
-    <cite>— Synthesis from user research</cite>
-  </div>
-
-  <div class="img-frame" style="margin-top:48px;">
-    <img src="/images/bagel-research-walkarounds.png" alt="Navigation walkarounds map">
-    <div class="fig-cap">Mapping how a PM would navigate the existing system revealed the workarounds required — and where the flow broke entirely.</div>
+  <div class="img-frame" style="margin-top: 48px;">
+    <img src="/images/bagel-02.jpg" alt="Old Discovery space — blank search prompt, no path to action">
+    <div class="fig-cap">The old Discovery space — a blank search prompt with no starting point and no path to action.</div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
      § 04 · RESEARCH
 ══════════════════════════════════════ -->
+<div class="act-divider" style="background: var(--paper-2);">
+  <span class="act-num">Part 01</span>
+  <h2 class="act-title">Research</h2>
+</div>
+
 <section class="section-alt">
-  <h2 class="cs-h2-wide">Mapping PM workflows from the ground up.</h2>
-  <p class="body-text">Before touching the product, we mapped the PM's world — how they actually think, what jobs they need to do, and how their quarterly cycle works.</p>
+  <h2 class="cs-h2-wide">Mapping PM workflows from the ground up</h2>
 
   <div class="img-frame" style="margin-top:48px;">
     <img src="/images/bagel-research-mental-model.png" alt="PM mental model and JTBD definition">
@@ -873,16 +746,25 @@ body {
   </div>
   <div class="jtbd-grid">
     <div class="jtbd-card">
+      <div class="jtbd-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      </div>
       <span class="jtbd-num">JTBD 01</span>
       <div class="jtbd-head">"Tell me what my problem is"</div>
       <p class="jtbd-body">When I discover a new problem, I want to validate its merit so I can separate signal from noise.</p>
     </div>
     <div class="jtbd-card">
+      <div class="jtbd-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </div>
       <span class="jtbd-num">JTBD 02</span>
       <div class="jtbd-head">"I know what my problem is"</div>
       <p class="jtbd-body">When I build a roadmap, I want to research my options effectively so I can create the most impact.</p>
     </div>
     <div class="jtbd-card">
+      <div class="jtbd-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
       <span class="jtbd-num">JTBD 03</span>
       <div class="jtbd-head">"Tell me my problem's status"</div>
       <p class="jtbd-body">When I review released features, I want to measure their impact to improve future prioritization.</p>
@@ -892,11 +774,11 @@ body {
   <div style="display:flex; gap:24px; margin-top:40px; align-items:flex-start;">
     <div class="img-frame" style="flex:1;">
       <img src="/images/bagel-research-quarterly-loop.png" alt="Quarterly PM cycle">
-      <div class="fig-cap">Quarterly PM cycle mapped against Bagel's capabilities — red marks missing capabilities, yellow marks half-solutions.</div>
+      <div class="fig-cap">Quarterly PM cycle — red marks missing capabilities, yellow marks half-solutions.</div>
     </div>
     <div class="img-frame" style="flex:1;">
       <img src="/images/bagel-research-space-overlap.png" alt="Space overlap diagram">
-      <div class="fig-cap">Four separate containers, same evidence pool — significant overlap, no clear path between them.</div>
+      <div class="fig-cap">Four spaces, same evidence pool — significant overlap, no clear path between them.</div>
     </div>
   </div>
 </section>
@@ -904,9 +786,9 @@ body {
 <!-- ══════════════════════════════════════
      § 05 · THE REFRAME
 ══════════════════════════════════════ -->
-<section class="section">
+<section class="section" style="background: var(--paper-2);">
   <h2 class="cs-h2-wide">Everything is a discovery.</h2>
-  <p class="body-text">The old product treated Ideas, Trends, and Customer segments as separate destinations. They're all expressions of the same underlying PM job — making sense of evidence to decide what to build. Discovery 2.0 unifies them under two modes of entry.</p>
+  <p class="body-text">Ideas, Trends, and Customer segments are all expressions of the same underlying PM job. Discovery 2.0 unifies them under two modes of entry.</p>
 
   <div class="reframe-split">
     <div class="rf-before">
@@ -930,10 +812,14 @@ body {
 <!-- ══════════════════════════════════════
      FLOW 01 · DISCOVERY CHAT
 ══════════════════════════════════════ -->
-<section class="section-alt">
+<div class="act-divider">
+  <span class="act-num">Part 02</span>
+  <h2 class="act-title">The product</h2>
+</div>
+
+<section class="section-alt" style="background: #ffffff;">
   <span class="flow-mono">Flow 01 · Discovery chat</span>
   <h2 class="cs-h2" style="margin-bottom:24px;">From empty state to structured insight.</h2>
-  <p class="body-text">A PM opens a new Discovery session, types a question scoped to their evidence, and receives a ranked list of themes — each with weighted ARR, customer count, and evidence. The whole flow takes under 30 seconds.</p>
 
   <div class="video-container" style="margin-top:48px;">
     <video src="/videos/bagel-video-01.mov" autoplay loop muted playsinline></video>
@@ -942,7 +828,6 @@ body {
   <div class="video-frame-still" style="margin-top:16px;">
     <img src="/images/bagel-v1-frame-02.png" alt="Output — ranked insight cards with ARR, customers, evidence">
   </div>
-  <span class="frame-label">Output — ranked insight cards with ARR, customers, and evidence inline</span>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -951,26 +836,28 @@ body {
 <section class="section">
   <span class="decision-mono">Design Decision 01</span>
   <h2 class="cs-h2" style="margin-bottom:20px;">Hierarchy over navigation.</h2>
-  <p class="body-text">Instead of navigating between separate pages, information unfolds in layers within one view: Theme → Sub-theme → Evidence. PMs move deeper without losing context or having to retrace their steps. The insight view header always shows where you are — and a single tap opens a searchable index of every insight in the session.</p>
+  <p class="body-text">Information unfolds in layers: Theme → Sub-theme → Evidence. A single tap opens a searchable index of every insight in the session.</p>
   <div class="bagel-principle" style="max-width:600px;">The user never needs to navigate to find more — they drill down into what they're already looking at.</div>
   <div class="img-frame" style="margin-top:48px;">
     <img src="/images/bagel-04.png" alt="Hierarchy — drill-down insight view" style="border: none;">
+    <div class="fig-cap">Theme → Sub-theme → Evidence — information unfolds in layers without leaving the view.</div>
   </div>
 </section>
 
 <!-- ══════════════════════════════════════
      § 06 · DESIGN DECISION 02
 ══════════════════════════════════════ -->
-<section class="section-alt">
+<section class="section-alt" style="background: #ffffff;">
   <div class="feat-split">
     <div>
       <span class="decision-mono">Design Decision 02</span>
       <h2 class="cs-h2" style="margin-bottom:20px;">Every surface knows what you're looking at.</h2>
-      <p class="body-text">Actions and follow-up questions are scoped to their context — not global. Asking a question on the Business Impact widget queries only that widget's data. Acting on an insight — creating an idea, adding to an existing one, duplicating — happens in place, without switching views. The product meets the PM where they are, not the other way around.</p>
+      <p class="body-text">Questions are scoped to the widget. Actions happen in place. The product meets you where you are.</p>
       <div class="bagel-principle" style="max-width:600px;">Context-aware questions. Context-aware actions. No dead ends.</div>
     </div>
     <div class="img-frame">
       <img src="/images/bagel-05.png" alt="Context-aware actions — widget-level interactions" style="border: none; max-width: 600px;">
+      <div class="fig-cap">Insight-level actions — scoped to the card's data, triggered without switching views.</div>
     </div>
   </div>
 </section>
@@ -981,19 +868,19 @@ body {
 <section class="section">
   <span class="decision-mono">Design Decision 03</span>
   <h2 class="cs-h2" style="margin-bottom:20px;">The artifact fits the PM, not the other way around.</h2>
-  <p class="body-text" style="max-width:600px;">The insight view isn't a fixed report. PMs can ask follow-up questions scoped to any widget, or extend the view by adding new widgets from a library — Customer segments, Source type, Trend over time, Custom widget, and more. Every PM shapes the view to match how they think and what they need to defend.</p>
+  <p class="body-text" style="max-width:600px;">The insight view isn't a fixed report. Add new widgets from a library, or ask AI scoped to any widget. Every person shapes the view to match how they think.</p>
   <div class="bagel-principle" style="max-width:600px;">A shared artifact that everyone can make their own.</div>
 
   <div class="two-frame-strip">
     <div class="frame-item">
       <div class="frame-n">Ask AI</div>
       <img src="/images/bagel-07.png" alt="Ask AI follow-up questions">
-      <div class="frame-cap">Follow-up questions scoped to any widget — suggested prompts adapt to widget type</div>
+      <div class="frame-cap">Follow-up questions scoped to any widget — suggested prompts adapt to widget type.</div>
     </div>
     <div class="frame-item">
       <div class="frame-n">Add widget</div>
       <img src="/images/bagel-08b.png" alt="Add widget from library">
-      <div class="frame-cap">Choose from a library or build a custom widget from scratch</div>
+      <div class="frame-cap">Choose from a library or build a custom widget from scratch.</div>
     </div>
   </div>
 </section>
@@ -1001,10 +888,9 @@ body {
 <!-- ══════════════════════════════════════
      FLOW 02 · INSIGHT VIEW
 ══════════════════════════════════════ -->
-<section class="section-alt">
+<section class="section-alt" style="background: #ffffff;">
   <span class="flow-mono">Flow 02 · Insight view</span>
   <h2 class="cs-h2" style="margin-bottom:24px;">An insight card is a live workspace, not a dead end.</h2>
-  <p class="body-text">Clicking an insight card from the chat opens the expanded insight view — a split screen where the conversation stays live on the left and the card becomes an interactive artifact on the right. Widgets can be interrogated, filtered, and extended without leaving the view.</p>
 
   <div class="video-container" style="margin-top:48px;">
     <video src="/videos/bagel-video-02.mov" autoplay loop muted playsinline></video>
@@ -1013,7 +899,7 @@ body {
   <div class="video-frame-still" style="margin-top:16px;">
     <img src="/images/bagel-v2-frame-06.png" alt="Filter applied — Enterprise chip, metrics updated">
   </div>
-  <span class="frame-label">Filter applied — "Enterprise ×" chip in header, widget metrics updated</span>
+  <span class="frame-label">Filter applied — "Enterprise ×" chip in header, widget metrics updated.</span>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -1021,7 +907,7 @@ body {
 ══════════════════════════════════════ -->
 <section class="section">
   <h2 class="cs-h2-wide">From near-zero to the core workflow.</h2>
-  <p class="body-text">Discovery 2.0 shipped as the primary PM workflow in Bagel.AI. The product went from a fragmented set of tools with near-zero Discovery usage to a unified system where discovery, validation, and roadmap action happen in one continuous flow.</p>
+  <p class="body-text">Discovery 2.0 became the primary workflow. Four disconnected spaces unified into one.</p>
 
   <div class="img-frame" style="margin-top:48px;">
     <img src="/images/bagel-10.png" alt="Bagel.AI Discovery 2.0 — shipped">
@@ -1042,9 +928,6 @@ body {
     </div>
   </div>
 
-  <div class="bagel-callout" style="margin-top:48px;">
-    <p>Designing for a tool that surfaces signal from noise mirrors the same challenge as any high-stakes research problem — the interface has to be invisible enough to let the thinking happen.</p>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -1053,7 +936,7 @@ body {
 <section class="closing">
   <div class="closing-kicker">Key insight</div>
   <p class="closing-quote">
-    The product that earns trust is the one that meets the PM where they already are —<br><em>not the one that asks them to change how they think.</em>
+    The best tool doesn't change how you work.<br><em>It meets you where you already are.</em>
   </p>
 </section>
 

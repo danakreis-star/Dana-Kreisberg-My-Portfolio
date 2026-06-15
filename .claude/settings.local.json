@@ -20,7 +20,9 @@
       "Bash(env)",
       "Bash(ls \"/Users/danakreisberg/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/228c7914-f1d1-4dfb-b5f8-9c05396dd82b/ea10a706-fa13-4e41-be18-dc2348d112b2/skills\" 2>/dev/null)",
       "Bash(claude design *)",
-      "Bash(npx astro *)"
+      "Bash(npx astro *)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//Applications/**)"
     ]
   }
 }
