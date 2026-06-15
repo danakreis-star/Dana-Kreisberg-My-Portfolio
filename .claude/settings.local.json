@@ -14,7 +14,13 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4322/)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(curl -s \"https://claude.ai/v1/design/h/d6FIBfFi7rOVAJYHNk8m1g?open_file=ui_kits%2Fdiscovery%2Findex.html\")",
+      "Bash(env)",
+      "Bash(ls \"/Users/danakreisberg/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin/228c7914-f1d1-4dfb-b5f8-9c05396dd82b/ea10a706-fa13-4e41-be18-dc2348d112b2/skills\" 2>/dev/null)",
+      "Bash(claude design *)",
+      "Bash(npx astro *)"
     ]
   }
 }

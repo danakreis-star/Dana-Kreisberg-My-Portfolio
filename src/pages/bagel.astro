@@ -1,0 +1,920 @@
+---
+import Nav from '../components/Nav.astro';
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bagel.AI — Dana Kreisberg</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;1,100;1,300;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style is:global>
+
+/* ─── TOKENS ─── */
+:root {
+  --paper:     #ffffff;
+  --paper-2:   #f2f2f2;
+  --ink:       oklch(14% 0.01 240);
+  --ink-60:    oklch(14% 0.01 240 / 0.62);
+  --ink-40:    oklch(14% 0.01 240 / 0.42);
+  --rule:      oklch(14% 0.01 240 / 0.14);
+  --rule-soft: oklch(14% 0.01 240 / 0.08);
+  --display:   "Inter Tight", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --body:      "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --gutter:    8%;
+
+  /* ── Bagel brand ── */
+  --bagel-purple:        #5C5CEB;
+  --bagel-orange:        #FF8700;
+  --bagel-tint:          #F8F8FB;
+  --bagel-purple-soft:   rgba(92,92,235,0.08);
+  --bagel-purple-border: rgba(92,92,235,0.32);
+  --bagel-orange-soft:   rgba(255,135,0,0.10);
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+p { margin: 0; }
+
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* ─── UTILITIES ─── */
+.meta {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  font-weight: 500;
+  display: inline-block;
+}
+.mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-40);
+}
+
+/* ════════════════════════════
+   TITLE
+════════════════════════════ */
+.title-section { padding: 64px var(--gutter) 56px; }
+.title-meta { display: flex; justify-content: space-between; margin-bottom: 40px; }
+.cs-h1 {
+  font-family: var(--display);
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 14ch;
+}
+.cs-h1 em { font-style: italic; font-weight: 100; color: var(--bagel-purple); }
+.lede { margin-top: 40px; font-size: 19px; line-height: 1.5; color: var(--ink-60); max-width: 62ch; }
+.meta-row {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+}
+.meta-val { margin-top: 8px; font-size: 15px; }
+
+/* ════════════════════════════
+   SECTIONS
+════════════════════════════ */
+.section { padding: 80px var(--gutter); }
+.section-alt {
+  padding: 100px var(--gutter);
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* ════════════════════════════
+   HEADINGS
+════════════════════════════ */
+.cs-h2 {
+  font-family: var(--display);
+  font-size: clamp(36px, 3.8vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0;
+  font-weight: 400;
+  max-width: 16ch;
+}
+.cs-h2-wide {
+  font-family: var(--display);
+  font-size: clamp(40px, 4.4vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+  margin: 0 0 40px;
+  font-weight: 400;
+  max-width: 24ch;
+}
+.cs-h2-wide em { font-style: italic; font-weight: 300; }
+.body-text { font-size: 16px; line-height: 1.6; color: var(--ink-60); max-width: 56ch; }
+.body-text + .body-text { margin-top: 16px; }
+.body-text strong { color: var(--ink); font-weight: 500; }
+
+/* ════════════════════════════
+   TWO-COL
+════════════════════════════ */
+.two-col { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; }
+
+/* ════════════════════════════
+   STATS ROW
+════════════════════════════ */
+.stat-row { margin-top: 56px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); }
+.stat { padding: 40px 32px 40px 0; }
+.stat-n { font-family: var(--display); font-size: clamp(64px, 8vw, 128px); letter-spacing: -0.04em; line-height: 1; font-weight: 400; padding-top: 24px; }
+.stat-d { font-family: var(--display); font-size: clamp(28px, 3vw, 48px); color: var(--ink-40); margin-left: 4px; }
+.stat-l { margin-top: 18px; font-size: 15px; line-height: 1.5; color: var(--ink-60); max-width: 28ch; font-family: var(--body); }
+
+/* ════════════════════════════
+   FEAT SPLIT
+════════════════════════════ */
+.feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
+
+/* ════════════════════════════
+   IMAGE FRAMES
+════════════════════════════ */
+.img-frame { overflow: visible; border: none; display: flex; flex-direction: column; }
+.img-frame img,
+.img-frame video { width: 100%; display: block; vertical-align: bottom; border-radius: 12px; border: 1px solid var(--rule); }
+.fig-cap { padding: 10px 0 0; margin: 0; font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em; }
+
+/* ════════════════════════════
+   CLOSING (dark)
+════════════════════════════ */
+.closing { background: #0b0b0d; color: #e6e6e7; padding: 140px var(--gutter); }
+.closing-kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.closing-quote {
+  margin: 32px 0 0;
+  font-family: var(--display);
+  font-size: clamp(32px, 4.4vw, 72px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+  max-width: 22ch;
+}
+.closing-quote em { font-style: italic; }
+
+/* ════════════════════════════
+   BAGEL COMPONENTS
+════════════════════════════ */
+
+/* Purple insight callout */
+.bagel-callout {
+  background: var(--bagel-purple-soft);
+  border-left: 3px solid var(--bagel-purple-border);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 22px;
+  margin-top: 28px;
+  max-width: 680px;
+}
+.bagel-callout p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+.bagel-callout cite {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--ink-60);
+  font-style: normal;
+}
+
+/* Orange principle callout */
+.bagel-principle {
+  background: var(--bagel-orange-soft);
+  border-left: 3px solid rgba(255,135,0,0.45);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-style: italic;
+  margin-top: 16px;
+}
+
+/* JTBD cards grid */
+.jtbd-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 32px;
+}
+.jtbd-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px;
+}
+.jtbd-num {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--bagel-orange);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 9px;
+}
+.jtbd-head {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.jtbd-body {
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--ink-60);
+}
+
+/* Reframe split */
+.reframe-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+.rf-before {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 22px;
+}
+.rf-after {
+  background: var(--bagel-purple-soft);
+  border: 1px solid var(--bagel-purple-border);
+  border-radius: 10px;
+  padding: 22px;
+}
+.rf-tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 12px;
+}
+.rf-before .rf-tag { color: var(--ink-40); }
+.rf-after .rf-tag  { color: var(--bagel-purple); }
+.rf-title {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 14px;
+}
+.rf-item {
+  font-size: 0.83rem;
+  line-height: 1.6;
+  color: var(--ink-60);
+  padding: 7px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.rf-item:first-of-type { border-top: none; padding-top: 0; }
+.rf-item strong { color: var(--ink); font-weight: 600; }
+
+/* Video frame container */
+.video-container {
+  width: 100%;
+  background: #0e0e14;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 8px;
+  border: 1px solid #e0e0e0;
+}
+.video-container video {
+  width: 100%;
+  display: block;
+}
+
+/* Frame below video */
+.video-frame-still {
+  margin-top: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.video-frame-still img {
+  width: 100%;
+  display: block;
+}
+.frame-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-top: 8px;
+  display: block;
+}
+
+/* Decision 03 two-frame strip */
+.two-frame-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+}
+.two-frame-strip .frame-item { display: flex; flex-direction: column; gap: 6px; }
+.two-frame-strip img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+}
+.two-frame-strip .frame-n {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bagel-purple);
+}
+.two-frame-strip .frame-cap {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--ink-60);
+}
+
+/* Disconnect diagram */
+.disconnect {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.d-node {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  padding: 8px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.d-node.dest {
+  border-color: var(--bagel-purple-border);
+  color: var(--bagel-purple);
+  opacity: 0.5;
+  background: var(--bagel-purple-soft);
+}
+.d-arr { font-size: 0.75rem; color: var(--ink-40); }
+.no-path {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: #d94f4f;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* Quote cards */
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 28px;
+}
+.q-card {
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 10px;
+  padding: 20px;
+}
+.q-card blockquote {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  font-style: italic;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.q-card cite {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-60);
+  font-style: normal;
+}
+
+/* Outcome cards */
+.outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+.o-card {
+  background: var(--bagel-purple-soft);
+  border: 1px solid var(--bagel-purple-border);
+  border-radius: 10px;
+  padding: 20px;
+}
+.o-num {
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--bagel-purple);
+  line-height: 1;
+  margin-bottom: 7px;
+}
+.o-lbl {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-60);
+}
+
+/* Flow section label */
+.flow-mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bagel-purple);
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Decision label */
+.decision-mono {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  display: block;
+  margin-bottom: 16px;
+}
+
+/* ════════════════════════════
+   PASSWORD GATE
+════════════════════════════ */
+#bagel-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.gate-wordmark {
+  font-family: var(--display);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 48px;
+}
+.gate-inner {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gate-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+  margin-bottom: 2px;
+}
+.gate-input {
+  font-family: var(--body);
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+.gate-input:focus { border-color: oklch(14% 0.01 240 / 0.4); }
+.gate-btn {
+  font-family: var(--body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 14px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  width: 100%;
+}
+.gate-btn:hover { opacity: 0.8; }
+.gate-error {
+  font-size: 13px;
+  color: var(--ink-60);
+  min-height: 18px;
+  font-family: var(--body);
+}
+
+/* ════════════════════════════
+   RESPONSIVE
+════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --gutter: 5%; }
+  .two-col  { grid-template-columns: 1fr; gap: 40px; }
+  .feat-split { grid-template-columns: 1fr; gap: 32px; }
+  .jtbd-grid  { grid-template-columns: 1fr 1fr; }
+  .reframe-split { grid-template-columns: 1fr; }
+  .quote-grid    { grid-template-columns: 1fr; }
+  .outcome-grid  { grid-template-columns: 1fr; }
+  .meta-row      { grid-template-columns: 1fr 1fr; }
+  .stat-row      { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  :root { --gutter: 20px; }
+  .meta-row   { grid-template-columns: 1fr; gap: 24px; }
+  .jtbd-grid  { grid-template-columns: 1fr; }
+  .two-frame-strip { grid-template-columns: 1fr; }
+  .stat-row   { grid-template-columns: 1fr; }
+  .disconnect { gap: 6px; }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     PASSWORD GATE
+══════════════════════════════════════ -->
+<div id="bagel-gate">
+  <div class="gate-wordmark">Dana Kreisberg</div>
+  <div class="gate-inner">
+    <div class="gate-label">Password required</div>
+    <input id="bagel-pw" class="gate-input" type="password" placeholder="Enter password" autocomplete="off">
+    <div id="bagel-err" class="gate-error"></div>
+    <button id="bagel-btn" class="gate-btn">Continue →</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const PASSWORD = '303724';
+    const KEY = 'bagel-auth';
+    const gate = document.getElementById('bagel-gate');
+    const input = document.getElementById('bagel-pw');
+    const btn   = document.getElementById('bagel-btn');
+    const err   = document.getElementById('bagel-err');
+
+    function unlock() {
+      sessionStorage.setItem(KEY, 'true');
+      gate.style.display = 'none';
+      document.getElementById('bagel-main').style.display = '';
+    }
+
+    /* Already authenticated this session */
+    if (sessionStorage.getItem(KEY) === 'true') {
+      gate.style.display = 'none';
+      return; /* main is visible by default when no gate */
+    }
+
+    /* Hide page content until unlocked */
+    document.getElementById('bagel-main').style.display = 'none';
+
+    btn.onclick = function () {
+      if (input.value === PASSWORD) {
+        unlock();
+      } else {
+        err.textContent = 'Incorrect password';
+        input.focus();
+      }
+    };
+    input.onkeydown = function (e) { if (e.key === 'Enter') btn.click(); };
+  })();
+</script>
+
+<div id="bagel-main">
+
+<Nav />
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="title-section">
+  <div class="title-meta">
+    <span class="mono">Case Study · Bagel.AI</span>
+  </div>
+  <h1 class="cs-h1">Discovery <em>2.0</em></h1>
+  <p class="lede">Bagel.AI surfaces customer evidence for product teams. Discovery was the most powerful space in the product — and the least used. We redesigned it from the ground up.</p>
+  <div class="meta-row">
+    <div>
+      <span class="meta">Role</span>
+      <div class="meta-val">UX Design &amp; Strategy</div>
+    </div>
+    <div>
+      <span class="meta">Scope</span>
+      <div class="meta-val">End-to-end product redesign</div>
+    </div>
+    <div>
+      <span class="meta">Year</span>
+      <div class="meta-val">2025 · NDA</div>
+    </div>
+  </div>
+</section>
+
+<div style="padding: 0 var(--gutter) 80px; background: #ffffff;">
+  <div class="img-frame">
+    <img src="/images/bagel-01.png" alt="Bagel.AI Discovery 2.0">
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     § 01 · CONTEXT
+══════════════════════════════════════ -->
+<section class="section">
+  <div class="two-col">
+    <h2 class="cs-h2">A product intelligence tool for product managers</h2>
+    <div>
+      <p class="body-text">Bagel.AI aggregates customer feedback from calls, support tickets, and CRM — then uses AI to surface themes and insights. The promise: help PMs validate problems, prioritize their roadmap, and build a case for what to ship next.</p>
+      <p class="body-text" style="margin-top:16px;">The core product had four separate spaces — <strong>Ideas, Discovery, Trends, Customer 360</strong> — all drawing from the same evidence pool. Discovery was supposed to be the most powerful. It was barely used.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 02 · PROBLEM
+══════════════════════════════════════ -->
+<section class="section-alt">
+  <h2 class="cs-h2-wide">Four spaces. One evidence source. Zero coherent path.</h2>
+  <p class="body-text">PMs had no end-to-end workflow. Every space packaged the same customer data differently but nothing connected them.</p>
+
+  <div class="disconnect">
+    <div class="d-node">Search Trends</div>
+    <span class="d-arr">→</span>
+    <div class="d-node">Search Customers</div>
+    <span class="d-arr">→</span>
+    <div class="d-node">Search Evidence</div>
+    <span class="d-arr">→</span>
+    <div class="d-node dest">Prioritize for Roadmap</div>
+    <span class="no-path">✕ No path</span>
+  </div>
+
+  <div class="quote-grid">
+    <div class="q-card">
+      <blockquote>"A lot of the data is hidden in endless lists of ideas. Too many ideas in the backlog with little way to know what's valuable."</blockquote>
+      <cite>— Neta &amp; Ori, Tipalti · JTBD interviews</cite>
+    </div>
+    <div class="q-card">
+      <blockquote>"Current tools reflect only what PMs already consider — no idea generation support."</blockquote>
+      <cite>— Carmel, HoneyBook · JTBD interviews</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 03 · DATA
+══════════════════════════════════════ -->
+<section class="section">
+  <h2 class="cs-h2-wide">The most powerful space was barely used.</h2>
+  <p class="body-text">Discovery had the highest potential — but nearly no traction. The Ideas page carried almost all weekly engagement while Discovery sat at near-zero.</p>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-n">248</div>
+      <div class="stat-l">Total Discovery queries across all accounts</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">4.4<span class="stat-d">%</span></div>
+      <div class="stat-l">Of queries converted to an idea — the core intended action</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">~140</div>
+      <div class="stat-l">Avg. weekly Idea page views, vs. near-zero for Discovery</div>
+    </div>
+  </div>
+
+  <div class="bagel-callout">
+    <p>Users look for proactive insights — asking Bagel to surface trends, themes, and segments that need attention. They already know what their problem is; they need Bagel to help them go deeper.</p>
+    <cite>— Synthesis from user research</cite>
+  </div>
+
+  <div class="img-frame" style="margin-top:48px;">
+    <img src="/images/bagel-research-walkarounds.png" alt="Navigation walkarounds map">
+    <div class="fig-cap">Mapping how a PM would navigate the existing system revealed the workarounds required — and where the flow broke entirely.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 04 · RESEARCH
+══════════════════════════════════════ -->
+<section class="section-alt">
+  <h2 class="cs-h2-wide">Mapping PM workflows from the ground up.</h2>
+  <p class="body-text">Before touching the product, we mapped the PM's world — how they actually think, what jobs they need to do, and how their quarterly cycle works.</p>
+
+  <div class="img-frame" style="margin-top:48px;">
+    <img src="/images/bagel-research-mental-model.png" alt="PM mental model and JTBD definition">
+    <div class="fig-cap">PM mental model and JTBD definition — mapped before touching the product.</div>
+  </div>
+
+  <div class="jtbd-grid">
+    <div class="jtbd-card">
+      <span class="jtbd-num">JTBD 01</span>
+      <div class="jtbd-head">"Tell me what my problem is"</div>
+      <p class="jtbd-body">When I discover a new problem, I want to validate its merit so I can separate signal from noise.</p>
+    </div>
+    <div class="jtbd-card">
+      <span class="jtbd-num">JTBD 02</span>
+      <div class="jtbd-head">"I know what my problem is"</div>
+      <p class="jtbd-body">When I build a roadmap, I want to research my options effectively so I can create the most impact.</p>
+    </div>
+    <div class="jtbd-card">
+      <span class="jtbd-num">JTBD 03</span>
+      <div class="jtbd-head">"Tell me my problem's status"</div>
+      <p class="jtbd-body">When I review released features, I want to measure their impact to improve future prioritization.</p>
+    </div>
+  </div>
+
+  <div class="img-frame" style="margin-top:40px;">
+    <img src="/images/bagel-research-quarterly-loop.png" alt="Quarterly PM cycle">
+    <div class="fig-cap">Quarterly PM cycle mapped against Bagel's capabilities — red marks missing capabilities, yellow marks half-solutions.</div>
+  </div>
+
+  <div class="img-frame" style="margin-top:32px;">
+    <img src="/images/bagel-research-space-overlap.png" alt="Space overlap diagram">
+    <div class="fig-cap">Four separate containers, same evidence pool — significant overlap, no clear path between them.</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 05 · THE REFRAME
+══════════════════════════════════════ -->
+<section class="section">
+  <h2 class="cs-h2-wide">Everything is a discovery.</h2>
+  <p class="body-text">The old product treated Ideas, Trends, and Customer segments as separate destinations. They're all expressions of the same underlying PM job — making sense of evidence to decide what to build. Discovery 2.0 unifies them under two modes of entry.</p>
+
+  <div class="reframe-split">
+    <div class="rf-before">
+      <span class="rf-tag">Before</span>
+      <div class="rf-title">Three spaces, no connection</div>
+      <div class="rf-item">Ideas backlog — a flat list with no discovery path</div>
+      <div class="rf-item">Trends — isolated view, no link to action</div>
+      <div class="rf-item">Customer 360 — same evidence, different packaging</div>
+      <div class="rf-item">Discovery — most powerful, barely accessed</div>
+    </div>
+    <div class="rf-after">
+      <span class="rf-tag">After — Discovery 2.0</span>
+      <div class="rf-title">Two mindsets, one flow</div>
+      <div class="rf-item"><strong>"I want to explore"</strong> — broad or no query; biggest gaps surfaced by evidence and ARR</div>
+      <div class="rf-item"><strong>"I know what I'm looking for"</strong> — targeted query; ranked themes with full evidence trail</div>
+      <div class="rf-item">Every theme is actionable — create, enrich, or track without leaving the flow</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FLOW 01 · DISCOVERY CHAT
+══════════════════════════════════════ -->
+<section class="section-alt">
+  <span class="flow-mono">Flow 01 · Discovery chat</span>
+  <h2 class="cs-h2" style="margin-bottom:24px;">From empty state to structured insight.</h2>
+  <p class="body-text">A PM opens a new Discovery session, types a question scoped to their evidence, and receives a ranked list of themes — each with weighted ARR, customer count, and evidence. The whole flow takes under 30 seconds.</p>
+
+  <div class="video-container" style="margin-top:48px;">
+    <video src="/videos/bagel-video-01.mov" autoplay loop muted playsinline></video>
+  </div>
+
+  <div class="video-frame-still" style="margin-top:16px;">
+    <img src="/images/bagel-v1-frame-02.png" alt="Output — ranked insight cards with ARR, customers, evidence">
+  </div>
+  <span class="frame-label">Output — ranked insight cards with ARR, customers, and evidence inline</span>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 06 · DESIGN DECISION 01
+══════════════════════════════════════ -->
+<section class="section">
+  <span class="decision-mono">Design Decision 01</span>
+  <h2 class="cs-h2" style="margin-bottom:20px;">Hierarchy over navigation.</h2>
+  <p class="body-text">Instead of navigating between separate pages, information unfolds in layers within one view: Theme → Sub-theme → Evidence. PMs move deeper without losing context or having to retrace their steps. The insight view header always shows where you are — and a single tap opens a searchable index of every insight in the session.</p>
+  <div class="bagel-principle" style="max-width:600px;">The user never needs to navigate to find more — they drill down into what they're already looking at.</div>
+  <div class="img-frame" style="margin-top:48px;">
+    <img src="/images/bagel-04.png" alt="Hierarchy — drill-down insight view" style="border: none;">
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 06 · DESIGN DECISION 02
+══════════════════════════════════════ -->
+<section class="section-alt">
+  <span class="decision-mono">Design Decision 02</span>
+  <h2 class="cs-h2" style="margin-bottom:20px;">Every surface knows what you're looking at.</h2>
+  <p class="body-text">Actions and follow-up questions are scoped to their context — not global. Asking a question on the Business Impact widget queries only that widget's data. Acting on an insight — creating an idea, adding to an existing one, duplicating — happens in place, without switching views. The product meets the PM where they are, not the other way around.</p>
+  <div class="bagel-principle" style="max-width:600px;">Context-aware questions. Context-aware actions. No dead ends.</div>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 06 · DESIGN DECISION 03
+══════════════════════════════════════ -->
+<section class="section">
+  <span class="decision-mono">Design Decision 03</span>
+  <h2 class="cs-h2" style="margin-bottom:20px;">The artifact fits the PM, not the other way around.</h2>
+  <p class="body-text" style="max-width:600px;">The insight view isn't a fixed report. PMs can ask follow-up questions scoped to any widget, or extend the view by adding new widgets from a library — Customer segments, Source type, Trend over time, Custom widget, and more. Every PM shapes the view to match how they think and what they need to defend.</p>
+  <div class="bagel-principle" style="max-width:600px;">A shared artifact that everyone can make their own.</div>
+
+  <div class="two-frame-strip">
+    <div class="frame-item">
+      <div class="frame-n">Ask AI</div>
+      <img src="/images/bagel-07.png" alt="Ask AI follow-up questions">
+      <div class="frame-cap">Follow-up questions scoped to any widget — suggested prompts adapt to widget type</div>
+    </div>
+    <div class="frame-item">
+      <div class="frame-n">Add widget</div>
+      <img src="/images/bagel-08b.png" alt="Add widget from library">
+      <div class="frame-cap">Choose from a library or build a custom widget from scratch</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FLOW 02 · INSIGHT VIEW
+══════════════════════════════════════ -->
+<section class="section-alt">
+  <span class="flow-mono">Flow 02 · Insight view</span>
+  <h2 class="cs-h2" style="margin-bottom:24px;">An insight card is a live workspace, not a dead end.</h2>
+  <p class="body-text">Clicking an insight card from the chat opens the expanded insight view — a split screen where the conversation stays live on the left and the card becomes an interactive artifact on the right. Widgets can be interrogated, filtered, and extended without leaving the view.</p>
+
+  <div class="video-container" style="margin-top:48px;">
+    <video src="/videos/bagel-video-02.mov" autoplay loop muted playsinline></video>
+  </div>
+
+  <div class="video-frame-still" style="margin-top:16px;">
+    <img src="/images/bagel-v2-frame-06.png" alt="Filter applied — Enterprise chip, metrics updated">
+  </div>
+  <span class="frame-label">Filter applied — "Enterprise ×" chip in header, widget metrics updated</span>
+</section>
+
+<!-- ══════════════════════════════════════
+     § 07 · OUTCOME
+══════════════════════════════════════ -->
+<section class="section">
+  <h2 class="cs-h2-wide">From near-zero to the core workflow.</h2>
+  <p class="body-text">Discovery 2.0 shipped as the primary PM workflow in Bagel.AI. The product went from a fragmented set of tools with near-zero Discovery usage to a unified system where discovery, validation, and roadmap action happen in one continuous flow.</p>
+
+  <div class="img-frame" style="margin-top:48px;">
+    <img src="/images/bagel-10.png" alt="Bagel.AI Discovery 2.0 — shipped">
+  </div>
+
+  <div class="outcome-grid">
+    <div class="o-card">
+      <div class="o-num">248 →↑</div>
+      <div class="o-lbl">Queries baseline — now the primary PM entry point, not a secondary tool</div>
+    </div>
+    <div class="o-card">
+      <div class="o-num">1 flow</div>
+      <div class="o-lbl">Replaced four disconnected spaces with a single unified system</div>
+    </div>
+    <div class="o-card">
+      <div class="o-num">3 JTBDs</div>
+      <div class="o-lbl">All three core PM jobs — explore, validate, track — supported in one coherent experience</div>
+    </div>
+  </div>
+
+  <div class="bagel-callout" style="margin-top:48px;">
+    <p>Designing for a tool that surfaces signal from noise mirrors the same challenge as any high-stakes research problem — the interface has to be invisible enough to let the thinking happen.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CLOSING
+══════════════════════════════════════ -->
+<section class="closing">
+  <div class="closing-kicker">Key insight</div>
+  <p class="closing-quote">
+    The product that earns trust is the one that meets the PM where they already are —<br><em>not the one that asks them to change how they think.</em>
+  </p>
+</section>
+
+</div><!-- #bagel-main -->
+
+</body>
+</html>
