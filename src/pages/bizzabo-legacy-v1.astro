@@ -115,6 +115,11 @@ body {
 .section-dark .stat-d { color: rgba(255,255,255,0.45); }
 .section-dark .stat-row { border-top-color: rgba(255,255,255,0.15); }
 .section-dark .section-head { border-bottom-color: rgba(255,255,255,0.1); background: #404040; }
+.section-dark .finding { border-bottom-color: rgba(255,255,255,0.1); border-right-color: rgba(255,255,255,0.08); }
+.section-dark .finding-grid { border-top-color: rgba(255,255,255,0.15); }
+.section-dark .finding-t { color: #fff; }
+.section-dark .finding-b { color: rgba(255,255,255,0.6); }
+.section-dark .finding-k { color: rgba(255,255,255,0.35); }
 
 /* Phase-specific section backgrounds */
 .phase-before { padding: 80px var(--gutter); background: #F5F5F5; }
@@ -212,6 +217,17 @@ body {
 .funnel-count { font-size: 13px; color: var(--ink-40); }
 
 /* ════════════════════════════
+   FINDINGS GRID (2-col)
+════════════════════════════ */
+.finding-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid var(--rule); }
+.finding { padding: 28px 32px 32px 0; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule-soft); }
+.finding:nth-child(even) { border-right: 0; padding-right: 0; padding-left: 32px; }
+.finding-k { display: flex; justify-content: space-between; align-items: center; color: var(--ink-40); }
+.finding-score { font-family: var(--mono); font-size: 18px; color: var(--accent); letter-spacing: -0.01em; }
+.finding-t { margin-top: 12px; font-family: var(--display); font-size: 28px; letter-spacing: -0.022em; line-height: 1.15; }
+.finding-b { margin-top: 12px; font-size: 15px; line-height: 1.55; color: var(--ink-60); max-width: 50ch; }
+
+/* ════════════════════════════
    FINDINGS GRID (3-col)
 ════════════════════════════ */
 .finding-grid-3 {
@@ -236,8 +252,8 @@ body {
   padding-top: 16px;
   color: var(--ink);
 }
-.finding-t { margin-top: 16px; font-family: var(--display); font-size: clamp(18px, 2vw, 24px); letter-spacing: -0.02em; line-height: 1.15; }
-.finding-b { margin-top: 10px; font-size: 15px; line-height: 1.55; color: var(--ink-60); }
+.finding-3 .finding-t { margin-top: 16px; font-size: clamp(18px, 2vw, 24px); }
+.finding-3 .finding-b { margin-top: 10px; }
 
 /* ════════════════════════════
    PROBLEM STATEMENT
@@ -247,7 +263,7 @@ body {
   padding: 24px 28px;
   border-left: 4px solid var(--ink);
   background: oklch(96% 0.004 240);
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 8px 8px 0;
 }
 .problem-statement p {
   font-size: 17px;
@@ -343,12 +359,11 @@ body {
   background: transparent;
   display: flex;
   flex-direction: column;
-  width: 375px;
 }
 .screen-img img,
 .screen-img video {
   max-height: 750px;
-  width: 100%;
+  width: auto;
   max-width: 100%;
   object-fit: contain;
   display: block;
@@ -373,8 +388,8 @@ body {
 .screen-img img,
 .screen-img video { border: none; }
 
-.feat-split { display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px; align-items: start; }
 .desktop-plus-mobile { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: start; margin-top: 24px; }
+.research-grid { display: grid; grid-template-columns: 1.33fr 0.57fr; gap: 24px; margin-top: 40px; align-items: start; }
 
 /* ════════════════════════════
    CLOSING (dark)
@@ -417,6 +432,26 @@ body {
   border-radius: 30px;
   overflow: hidden;
   display: block;
+}
+
+/* ════════════════════════════
+   RESEARCH GRID (§ 03)
+════════════════════════════ */
+.research-screen-wrap {
+  display: inline-block !important;
+  width: auto !important;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+.research-screen-wrap img {
+  width: auto !important;
+  max-width: 100%;
+  max-height: 700px;
+  height: auto;
+  display: block;
+  border-radius: 30px;
+  object-fit: contain;
 }
 
 /* ════════════════════════════
@@ -468,9 +503,12 @@ body {
 ════════════════════════════ */
 @media (max-width: 900px) {
   :root { --gutter: 5%; }
-  .two-col, .feat-split, .desktop-plus-mobile { grid-template-columns: 1fr; gap: 32px; }
+  .two-col, .feat-split, .desktop-plus-mobile, .research-grid { grid-template-columns: 1fr; gap: 32px; }
   .meta-row { grid-template-columns: 1fr 1fr; }
   .stat-row { grid-template-columns: 1fr 1fr; }
+  .finding-grid { grid-template-columns: 1fr; }
+  .finding { border-right: 0; padding-right: 0; padding-left: 0; }
+  .finding:nth-child(even) { padding-left: 0; }
   .finding-grid-3 { grid-template-columns: 1fr; }
   .finding-3 { border-right: 0; padding-left: 0; padding-right: 0; }
   .finding-3:nth-child(2) { padding-left: 0; }
@@ -570,34 +608,24 @@ body {
     <span class="meta">§ 02 — What we were building</span>
   </div>
 
-  <div>
-    <p class="body-text" style="font-size: 17px; max-width: 56ch;">
-      Bizzabo's attendee platform needed to do something no events product had done well before — help people connect professionally in a hybrid world. Half the room online. Half onsite. Different time zones, different devices, and no shared physical space to rely on.
-    </p>
-    <p class="body-text" style="font-size: 17px; max-width: 56ch; margin-top: 20px;">
-      We designed three core capabilities: a community space to explore who else was attending, 1:1 messaging to initiate contact, and meeting scheduling to move from conversation to commitment.
-    </p>
+  <div class="two-col">
+    <div>
+      <p class="body-text" style="font-size: 17px; max-width: 56ch;">
+        Bizzabo's attendee platform needed to do something no events product had done well before — help people connect professionally in a hybrid world. Half the room online. Half onsite. Different time zones, different devices, and no shared physical space to rely on.
+      </p>
+      <p class="body-text" style="font-size: 17px; max-width: 56ch; margin-top: 20px;">
+        We designed three core capabilities: a community space to explore who else was attending, 1:1 messaging to initiate contact, and meeting scheduling to move from conversation to commitment.
+      </p>
+    </div>
+    <div class="img-frame">
+      <img src="/images/Bizzabo-spaces-screens.png" alt="Three core capabilities — community, messages, meetings">
+    </div>
   </div>
 
   <div class="desktop-frame-wrap" style="margin-top: 48px;">
     <img src="/images/Bizzabo-00.gif" alt="Community page">
   </div>
   <p class="fig-cap">The attendee venue — community page</p>
-
-  <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 48px;">
-    <div class="screen-img" style="flex: 1;">
-      <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="border-radius: 30px; border: 3px solid #000000;">
-      <div class="gallery_image_caption">Messages</div>
-    </div>
-    <div class="screen-img" style="flex: 1;">
-      <img src="/images/Bizzabo-01.png" alt="" style="border-radius: 30px; border: 3px solid #000000;">
-      <div class="gallery_image_caption">Community space — mobile</div>
-    </div>
-    <div class="screen-img" style="flex: 1;">
-      <img src="/images/Bizzabo-02.1.png" alt="" style="border-radius: 30px; border: 3px solid #000000;">
-      <div class="gallery_image_caption">Schedule meeting flow</div>
-    </div>
-  </div>
 </section>
 
 
@@ -629,15 +657,23 @@ body {
     </div>
   </div>
 
-  <div style="display: flex; gap: 16px; margin-top: 48px;">
-    <div class="desktop-frame-wrap" style="flex: 1;">
-      <img src="/images/Bizzabo-Live event reasearch 01.png" alt="Field research — live event 1">
+  <!-- Research image grid: 1.4fr / 1fr -->
+  <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; margin-top: 40px; align-items: flex-start;">
+    <div class="desktop-frame-wrap research-screen-wrap">
+      <img src="/images/Bizzabo-01.png" alt="">
+      <div style="padding: 10px 16px 14px; font-size: 13px; color: var(--ink-40); letter-spacing: 0.01em;">Community space</div>
     </div>
-    <div class="desktop-frame-wrap" style="flex: 1;">
-      <img src="/images/Bizzabo-Live event reasearch 02.png" alt="Field research — live event 2">
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="img-frame research-screen-wrap">
+        <img src="/images/Bizzabo-02.png" alt="">
+        <div class="gallery_image_caption">My Meetings area</div>
+      </div>
+      <div class="img-frame research-screen-wrap">
+        <img src="/images/Bizzabo-02.1.png" alt="">
+        <div class="gallery_image_caption">Schedule meeting flow</div>
+      </div>
     </div>
   </div>
-  <p class="fig-cap">Field research conducted across 3 live events — observing real attendee behaviour in hybrid settings</p>
 
   <!-- Three findings — 3-col -->
   <div class="finding-grid-3">
@@ -658,7 +694,7 @@ body {
     </div>
   </div>
 
-  <!-- Funnel -->
+  <!-- Funnel chart -->
   <div class="funnel-block">
     <div class="funnel-head">
       <span class="meta">Chart — Engagement funnel</span>
@@ -694,42 +730,73 @@ body {
 
   <div class="two-col">
     <h2 class="cs-h2">The features worked. The conditions didn't.</h2>
-    <p class="body-text" style="font-size: 17px; max-width: 56ch;">
-      Attendees wanted to connect — that was never the issue. What failed was the environment. Meaningful connection needs shared context, the right moment, and a reason that makes cold outreach feel worth the awkwardness. None of which existed naturally in a hybrid setting.
-    </p>
+    <div>
+      <p class="body-text" style="font-size: 17px; max-width: 56ch;">
+        Attendees came to events to connect. That wasn't the issue. What failed was the environment around the features. Meaningful connection requires shared context — a reason to reach out that makes the social awkwardness of cold contact feel worth it.
+      </p>
+      <p class="body-text" style="font-size: 17px; max-width: 56ch; margin-top: 20px;">
+        In a hybrid environment — half the room physically present, half remote — those conditions almost never arose naturally. The platform gave people a door. It didn't give them a reason to walk through it.
+      </p>
+    </div>
+  </div>
+
+  <div class="problem-statement">
+    <p>Meaningful connections failed to happen — not because attendees didn't want to connect, but because they lacked <em>shared context, the right moment, and a reason</em> that made outreach feel worth the awkwardness. Especially in a hybrid (onsite / online) environment.</p>
   </div>
 
   <div class="gap-grid">
     <div class="gap">
       <div class="gap-num">Gap 01</div>
       <div class="gap-t">No shared context</div>
-      <div class="gap-b">People knew who was there but not why it was worth reaching out.</div>
+      <div class="gap-b">Cold outreach with no shared reference point felt awkward and presumptuous. People knew who was there but not why they should connect.</div>
     </div>
     <div class="gap">
       <div class="gap-num">Gap 02</div>
       <div class="gap-t">No right moment</div>
-      <div class="gap-b">The platform surface existed; the social permission to use it didn't.</div>
+      <div class="gap-b">Without a trigger — a shared reaction, a session moment — there was no natural opening. The platform surface existed; the social permission to use it didn't.</div>
     </div>
     <div class="gap">
       <div class="gap-num">Gap 03</div>
       <div class="gap-t">Hybrid friction</div>
-      <div class="gap-b">Online and in-person attendees never had a shared surface that worked for both.</div>
+      <div class="gap-b">Online attendees felt invisible. In-person attendees defaulted to physical networking. The two groups never had a shared surface that worked for both.</div>
     </div>
   </div>
 </section>
 
 
-<!-- ── § 05 — PRODUCT JOURNEY ── -->
-<section class="phase-before">
+<!-- ── § 05 — THE FRAMEWORK SHIFT (dark) ── -->
+<section class="section-dark">
   <div class="section-head">
-    <span class="meta">§ 05 — Product journey</span>
+    <span class="meta">§ 05 — The framework shift</span>
   </div>
   <h2 class="cs-h2-wide">
     From features<br>
     <em>to a journey.</em>
   </h2>
-  <p class="body-text" style="font-size: 17px; max-width: 64ch;">
-    The data showed that connection didn't happen at a single moment — it was prepared before the event, sparked during it, and either continued or lost afterwards. This shifted our work from "how does this feature function" to "where is the attendee, and what do they need next."
+  <p class="body-text" style="font-size: 17px; max-width: 64ch; color: rgba(255,255,255,0.7);">
+    The research forced a reframe. We had been building features in isolation. What we needed to build was a continuous experience. The data showed that connection didn't happen at one moment — it was prepared before the event, sparked during it, and either continued or lost afterwards.
+  </p>
+  <p class="body-text" style="font-size: 17px; max-width: 64ch; color: rgba(255,255,255,0.7); margin-top: 20px;">
+    Each touchpoint only works if the others exist around it. This shifted our work from "how does this feature function" to "where is the attendee, what have they already experienced, and what do they need next."
+  </p>
+  <p style="font-family: var(--mono); font-size: 13px; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin-top: 56px; text-transform: uppercase;">Before · During · After</p>
+</section>
+
+
+<!-- ── § 06 — PRODUCT JOURNEY ── -->
+<section class="phase-before">
+  <div class="section-head">
+    <span class="meta">§ 06 — Product journey</span>
+  </div>
+  <h2 class="cs-h2-wide">
+    Designing for a complete<br>
+    attendee journey.
+  </h2>
+  <p class="body-text" style="font-size: 17px; max-width: 64ch; margin-bottom: 20px;">
+    The hypothesis: if we give attendees the right tools at each stage of their journey — before, during, and after the event — the platform becomes infrastructure for professional connection, not just a schedule viewer.
+  </p>
+  <p class="body-text">
+    We mapped the journey through <strong>Christy</strong> — a persona built from research — and designed against her real context at each stage.
   </p>
 
   <!-- Intro image -->
@@ -745,31 +812,25 @@ body {
       <span class="phase-subtitle">Arrive prepared, not cold</span>
     </div>
 
-    <div class="feature-block">
-      <div class="feature-num">Feature 01</div>
-      <h4 class="feature-h">Explore the community</h4>
-      <div class="feat-split">
-        <p class="body-text">
-          Before the event opens, attendees can browse the community, filter by interest and role, and build a mental map of who will be there.
-        </p>
-        <div class="screen-img" style="max-width: 500px;">
-          <img src="/images/Bizzabo-04.png" alt="">
-        </div>
-      </div>
-      <div class="desktop-frame-wrap" style="margin-top: 32px; border-radius: 40px; overflow: hidden;">
-        <video src="/images/Bizzabo-06.mov" autoplay loop muted playsinline onloadeddata="this.playbackRate=0.75" style="margin-left: -8px; width: calc(100% + 8px); display: block;"></video>
-      </div>
+    <div class="phase-lede">
+      <div class="phase-lede-title">Build the conditions</div>
+      <p class="phase-lede-body">Give attendees context before the event opens. Who's here, what do they care about, what's worth starting a conversation over.</p>
     </div>
 
     <div class="feature-block">
-      <div class="feature-num">Feature 02</div>
-      <h4 class="feature-h">AI-assisted custom outreach</h4>
-      <p class="body-text">
-        Attendees get an AI-generated opening message pre-loaded with shared context from sessions and profile overlap. They can send as-is or edit.
-      </p>
-      <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 24px;">
-        <div class="screen-img">
-          <img src="/images/Bizzabo-05.png" alt="" style="max-height: 400px; max-width: 400px; object-fit: contain; align-self: flex-start;">
+      <div class="feature-num">Feature 01</div>
+      <h4 class="feature-h">Explore the community</h4>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;">
+        <div>
+          <p class="body-text">
+            Before the event opens, attendees can browse the community, filter by interest and role, and build a mental map of who will be there. Reduces first-day cold-start anxiety.
+          </p>
+          <div class="insight-box insight-box-before">
+            <p><strong>Research hook:</strong> Attendees who explored pre-event were 2× more likely to reach out during it. The explore feature exists to close that gap.</p>
+          </div>
+          <div class="screen-img" style="margin-top: 24px;">
+            <img src="/images/Bizzabo-04.png" alt="">
+          </div>
         </div>
         <div class="screen-img">
           <img src="/images/Bizzabo-03.png" alt="">
@@ -778,11 +839,36 @@ body {
     </div>
 
     <div class="feature-block">
+      <div class="feature-num">Feature 02</div>
+      <h4 class="feature-h">AI-assisted custom outreach</h4>
+      <div class="feat-split">
+        <div>
+          <p class="body-text">
+            Rather than a blank text field, attendees get an AI-generated opening message — pre-loaded with shared context from sessions and profile overlap. They can send as-is or edit.
+          </p>
+          <div class="insight-box insight-box-before">
+            <p><strong>The insight:</strong> Cold outreach failed because nobody knew what to say. The AI draft doesn't replace the message — it removes the blank-page barrier.</p>
+          </div>
+        </div>
+        <div class="screen-img">
+          <img src="/images/Bizzabo-05.png" alt="" style="max-height: 400px; object-fit: contain; align-self: flex-start;">
+        </div>
+      </div>
+      <div class="desktop-frame-wrap" style="margin-top: 32px; border-radius: 40px; overflow: hidden;">
+        <video src="/images/Bizzabo-06.mov" autoplay loop muted playsinline style="margin-left: -8px; width: calc(100% + 8px); display: block;"></video>
+      </div>
+      <p class="fig-cap">Community exploration → attendee profile view</p>
+    </div>
+
+    <div class="feature-block">
       <div class="feature-num">Feature 03</div>
       <h4 class="feature-h">Availability &amp; meeting scheduling</h4>
       <p class="body-text">
-        The system finds mutual availability and proposes meeting slots — no back-and-forth, no scheduling overhead.
+        Attendees set their availability windows before the event. The system finds mutual overlap and proposes meeting slots — no back-and-forth, no scheduling overhead.
       </p>
+      <div class="insight-box insight-box-before">
+        <p><strong>Design principle:</strong> Suggest the slot, don't ask the user to negotiate it. Mutual availability turns scheduling from friction into a single tap.</p>
+      </div>
       <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 24px;">
         <div class="img-frame" style="flex: 1;">
           <img src="/images/Bizzabo-07.png" alt="" style="width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 12px;">
@@ -805,18 +891,36 @@ body {
       <span class="phase-subtitle">Connect in the moment</span>
     </div>
 
+    <div class="phase-lede">
+      <div class="phase-lede-title">Surface the right moment</div>
+      <p class="phase-lede-body">Use shared session activity as a trigger for outreach. The moment of mutual reaction is the natural opening — surface it and make acting on it frictionless.</p>
+    </div>
+
     <div class="feature-block">
       <div class="feature-num">Feature 04</div>
       <h4 class="feature-h">Connect over content</h4>
       <p class="body-text">
-        Session pages become social surfaces — attendees see who's watching, react to moments, and connect with like-minded people in real time.
+        Session pages become social surfaces. Attendees see who else is watching, leave session impressions, and get a push notification when someone they'd match with reacts to the same moment.
       </p>
-
-      <!-- Full-width physical concept -->
-      <div class="desktop-frame-wrap" style="margin-top: 32px;">
-        <img src="/images/Bizzabo-slide30-concept.png" alt="Physical — venue wall stream">
+      <div class="insight-box insight-box-during">
+        <p><strong>23% of connections</strong> in our survey were due to a shared comment or question. This feature puts that signal front and centre.</p>
       </div>
-      <p class="fig-cap">Physical — in-person attendees see the same stream on a venue wall</p>
+
+      <!-- Two-col: virtual feed + physical concept -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; align-items: start;">
+        <div>
+          <div class="desktop-frame-wrap">
+            <img src="/images/Bizzabo-slide27-community-feed.gif" alt="Virtual — Moments feed">
+          </div>
+          <p class="fig-cap">Virtual — the Moments feed: session clips, reactions, and shared opinions</p>
+        </div>
+        <div>
+          <div class="desktop-frame-wrap">
+            <img src="/images/Bizzabo-slide30-concept.png" alt="Physical — venue wall stream">
+          </div>
+          <p class="fig-cap">Physical — in-person attendees see the same stream on a venue wall</p>
+        </div>
+      </div>
 
       <!-- Full-width: share moment → direct message -->
       <div class="img-frame" style="margin-top: 24px;">
@@ -824,24 +928,27 @@ body {
         <div class="gallery_image_caption">From shared moment to direct message — one tap to start a conversation</div>
       </div>
 
-      <!-- Desktop session page + 3-up mobile -->
+      <!-- Existing: desktop session page + 3-up mobile -->
       <div class="desktop-frame-wrap" style="margin-top: 32px;">
         <img src="/images/Bizzabo-9.jpg" alt="Session page">
       </div>
       <div class="screens-3up">
         <div class="screen-img"><img src="/images/Bizzabo-10.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
         <div class="screen-img"><img src="/images/Bizzabo-11.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
-        <div class="screen-img" style="display: none;"><img src="/images/Bizzabo-12.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
+        <div class="screen-img"><img src="/images/Bizzabo-12.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
       </div>
       <p class="fig-cap">Push notification → attendees wall → session impression</p>
     </div>
 
     <div class="feature-block">
       <div class="feature-num">Feature 05</div>
-      <h4 class="feature-h">Meet Now</h4>
+      <h4 class="feature-h">Meet Now — quick meeting invite</h4>
       <p class="body-text">
-        One tap sends a meeting invite with location — bridging the physical and digital layers of a hybrid event.
+        For spontaneous in-person moments: one tap sends a meeting invite with a suggested time and venue directions. Bridges the physical and digital layers of a hybrid event.
       </p>
+      <div class="insight-box insight-box-during">
+        <p><strong>Hybrid-specific design:</strong> In-person attendees needed a way to signal availability instantly. Quick invite removes the overhead of scheduling when the moment is already live.</p>
+      </div>
       <div class="screens-3up">
         <div class="screen-img">
           <div style="border-radius: 30px; overflow: hidden; display: inline-block; max-height: 700px;">
@@ -865,29 +972,38 @@ body {
       <span class="phase-subtitle">Keep the connection alive</span>
     </div>
 
+    <div class="phase-lede">
+      <div class="phase-lede-title">Close the loop</div>
+      <p class="phase-lede-body">Without a follow-through mechanism, connections made at events disappear within 48 hours. The post-event recap turns a fleeting signal into an actionable relationship.</p>
+    </div>
+
     <div class="feature-block">
       <div class="feature-num">Feature 06</div>
-      <h4 class="feature-h">Close the loop</h4>
-      <p class="body-text">
-        A personalised recap sent 24 hours after the event — connections made, sessions attended, and suggested next steps for each contact.
-      </p>
-      <div class="img-frame" style="margin-top: 32px;">
-        <img src="/images/Bizzabo-16.png" alt="Personalised recap email — connections made, status, suggested next steps" style="clip-path: inset(0 0 0 6px);">
+      <h4 class="feature-h">Post-event summary email</h4>
+      <div class="feat-split">
+        <div>
+          <p class="body-text">
+            A personalised recap sent 24 hours after the event closes — showing connections made, sessions attended, and suggested next steps for each contact. The email extends the event's value beyond its close.
+          </p>
+          <div class="insight-box insight-box-after">
+            <p><strong>The problem it solves:</strong> Without a recap, post-event momentum disappears. The summary email turns fleeting connections into actionable relationships.</p>
+          </div>
+        </div>
+        <div class="img-frame">
+          <img src="/images/Bizzabo-16.png" alt="Personalised recap email — connections made, status, suggested next steps" style="clip-path: inset(0 0 0 6px);">
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- ── § 06 — RESULTS ── -->
+<!-- ── § 07 — RESULTS ── -->
 <section class="section">
   <div class="section-head">
-    <span class="meta">§ 06 — Results</span>
+    <span class="meta">§ 07 — Results</span>
   </div>
   <h2 class="cs-h2-wide">What the journey produced.</h2>
-  <p class="body-text" style="font-size: 17px; max-width: 64ch;">
-    Six features shipped across three phases. The platform moved from a single-surface messaging tool to a continuous connection experience spanning the full event arc.
-  </p>
 
   <div class="stat-row">
     <div class="stat">
@@ -906,10 +1022,10 @@ body {
 </section>
 
 
-<!-- ── § 07 — TAKEAWAYS ── -->
+<!-- ── § 08 — TAKEAWAYS ── -->
 <section class="section-alt">
   <div class="section-head">
-    <span class="meta">§ 07 — Takeaways</span>
+    <span class="meta">§ 08 — Takeaways</span>
   </div>
   <h2 class="cs-h2-wide">What this project taught me.</h2>
 
