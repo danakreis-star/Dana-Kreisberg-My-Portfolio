@@ -586,16 +586,22 @@ body {
   <p class="fig-cap">The attendee venue — community page</p>
 
   <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 48px;">
-    <div class="screen-img" style="flex: 1;">
-      <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="border-radius: 30px; border: 3px solid #000000;">
+    <div class="screen-img" style="flex-shrink: 0; width: 375px;">
+      <div style="border-radius: 30px; overflow: hidden; border: 3px solid #000000; line-height: 0;">
+        <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 0;">
+      </div>
       <div class="gallery_image_caption">Messages</div>
     </div>
-    <div class="screen-img" style="flex: 1;">
-      <img src="/images/Bizzabo-02.png" alt="" style="border-radius: 30px; border: 3px solid #000000;">
+    <div class="screen-img" style="flex-shrink: 0; width: 375px;">
+      <div style="border-radius: 30px; overflow: hidden; border: 3px solid #000000; line-height: 0;">
+        <img src="/images/Bizzabo-02.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 0;">
+      </div>
       <div class="gallery_image_caption">My meetings area</div>
     </div>
-    <div class="screen-img" style="flex: 1;">
-      <img src="/images/Bizzabo-02.1.png" alt="" style="border-radius: 30px; border: 3px solid #000000;">
+    <div class="screen-img" style="flex-shrink: 0; width: 375px;">
+      <div style="border-radius: 30px; overflow: hidden; border: 3px solid #000000; line-height: 0;">
+        <img src="/images/Bizzabo-02.1.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 0;">
+      </div>
       <div class="gallery_image_caption">Schedule meeting flow</div>
     </div>
   </div>
@@ -770,10 +776,10 @@ body {
       </p>
       <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 24px;">
         <div class="screen-img">
-          <img src="/images/Bizzabo-05.png" alt="" style="max-height: 400px; max-width: 400px; object-fit: contain; align-self: flex-start;">
+          <img src="/images/Bizzabo-03.png" alt="">
         </div>
         <div class="screen-img">
-          <img src="/images/Bizzabo-03.png" alt="">
+          <img src="/images/Bizzabo-05.png" alt="" style="max-height: 400px; max-width: 400px; object-fit: contain; align-self: flex-start;">
         </div>
       </div>
     </div>
@@ -788,8 +794,8 @@ body {
         <div class="img-frame" style="flex: 1; max-width: 650px;">
           <img src="/images/Bizzabo-07.png" alt="" style="width: 100%; height: auto; display: block; border: 1px solid var(--rule); border-radius: 12px;">
         </div>
-        <div style="flex-shrink: 0; display: inline-block; line-height: 0;">
-          <video class="mobile-video" src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="border-radius: 30px; max-height: 520px; width: auto; display: block; border: 3px solid #000000;"></video>
+        <div style="flex-shrink: 0; width: 400px; border-radius: 30px; overflow: hidden; border: 3px solid #000000; line-height: 0;">
+          <video class="mobile-video" src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="width: 100%; height: auto; display: block;"></video>
         </div>
       </div>
       <p class="fig-cap">Availability setup → mutual slot proposal → one-tap meeting confirmation</p>
@@ -869,11 +875,13 @@ body {
     <div class="feature-block">
       <div class="feature-num">Feature 06</div>
       <h4 class="feature-h">Close the loop</h4>
-      <p class="body-text">
-        A personalised recap sent 24 hours after the event — connections made, sessions attended, and suggested next steps for each contact.
-      </p>
-      <div class="img-frame" style="margin-top: 32px; max-width: 600px;">
-        <img src="/images/Bizzabo-16.png" alt="Personalised recap email — connections made, status, suggested next steps" style="clip-path: inset(0 0 0 6px);">
+      <div style="display: grid; grid-template-columns: 30fr 70fr; gap: 48px; align-items: start; margin-top: 24px;">
+        <p class="body-text">
+          A personalised recap sent 24 hours after the event — connections made, sessions attended, and suggested next steps for each contact.
+        </p>
+        <div class="img-frame">
+          <img src="/images/Bizzabo-16.png" alt="Personalised recap email — connections made, status, suggested next steps" style="clip-path: inset(0 0 0 6px);">
+        </div>
       </div>
     </div>
   </div>
