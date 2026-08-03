@@ -85,6 +85,8 @@ body {
 }
 .cs-h1 em { font-style: italic; font-weight: 100; color: var(--bagel-purple); }
 .lede { margin-top: 40px; font-size: 19px; line-height: 1.5; color: var(--ink-60); max-width: 62ch; }
+.see-in-action-link { display: inline-block; margin-top: 16px; font-size: 15px; font-weight: 500; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.see-in-action-link:hover { opacity: 0.6; }
 .meta-row {
   margin-top: 64px;
   display: grid;
@@ -419,31 +421,49 @@ body {
   font-style: normal;
 }
 
-/* Outcome cards */
-.outcome-grid {
+/* Outcome bold layout */
+.outcomes-bold {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 28px;
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--rule);
 }
-.o-card {
-  background: var(--bagel-purple-soft);
-  border: 1px solid var(--bagel-purple-border);
-  border-radius: 10px;
-  padding: 20px;
+.outcome-item {
+  padding: 32px 32px 32px 0;
+  border-right: 1px solid var(--rule);
 }
-.o-num {
+.outcome-item:last-child { border-right: none; padding-right: 0; }
+.outcome-item:not(:first-child) { padding-left: 32px; }
+.outcome-stat {
   font-family: var(--display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  color: var(--bagel-purple);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
   line-height: 1;
-  margin-bottom: 7px;
+  letter-spacing: -0.03em;
+  color: var(--bagel-purple);
+  margin-bottom: 12px;
 }
-.o-lbl {
-  font-size: 0.8rem;
+.outcome-label {
+  font-size: 14px;
   line-height: 1.5;
   color: var(--ink-60);
+  max-width: 22ch;
+}
+.outcome-quote {
+  margin-top: 56px;
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: none;
+}
+.outcome-footnote {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--ink-40);
+  font-style: italic;
 }
 
 /* Flow section label */
@@ -673,8 +693,9 @@ body {
   <div class="title-meta">
     <span class="mono">Case Study · Bagel.AI</span>
   </div>
-  <h1 class="cs-h1">Discovery <em>2.0</em></h1>
+  <h1 class="cs-h1">Discovery<em>OS</em></h1>
   <p class="lede">Bagel.AI surfaces customer evidence for product teams. Discovery was the most powerful space in the product — and the least used. We redesigned it from the ground up.</p>
+  <a href="https://bagel.ai/platform-overview/bagel-discovery-os/#See-it-in-action" target="_blank" rel="noopener noreferrer" class="see-in-action-link">See it in action ↗</a>
   <div class="meta-row">
     <div>
       <span class="meta">Role</span>
@@ -891,26 +912,28 @@ body {
 ══════════════════════════════════════ -->
 <section class="section">
   <h2 class="cs-h2-wide" style="max-width: none;">From near-zero to the core workflow.</h2>
-  <p class="body-text" style="max-width: none;">Discovery 2.0 became the primary workflow. Four disconnected spaces unified into one.</p>
+  <p class="body-text" style="max-width: none;">Discovery OS became the primary workflow. Four disconnected spaces unified into one.</p>
 
   <div class="img-frame" style="margin-top:48px;">
     <img src="/images/bagel-10.png" alt="Bagel.AI Discovery 2.0 — shipped">
   </div>
 
-  <div class="outcome-grid">
-    <div class="o-card">
-      <div class="o-num">248 →↑</div>
-      <div class="o-lbl">Queries baseline — now the primary PM entry point, not a secondary tool</div>
+  <div class="outcomes-bold">
+    <div class="outcome-item">
+      <div class="outcome-stat">1 flow</div>
+      <div class="outcome-label">Four disconnected entry points replaced by a single unified Discovery experience</div>
     </div>
-    <div class="o-card">
-      <div class="o-num">1 flow</div>
-      <div class="o-lbl">Replaced four disconnected spaces with a single unified system</div>
+    <div class="outcome-item">
+      <div class="outcome-stat">Customer-validated</div>
+      <div class="outcome-label">Prototypes became the centerpiece of enterprise demos and prospect walkthroughs</div>
     </div>
-    <div class="o-card">
-      <div class="o-num">3 JTBDs</div>
-      <div class="o-lbl">All three core PM jobs — explore, validate, track — supported in one coherent experience</div>
+    <div class="outcome-item">
+      <div class="outcome-stat">5× growth</div>
+      <div class="outcome-label">Enterprise customer base within three months of launch*</div>
     </div>
   </div>
+  <p class="outcome-quote">The redesign helped define Bagel's product story, and became the centerpiece of enterprise demos.</p>
+  <p class="outcome-footnote">*Enterprise growth shared by the founders following launch. Multiple factors contributed to this outcome.</p>
 
 </section>
 

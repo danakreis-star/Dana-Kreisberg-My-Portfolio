@@ -485,6 +485,9 @@ body {
   .takeaway:last-child { padding-left: 0; }
   .funnel-row { grid-template-columns: 1fr; gap: 8px; }
 }
+@media (max-width: 1023px) {
+  .para-row { flex-direction: column; }
+}
 @media (max-width: 600px) {
   :root { --gutter: 20px; }
   .title-meta { flex-direction: column; gap: 8px; }
@@ -571,13 +574,15 @@ body {
   </div>
 
   <div>
-    <h2 class="cs-h2-wide">A networking venue built for hybrid use cases.</h2>
-    <p class="body-text" style="font-size: 17px; max-width: 56ch;">
-      Bizzabo's attendee platform needed to do something no events product had done well before — help people connect professionally in a hybrid world. Half the room online. Half onsite. Different time zones, different devices, and no shared physical space to rely on.
-    </p>
-    <p class="body-text" style="font-size: 17px; max-width: 56ch; margin-top: 20px;">
-      We designed three core capabilities: a community space to explore who else was attending, 1:1 messaging to initiate contact, and meeting scheduling to move from conversation to commitment.
-    </p>
+    <h2 class="cs-h2-wide" style="max-width: none;">A networking venue built for hybrid use cases.</h2>
+    <div class="para-row" style="display: flex; gap: 48px; margin-top: 20px;">
+      <p class="body-text" style="font-size: 17px; flex: 1;">
+        Bizzabo's attendee platform needed to do something no events product had done well before — help people connect professionally in a hybrid world. Half the room online. Half onsite. Different time zones, different devices, and no shared physical space to rely on.
+      </p>
+      <p class="body-text" style="font-size: 17px; flex: 1;">
+        We designed three core capabilities: a community space to explore who else was attending, 1:1 messaging to initiate contact, and meeting scheduling to move from conversation to commitment.
+      </p>
+    </div>
   </div>
 
   <div class="desktop-frame-wrap" style="margin-top: 48px;">
@@ -784,8 +789,8 @@ body {
         The system finds mutual availability and proposes meeting slots — no back-and-forth, no scheduling overhead.
       </p>
       <div style="margin-top: 32px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="line-height: 0; flex-shrink: 0;">
-          <video src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="max-height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></video>
+        <div style="line-height: 0; flex: 0 0 375px; max-height: 750px; overflow: hidden; border-radius: 30px;">
+          <video src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="width: 100%; display: block; transform: scale(1.08); transform-origin: center center;"></video>
         </div>
         <div style="flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--rule);">
           <img src="/images/Bizzabo-07.png" alt="" style="width: 100%; height: auto; display: block;">
