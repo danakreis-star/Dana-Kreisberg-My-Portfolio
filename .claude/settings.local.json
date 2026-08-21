@@ -23,7 +23,8 @@
       "Bash(npx astro *)",
       "Read(//opt/homebrew/bin/**)",
       "Read(//Applications/**)",
-      "Bash(avconvert --source /Users/danakreisberg/my-portfolio/public/images/Bizzabo-06.mov --output /Users/danakreisberg/my-portfolio/public/images/Bizzabo-06-trimmed.mov --preset PresetPassthrough --duration 6.78 --replace)"
+      "Bash(avconvert --source /Users/danakreisberg/my-portfolio/public/images/Bizzabo-06.mov --output /Users/danakreisberg/my-portfolio/public/images/Bizzabo-06-trimmed.mov --preset PresetPassthrough --duration 6.78 --replace)",
+      "Bash(curl -s http://localhost:4321/bagel)"
     ]
   }
 }

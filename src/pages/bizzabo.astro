@@ -343,14 +343,14 @@ body {
   background: transparent;
   display: flex;
   flex-direction: column;
-  width: 375px;
+  width: auto;
+  flex-shrink: 0;
 }
 .screen-img img,
 .screen-img video {
-  max-height: 750px;
-  width: 100%;
-  max-width: 100%;
-  object-fit: contain;
+  height: 750px;
+  width: auto;
+  max-width: none;
   display: block;
   border-radius: 0;
 }
@@ -592,15 +592,15 @@ body {
 
   <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 48px;">
     <div class="screen-img" style="flex-shrink: 0; width: 375px;">
-      <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+      <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
       <div class="gallery_image_caption">Messages</div>
     </div>
     <div class="screen-img" style="flex-shrink: 0; width: 375px;">
-      <img src="/images/Bizzabo-02.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+      <img src="/images/Bizzabo-02.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
       <div class="gallery_image_caption">My meetings area</div>
     </div>
     <div class="screen-img" style="flex-shrink: 0; width: 375px;">
-      <img src="/images/Bizzabo-02.1.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+      <img src="/images/Bizzabo-02.1.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
       <div class="gallery_image_caption">Schedule meeting flow</div>
     </div>
   </div>
@@ -834,9 +834,9 @@ body {
         <img src="/images/Bizzabo-9.jpg" alt="Session page">
       </div>
       <div class="screens-3up">
-        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-10.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
-        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-11.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
-        <div class="screen-img" style="display: none;"><img src="/images/Bizzabo-12.png" alt="" style="border-radius: 30px; border: 3px solid #000000;"></div>
+        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-10.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
+        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-11.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
+        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-12.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
       </div>
       <p class="fig-cap">Push notification → attendees wall → session impression</p>
     </div>
@@ -852,10 +852,10 @@ body {
           <video class="mobile-video" src="/images/Bizzabo-13.mov" autoplay loop muted playsinline style="width: 100%; display: block; border-radius: 30px; border: 3px solid #000000;"></video>
         </div>
         <div class="screen-img" style="line-height: 0;">
-          <img src="/images/Bizzabo-14.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+          <img src="/images/Bizzabo-14.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
         </div>
         <div class="screen-img" style="line-height: 0;">
-          <img src="/images/Bizzabo-15.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+          <img src="/images/Bizzabo-15.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
         </div>
       </div>
       <p class="fig-cap">Quick invite with location → online meeting call UI</p>
