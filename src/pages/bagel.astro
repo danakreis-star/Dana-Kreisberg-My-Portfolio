@@ -633,55 +633,6 @@ body {
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     PASSWORD GATE
-══════════════════════════════════════ -->
-<div id="bagel-gate">
-  <div class="gate-wordmark">Dana Kreisberg</div>
-  <div class="gate-inner">
-    <div class="gate-label">Password required</div>
-    <input id="bagel-pw" class="gate-input" type="password" placeholder="Enter password" autocomplete="off">
-    <div id="bagel-err" class="gate-error"></div>
-    <button id="bagel-btn" class="gate-btn">Continue →</button>
-  </div>
-</div>
-
-<script>
-  (function () {
-    const PASSWORD = '303724';
-    const KEY = 'bagel-auth';
-    const gate = document.getElementById('bagel-gate');
-    const input = document.getElementById('bagel-pw');
-    const btn   = document.getElementById('bagel-btn');
-    const err   = document.getElementById('bagel-err');
-
-    function unlock() {
-      sessionStorage.setItem(KEY, 'true');
-      gate.style.display = 'none';
-      document.getElementById('bagel-main').style.display = '';
-    }
-
-    /* Already authenticated this session */
-    if (sessionStorage.getItem(KEY) === 'true') {
-      gate.style.display = 'none';
-      return; /* main is visible by default when no gate */
-    }
-
-    /* Hide page content until unlocked */
-    document.getElementById('bagel-main').style.display = 'none';
-
-    btn.onclick = function () {
-      if (input.value === PASSWORD) {
-        unlock();
-      } else {
-        err.textContent = 'Incorrect password';
-        input.focus();
-      }
-    };
-    input.onkeydown = function (e) { if (e.key === 'Enter') btn.click(); };
-  })();
-</script>
-
 <div id="bagel-main">
 
 <Nav />
