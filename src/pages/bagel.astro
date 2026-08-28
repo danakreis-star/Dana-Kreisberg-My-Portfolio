@@ -538,75 +538,6 @@ body {
 }
 
 /* ════════════════════════════
-   PASSWORD GATE
-════════════════════════════ */
-#bagel-gate {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: var(--paper);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.gate-wordmark {
-  font-family: var(--display);
-  font-size: 17px;
-  letter-spacing: -0.02em;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: 48px;
-}
-.gate-inner {
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.gate-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-40);
-  margin-bottom: 2px;
-}
-.gate-input {
-  font-family: var(--body);
-  font-size: 16px;
-  padding: 12px 14px;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  background: var(--paper);
-  color: var(--ink);
-  outline: none;
-  width: 100%;
-  transition: border-color 0.15s;
-}
-.gate-input:focus { border-color: oklch(14% 0.01 240 / 0.4); }
-.gate-btn {
-  font-family: var(--body);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 12px 14px;
-  background: var(--ink);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  width: 100%;
-}
-.gate-btn:hover { opacity: 0.8; }
-.gate-error {
-  font-size: 13px;
-  color: var(--ink-60);
-  min-height: 18px;
-  font-family: var(--body);
-}
-
-/* ════════════════════════════
    RESPONSIVE
 ════════════════════════════ */
 @media (max-width: 900px) {
@@ -632,8 +563,6 @@ body {
   </style>
 </head>
 <body>
-
-<div id="bagel-main">
 
 <Nav />
 
@@ -897,8 +826,6 @@ body {
     AI should be a collaborator, not an educator<br><em>—it should adapt to existing workflows, not change them.</em>
   </p>
 </section>
-
-</div><!-- #bagel-main -->
 
 </body>
 </html>

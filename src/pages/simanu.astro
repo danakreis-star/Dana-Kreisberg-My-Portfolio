@@ -79,7 +79,7 @@ body {
    VIDEO EMBED
 ════════════════════════════ */
 .video-wrap {
-  padding: 0 var(--gutter) 64px;
+  padding: 0 var(--gutter) 24px;
 }
 .video-embed {
   position: relative;
@@ -119,6 +119,24 @@ body {
   display: block;
   border-radius: 10px;
 }
+.gallery-figure {
+  min-width: 0;
+}
+.gallery-caption {
+  margin-top: 12px;
+  max-width: 58ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-60);
+}
+.gallery-caption strong {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-40);
+}
 
 /* ════════════════════════════
    RESPONSIVE
@@ -153,30 +171,60 @@ body {
   </div>
 </div>
 
+<!-- ── INTRO TEXT ── -->
+<div style="max-width: 720px; margin: 24px auto 0; padding: 0 var(--gutter);">
+  <h2 style="font-family: var(--display); font-size: clamp(20px, 2.5vw, 28px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.25; color: var(--ink); margin: 0 0 20px;">Bringing the rhythms of traditional time into everyday life</h2>
+  <p style="font-family: var(--body); font-size: 17px; line-height: 1.65; color: var(--ink-60); margin: 0;">SIMANU can be experienced at different scales: as a complete year, a single month, or an individual day. The calendar becomes a living object for the home—one that can be displayed, rearranged, and used, while connecting everyday life to the wider cycles unfolding throughout the year.</p>
+</div>
+
 <!-- ── GALLERY ── -->
 <div class="gallery">
 
   <div class="gallery-row gallery-row--1">
-    <img class="gallery-img" src="/images/Simanu-01.png" alt="SIMANU" />
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-01.png" alt="SIMANU visual language key" />
+      <figcaption class="gallery-caption"><strong>The visual language</strong><br>Each Hebrew month is represented by a symbol assembled from seasonal phenomena, agricultural activity, and religious or cultural rituals. Colour marks the agricultural cycle; line icons mark the practices and traditions of the time.</figcaption>
+    </figure>
   </div>
 
   <div class="gallery-row gallery-row--2">
-    <img class="gallery-img" src="/images/Simanu-02.gif" alt="SIMANU" />
-    <img class="gallery-img" src="/images/Simanu-03.gif" alt="SIMANU" />
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-02.gif" alt="SIMANU month view" />
+      <figcaption class="gallery-caption"><strong>Month view</strong><br>A monthly symbol makes the rhythms of the season visible: what is changing outside, what is being cultivated, and what the calendar asks us to remember.</figcaption>
+    </figure>
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-03.gif" alt="SIMANU month view interaction" />
+      <figcaption class="gallery-caption"><strong>Living symbols</strong><br>The compositions shift from month to month, allowing the calendar to be experienced as a living system rather than a fixed grid of dates.</figcaption>
+    </figure>
   </div>
 
   <div class="gallery-row gallery-row--2">
-    <img class="gallery-img" src="/images/Simanu-04.gif" alt="SIMANU" />
-    <img class="gallery-img" src="/images/Simanu-05.gif" alt="SIMANU" />
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-04.gif" alt="SIMANU calendar navigation" />
+      <figcaption class="gallery-caption"><strong>Changing scale</strong><br>The interface lets people move between a single month and the larger annual cycle, depending on how they want to read time.</figcaption>
+    </figure>
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-05.gif" alt="SIMANU year view" />
+      <figcaption class="gallery-caption"><strong>Year view</strong><br>Twelve monthly symbols become one visual map of the Hebrew year — a glanceable overview of its changing seasons and occasions.</figcaption>
+    </figure>
   </div>
 
   <div class="gallery-row gallery-row--2">
-    <img class="gallery-img" src="/images/Simanu-06.gif" alt="SIMANU" />
-    <img class="gallery-img" src="/images/Simanu-07.png" alt="SIMANU" />
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-06.gif" alt="SIMANU day view" />
+      <figcaption class="gallery-caption"><strong>Day view</strong><br>A date can hold personal notes alongside the calendar's cultural context, making the object useful in everyday life as well as reflective.</figcaption>
+    </figure>
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-07.png" alt="SIMANU ritual and tradition view" />
+      <figcaption class="gallery-caption"><strong>Ritual in context</strong><br>Religious and traditional events come into focus within the date itself, connecting individual days to the stories and practices that shape them.</figcaption>
+    </figure>
   </div>
 
   <div class="gallery-row gallery-row--1">
-    <img class="gallery-img" src="/images/Simanu-08.gif" alt="SIMANU" />
+    <figure class="gallery-figure">
+      <img class="gallery-img" src="/images/Simanu-08.gif" alt="SIMANU printed book" />
+      <figcaption class="gallery-caption"><strong>Beyond the screen</strong><br>SIMANU was conceived as an object for the home — a calendar to hang, revisit, and use as a bridge between modern routines and the traditional rhythm of the year.</figcaption>
+    </figure>
   </div>
 
 </div>
