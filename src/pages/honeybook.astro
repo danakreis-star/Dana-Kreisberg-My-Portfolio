@@ -159,7 +159,7 @@ body {
   display: grid;
   grid-template-columns: 80px 1fr;
   gap: 24px;
-  align-items: start;
+  align-items: center;
   padding: 32px;
   background: rgba(94, 48, 227, 0.06);
   border-radius: 12px;
@@ -168,8 +168,8 @@ body {
 }
 .persona-avatar { border-radius: 50%; overflow: hidden; width: 80px; height: 80px; }
 .persona-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.persona-name { font-family: var(--display); font-size: 20px; letter-spacing: -0.02em; font-weight: 400; margin-bottom: 8px; }
-.persona-text { font-size: 15px; line-height: 1.6; color: var(--ink-60); font-style: normal !important; font-family: var(--body) !important; }
+.persona-name { font-family: var(--display); font-size: clamp(14px, 1.2vw, 17px); letter-spacing: -0.01em; font-weight: 500; margin-bottom: 8px; color: var(--ink); }
+.persona-text { font-family: var(--display) !important; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.4; color: var(--ink); font-style: normal !important; letter-spacing: -0.01em; }
 
 /* ════════════════════════════
    STATS
@@ -195,9 +195,13 @@ body {
   margin: 0 0 24px;
 }
 .solution-h em { font-style: italic; font-weight: 300; }
-.problem-box { padding: 20px 24px; background: rgba(94, 48, 227, 0.06); border-radius: 8px; margin-bottom: 48px; }
-.problem-box p { font-size: 16px; line-height: 1.6; color: var(--ink-60); margin: 0; font-style: normal !important; font-family: var(--body) !important; }
-.problem-box strong { color: var(--ink); }
+.problem-box { position: relative; padding: 28px 32px 28px 64px; background: rgba(94, 48, 227, 0.07); border-radius: 0; border-left: none; margin-bottom: 48px; }
+.problem-box::before { content: ''; position: absolute; left: 22px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-left: 18px solid #5E30E3; }
+.problem-box p { font-family: var(--display) !important; font-size: clamp(14px, 1.2vw, 17px); line-height: 1.4; color: var(--ink); margin: 0; font-style: normal !important; font-weight: 400; letter-spacing: -0.01em; }
+.problem-box strong { color: var(--ink); font-weight: 500; }
+.pullquote { border-left: none; background: transparent; padding-left: 0; }
+.pullquote p { font-family: Georgia, "Times New Roman", serif !important; font-style: italic !important; letter-spacing: 0 !important; color: #5E30E3 !important; }
+.pullquote p + p { color: var(--ink-40) !important; font-style: normal !important; }
 .step-badge { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
 .step-num { font-family: var(--mono); font-size: 11px; color: #5E30E3; letter-spacing: 0.06em; padding: 4px 10px; }
 .step-label { font-family: var(--body); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #5E30E3; opacity: 0.6; }
@@ -451,7 +455,7 @@ body {
       <p class="body-text" style="margin-top: 20px;">
         The problem was <strong>discovery friction</strong> - users couldn't find the tools, didn't trust them, or didn't know they were missing anything.
       </p>
-      <div class="problem-box" style="margin-top: 32px; margin-bottom: 0;">
+      <div class="problem-box pullquote" style="margin-top: 32px; margin-bottom: 0;">
         <p>"I was using six or seven programs to communicate with clients, share files, invoice. It was really scattered. My clients didn't have a place where everything was in one spot."</p>
         <p style="margin-top: 8px; font-size: 13px; color: var(--ink-40);">- Brittany Cheri, Marketing Consultant · research participant</p>
       </div>
@@ -549,10 +553,9 @@ body {
       <p class="persona-text">
         A graphic designer and founder of a small studio. Thriving work, growing client base - and a flood of admin threatening to take over..
       </p>
-      <p class="persona-text" style="margin-top: 12px; color: var(--ink-40);">
-        Anna is a composite built from research across 26 HoneyBook members, trialers, and non-members.</p>
     </div>
   </div>
+  <p class="fig-cap" style="margin-top: 12px;">Anna is a composite built from research across 26 HoneyBook members, trialers, and non-members.</p>
 
   <div class="hb-vision">
     <span class="meta">Design vision week</span>
@@ -808,7 +811,7 @@ body {
 
   <div class="insight-callout" style="margin-top: 56px; border-left-color: var(--accent);">
     <span class="insight-callout-num">Key learning</span>
-    <p><strong>We were afraid trialers wouldn't opt in to Gmail access - so we made it a separate step.</strong> This created the very problem we feared: not enough data. When we surfaced it as part of the onboarding flow, users weren't bothered at all. Trust is earned through value, not permission flows. Show what it does - then explain what you're doing.</p>
+    <p><strong>We were afraid trialers wouldn't opt in to Gmail access - so we made it a separate step.</strong> This created the very problem we feared: not enough data. When we surfaced it in onboarding, users weren't bothered at all. Show value first - then explain what you're doing.</p>
   </div>
 </section>
 
