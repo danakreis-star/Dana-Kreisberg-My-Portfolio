@@ -24,7 +24,9 @@
       "Read(//opt/homebrew/bin/**)",
       "Read(//Applications/**)",
       "Bash(avconvert --source /Users/danakreisberg/my-portfolio/public/images/Bizzabo-06.mov --output /Users/danakreisberg/my-portfolio/public/images/Bizzabo-06-trimmed.mov --preset PresetPassthrough --duration 6.78 --replace)",
-      "Bash(curl -s http://localhost:4321/bagel)"
+      "Bash(curl -s http://localhost:4321/bagel)",
+      "Bash(cp \"/private/tmp/claude-501/-Users-danakreisberg-my-portfolio/d29a0292-72b6-4eda-b378-14f562b0d15c/images/19.png\" /Users/danakreisberg/my-portfolio/public/images/bagelOS-02-pm-workflow.png)",
+      "Bash(git merge *)"
     ]
   }
 }
