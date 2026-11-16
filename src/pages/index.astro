@@ -233,6 +233,10 @@ body {
   .hero-tags-physics { height: 80px; }
   .hero-tag-pill { font-size: 14px; padding: 6px 14px; }
 }
+@media (max-width: 480px) {
+  .hero-sticker { display: none; }
+  .hero-row { display: block; }
+}
 
 /* ── WORKS HEADER ── */
 .works-header { display: flex; justify-content: space-between; padding: 16px var(--gutter) 32px; }
@@ -876,6 +880,10 @@ footer {
       const activeTags = pills.filter(p => p.classList.contains('active')).map(p => p.dataset.filter);
       if (activeTags.length) enterFlatMode();
       filterProjects(activeTags.length ? activeTags : null);
+      if (activeTags.length) {
+        const firstProject = document.querySelector('[data-tags]:not(.filtered-out)');
+        if (firstProject) firstProject.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     } else {
       // Release with throw velocity and wake the body so gravity continues
       Sleeping.set(drag.body, false);
