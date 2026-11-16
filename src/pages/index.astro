@@ -102,16 +102,30 @@ body {
 }
 
 /* ── HERO ── */
-.hero { padding: 80px var(--gutter) 100px; }
+.hero { padding: 48px var(--gutter) 40px; }
+.hero-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
 .hero-title {
   font-family: var(--display);
-  font-size: clamp(40px, 5.6vw, 96px);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  font-size: clamp(36px, 4.5vw, 80px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   font-weight: 400;
-  max-width: 16ch;
+  font-style: normal;
+  color: var(--ink);
+  max-width: 30ch;
+  text-wrap: balance;
 }
-.hero-title em { font-style: italic; font-family: var(--display); font-weight: 100 !important; }
+.hero-title em {
+  font-style: italic;
+  font-weight: 200;
+  letter-spacing: -0.02em;
+}
+.hero-title strong { font-weight: 600; font-style: normal; }
 .hero-bottom {
   margin-top: 72px;
   display: grid;
@@ -127,13 +141,101 @@ body {
   font-family: var(--display);
   font-size: 20px;
   letter-spacing: -0.01em;
-  margin-top: 32px;
+  margin-top: 28px;
 }
 .tag-div { color: var(--ink-40); }
 .hero-lede { font-size: 17px; line-height: 1.55; color: var(--ink-60); max-width: 62ch; }
 
+/* ── CONTACT STICKER ── */
+.hero-sticker {
+  flex-shrink: 0;
+  position: relative;
+  width: clamp(72px, 8vw, 110px);
+  height: clamp(72px, 8vw, 110px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-12deg);
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 4px;
+  background: transparent;
+  border-radius: 0;
+}
+.hero-sticker:hover { transform: rotate(-4deg) scale(1.06); }
+.hero-sticker:focus-visible { outline: 3px solid var(--accent); outline-offset: 8px; border-radius: 4px; }
+.hero-sticker-star {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hero-sticker-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: #fff;
+  pointer-events: none;
+}
+.hero-sticker-label {
+  font-family: var(--display);
+  font-size: clamp(13px, 1.3vw, 18px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.hero-sticker-arrow {
+  font-size: clamp(11px, 1vw, 15px);
+  opacity: 0.75;
+}
+@media (prefers-reduced-motion: reduce) { .hero-sticker { transition: none; } }
+@media (max-width: 700px) {
+  .hero-sticker { width: clamp(64px, 20vw, 88px); height: clamp(64px, 20vw, 88px); }
+}
+
+/* ── HERO PHYSICS TAGS ── */
+.hero-tags-physics {
+  position: relative;
+  height: 120px;
+  margin-top: 24px;
+  overflow: visible;
+  z-index: 1;
+}
+.hero-tag-pill {
+  position: absolute;
+  top: 0; left: 0;
+  visibility: hidden;
+  font-family: var(--display);
+  font-size: clamp(14px, 1.4vw, 18px);
+  letter-spacing: -0.01em;
+  padding: 7px 18px;
+  border: 1.5px solid var(--ink);
+  border-radius: 100px;
+  white-space: nowrap;
+  will-change: transform;
+  user-select: none;
+  cursor: default;
+  background: var(--paper);
+  transition: background 0.15s, color 0.15s;
+}
+.hero-tag-pill:hover,
+.hero-tag-pill.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+/* filter rules need global scope so runtime JS class changes are matched */
+@media (max-width: 600px) {
+  .hero-tags-physics { height: 80px; }
+  .hero-tag-pill { font-size: 14px; padding: 6px 14px; }
+}
+
 /* ── WORKS HEADER ── */
-.works-header { display: flex; justify-content: space-between; padding: 16px var(--gutter) 56px; }
+.works-header { display: flex; justify-content: space-between; padding: 16px var(--gutter) 32px; }
 
 /* ── FEATURED PROJECTS ── */
 .works { padding: 0 var(--gutter); display: flex; flex-direction: column; gap: 80px; }
@@ -384,6 +486,45 @@ footer {
   }
 
   </style>
+  <style is:global>
+    [data-tags] { transition: opacity 0.2s, transform 0.2s; }
+    [data-tags].filtered-out { display: none; }
+
+    /* Flat layout when filters are active */
+    .hero-tags-physics.flat-mode {
+      height: auto;
+      min-height: 36px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      padding-top: 4px;
+    }
+    .hero-tags-physics.flat-mode .hero-tag-pill {
+      position: static;
+      visibility: visible;
+      transform: none !important;
+    }
+    .pill-clear {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 100px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1;
+      padding: 0;
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+    .pill-clear:hover { color: var(--ink); }
+    .hero-tags-physics.flat-mode .pill-clear { display: inline-flex; }
+  </style>
 </head>
 <body>
 
@@ -391,17 +532,28 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="hero-title">Lead Product designer shipping <em>AI-powered</em><br>
-    experiences across web and mobile.
-  </h1>
-  <div class="hero-tags">
-    <span>AI</span>
-    <span class="tag-div">·</span>
-    <span>SaaS</span>
-    <span class="tag-div">·</span>
-    <span>Fintech</span>
-    <span class="tag-div">·</span>
-    <span>B2B</span>
+  <div class="hero-row">
+    <div>
+      <h1 class="hero-title">I shape product strategy around <em>people's needs</em>, designing AI that assists without taking control, while making complex experiences feel intuitive.</h1>
+      <div class="hero-tags-physics" id="heroTagsPhysics">
+        <span class="hero-tag-pill" data-filter="ai">AI</span>
+        <span class="hero-tag-pill" data-filter="saas">SaaS</span>
+        <span class="hero-tag-pill" data-filter="fintech">Fintech</span>
+        <span class="hero-tag-pill" data-filter="b2b">B2B</span>
+        <span class="hero-tag-pill" data-filter="b2c">B2C</span>
+        <span class="hero-tag-pill" data-filter="mobile">Mobile</span>
+        <span class="hero-tag-pill" data-filter="desktop">Desktop</span>
+        <button class="pill-clear" aria-label="Clear filters">✕</button>
+      </div>
+    </div>
+    <a class="hero-sticker" href="mailto:danakreis@gmail.com" aria-label="Contact Dana by email">
+      <svg class="hero-sticker-star" viewBox="0 0 200 200" aria-hidden="true">
+        <path fill="black" d="M100,0 L117.1,13.7 L138.3,7.6 L148.8,26.9 L170.7,29.3 L173.1,51.2 L192.4,61.7 L186.3,82.9 L200,100 L186.3,117.1 L192.4,138.3 L173.1,148.8 L170.7,170.7 L148.8,173.1 L138.3,192.4 L117.1,186.3 L100,200 L82.9,186.3 L61.7,192.4 L51.2,173.1 L29.3,170.7 L26.9,148.8 L7.6,138.3 L13.7,117.1 L0,100 L13.7,82.9 L7.6,61.7 L26.9,51.2 L29.3,29.3 L51.2,26.9 L61.7,7.6 L82.9,13.7 Z"/>
+      </svg>
+      <span class="hero-sticker-inner">
+        <span class="hero-sticker-label">Contact</span>
+      </span>
+    </a>
   </div>
 </section>
 
@@ -415,7 +567,7 @@ footer {
 <section class="works" id="works">
 
   <!-- 01 - Bagel.AI -->
-  <article class="fade-in">
+  <article class="fade-in" data-tags="ai b2b desktop">
     <div class="project-meta">
       <div class="project-meta-left">
         <span class="mono">01</span>
@@ -434,7 +586,7 @@ footer {
         <div class="project-sub">Discovery 2.0</div>
       </div>
       <div class="project-right">
-        <span class="meta" style="display:block">AI · Product · Web</span>
+        <span class="meta" style="display:block">AI · B2B</span>
         <p class="project-blurb">A ground-up redesign of Bagel.AI's discovery experience - unifying four disconnected spaces into one AI-powered workflow for product managers.</p>
         <a class="open-link" href="/bagel">Open case study ↗</a>
       </div>
@@ -442,7 +594,7 @@ footer {
   </article>
 
   <!-- 02 - Bizzabo -->
-  <article class="fade-in">
+  <article class="fade-in" data-tags="ai saas b2c mobile desktop">
     <div class="project-meta">
       <div class="project-meta-left">
         <span class="mono">02</span>
@@ -461,7 +613,7 @@ footer {
         <div class="project-sub">Event Networking solution</div>
       </div>
       <div class="project-right">
-        <span class="meta" style="display:block">Desktop &amp; Mobile app · Product ideations · User Research</span>
+        <span class="meta" style="display:block">AI · SaaS · B2C · Mobile</span>
         <p class="project-blurb">Designing a networking platform from the ground up - helping event attendees discover relevant people, build connections, and navigate large-scale events across web and mobile.</p>
         <a class="open-link" href="/bizzabo">Open case study ↗</a>
       </div>
@@ -469,7 +621,7 @@ footer {
   </article>
 
   <!-- 03 - HoneyBook AI -->
-  <article class="fade-in">
+  <article class="fade-in" data-tags="ai fintech saas b2b mobile desktop">
     <div class="project-meta">
       <div class="project-meta-left">
         <span class="mono">03</span>
@@ -488,7 +640,7 @@ footer {
         <div class="project-sub">AI assisted Lead management</div>
       </div>
       <div class="project-right">
-        <span class="meta" style="display:block">AI · Product · Web</span>
+        <span class="meta" style="display:block">AI · SaaS · Fintech · B2B · Mobile</span>
         <p class="project-blurb">End-to-end AI feature for independent creatives. Human-in-the-loop from research to ship.</p>
         <a class="open-link" href="/honeybook">Open case study ↗</a>
       </div>
@@ -505,7 +657,7 @@ footer {
   </div>
 
   <!-- Melio -->
-  <a href="/melio" class="mini-project fade-in">
+  <a href="/melio" class="mini-project fade-in" data-tags="saas fintech b2b mobile desktop">
     <div class="mini-thumb">
       <img src="/images/Melio-thumbnail.png" alt="Melio - Payments &amp; Onboarding">
     </div>
@@ -522,7 +674,7 @@ footer {
   </a>
 
   <!-- Deco -->
-  <a href="/deco" class="mini-project fade-in">
+  <a href="/deco" class="mini-project fade-in" data-tags="saas fintech b2c desktop">
     <div class="mini-thumb">
       <img src="/images/Deco-thumnail.png" alt="Deco. - Visual Language &amp; Product Design">
     </div>
@@ -539,7 +691,7 @@ footer {
   </a>
 
   <!-- Riskified -->
-  <a href="/riskified" class="mini-project fade-in">
+  <a href="/riskified" class="mini-project fade-in" data-tags="fintech b2b saas desktop">
     <div class="mini-thumb">
       <img src="/images/Riskified-thumbnail.gif" alt="Riskified - Web App &amp; Data Visualization">
     </div>
@@ -592,6 +744,251 @@ footer {
   <span class="mono">© 2026 Dana Kreisberg</span>
   <span class="mono">Tel Aviv · Zürich</span>
 </footer>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+<script is:inline>
+(function () {
+  if (!window.Matter) return;
+  const container = document.getElementById('heroTagsPhysics');
+  if (!container) return;
+  const pills = [...container.querySelectorAll('.hero-tag-pill')];
+  if (!pills.length) return;
+
+  pills.forEach(el => { el.style.visibility = 'hidden'; });
+  const sizes = pills.map(el => ({ w: el.offsetWidth, h: el.offsetHeight }));
+
+  const { Engine, Bodies, Composite, Events, Body, Sleeping } = Matter;
+  const cw = container.offsetWidth;
+  const ch = container.offsetHeight;
+
+  // Reduced-motion: row layout immediately, no animation or physics
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const GAP = 10; let rx = 0;
+    pills.forEach((el, i) => {
+      const s = sizes[i];
+      el.style.transform = `translate(${rx}px,${ch - s.h - 4}px)`;
+      el.style.visibility = 'visible';
+      rx += s.w + GAP;
+    });
+    wireFilters();
+    return;
+  }
+
+  const engine = Engine.create({ gravity: { y: 8.0 }, enableSleeping: true });
+
+  const W = 60;
+  const floorY = ch - 4;
+  Composite.add(engine.world, [
+    Bodies.rectangle(cw / 2, floorY + W / 2, cw + W * 2, W, { isStatic: true, friction: 0.6, restitution: 0.05 }),
+    Bodies.rectangle(-W / 2, ch / 2, W, ch * 6, { isStatic: true, friction: 0.3, restitution: 0 }),
+    Bodies.rectangle(cw + W / 2, ch / 2, W, ch * 6, { isStatic: true, friction: 0.3, restitution: 0 }),
+  ]);
+
+  const entered = new Array(pills.length).fill(false);
+
+  // Pills distributed across the full width so they settle in max 2 rows, flowing left → right
+  const physBodies = sizes.map((s, i) => {
+    const startX = i === 0
+      ? s.w / 2 + 2
+      : s.w / 2 + 6 + Math.random() * (cw * 0.40);
+    const startY = -s.h / 2 - 10 - i * 40;
+    const body = Bodies.rectangle(startX, startY, s.w, s.h, {
+      restitution: 0,        // no bounce — pills thud and stay
+      friction: 0.08,
+      frictionAir: 0.05,
+      frictionStatic: 0.1,
+      sleepThreshold: 60,
+      angle: (Math.random() - 0.5) * 0.06,
+    });
+    Body.setInertia(body, body.inertia * 4);
+    return body;
+  });
+  Composite.add(engine.world, physBodies);
+  pills.forEach(el => { el.style.visibility = 'visible'; });
+
+  const MAX_TILT = Math.PI / 10; // ~18° — pills stay mostly flat
+
+  // After the initial fall settles, start drifting pills rightward into a row
+  let flatMode = false;
+
+  // ── DRAG INTERACTION ──────────────────────────────────────
+  let drag = null; // active drag state
+
+  function pointerPos(e) {
+    const rect = container.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    return { x: src.clientX - rect.left, y: src.clientY - rect.top };
+  }
+
+  pills.forEach((pill, i) => {
+    const body = physBodies[i];
+    pill.style.cursor = 'grab';
+
+    function onDown(e) {
+      e.preventDefault();
+      const { x, y } = pointerPos(e);
+      drag = {
+        body, pill, index: i,
+        offsetX: x - body.position.x,
+        offsetY: y - body.position.y,
+        startX: x, startY: y,
+        velX: 0, velY: 0,
+        lastX: x, lastY: y, lastT: Date.now(),
+        moved: false,
+      };
+      Sleeping.set(body, false);
+      Body.setVelocity(body, { x: 0, y: 0 });
+      Body.setAngularVelocity(body, 0);
+      pill.style.cursor = 'grabbing';
+      pill.style.zIndex = '90';
+    }
+
+    pill.addEventListener('mousedown', onDown);
+    pill.addEventListener('touchstart', onDown, { passive: false });
+  });
+
+  function onMove(e) {
+    if (!drag) return;
+    if (e.cancelable) e.preventDefault();
+    const { x, y } = pointerPos(e);
+    const dx = x - drag.startX, dy = y - drag.startY;
+    if (!drag.moved && dx * dx + dy * dy > 25) drag.moved = true;
+    if (!drag.moved) return;
+
+    const now = Date.now();
+    const dt = Math.max(16, now - drag.lastT); // min 16ms prevents enormous velocity on fast moves
+    drag.velX = Math.max(-18, Math.min(18, (x - drag.lastX) / dt * 16));
+    drag.velY = Math.max(-18, Math.min(18, (y - drag.lastY) / dt * 16));
+    drag.lastX = x; drag.lastY = y; drag.lastT = now;
+
+    // Clamp drag position to container bounds so pills can't escape the walls
+    const clampedX = Math.max(sizes[drag.index].w / 2, Math.min(cw - sizes[drag.index].w / 2, x - drag.offsetX));
+    const clampedY = Math.max(sizes[drag.index].h / 2, Math.min(floorY - sizes[drag.index].h / 2, y - drag.offsetY));
+    Body.setPosition(drag.body, { x: clampedX, y: clampedY });
+    Body.setVelocity(drag.body, { x: drag.velX, y: drag.velY });
+  }
+
+  function onUp() {
+    if (!drag) return;
+    if (!drag.moved) {
+      // Was a tap/click — toggle filter
+      drag.pill.classList.toggle('active');
+      const activeTags = pills.filter(p => p.classList.contains('active')).map(p => p.dataset.filter);
+      if (activeTags.length) enterFlatMode();
+      filterProjects(activeTags.length ? activeTags : null);
+    } else {
+      // Release with throw velocity and wake the body so gravity continues
+      Sleeping.set(drag.body, false);
+      Body.setVelocity(drag.body, { x: drag.velX, y: drag.velY });
+    }
+    drag.pill.style.cursor = 'grab';
+    drag.pill.style.zIndex = '';
+    drag = null;
+  }
+
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onUp);
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('touchend', onUp);
+  document.addEventListener('touchcancel', onUp);
+
+  // ── PHYSICS LOOP (runs forever) ───────────────────────────
+  (function loop() {
+    Engine.update(engine, 1000 / 60 / 3);
+    Engine.update(engine, 1000 / 60 / 3);
+    Engine.update(engine, 1000 / 60 / 3);
+    physBodies.forEach((body, i) => {
+      const s = sizes[i];
+      const { x, y } = body.position;
+      const isDragged = drag && drag.index === i;
+
+      if (!isDragged) {
+        // Once entered, prevent flying back above container
+        if (!entered[i] && y >= -s.h / 2) entered[i] = true;
+        if (entered[i] && y < s.h / 2) {
+          Body.setPosition(body, { x, y: s.h / 2 });
+          Body.setVelocity(body, { x: body.velocity.x, y: Math.max(body.velocity.y, 0) });
+        }
+
+        // Damp angular velocity aggressively
+        Body.setAngularVelocity(body, body.angularVelocity * 0.7);
+
+        // Hard clamp on rotation
+        let a = body.angle % (2 * Math.PI);
+        if (a > Math.PI) a -= 2 * Math.PI;
+        if (a < -Math.PI) a += 2 * Math.PI;
+        if (Math.abs(a) > MAX_TILT) {
+          Body.setAngle(body, Math.sign(a) * MAX_TILT);
+          Body.setAngularVelocity(body, 0);
+        }
+
+        // Floor clamp — pills can never go below the baseline
+        const restY = floorY - s.h / 2;
+        if (body.position.y > restY + 1) {
+          Body.setPosition(body, { x: body.position.x, y: restY });
+          Body.setVelocity(body, { x: body.velocity.x, y: 0 });
+        }
+
+        // Straighten all pills toward angle 0; only freeze angular velocity once on the floor
+        const ang = body.angle;
+        const onFloor = body.position.y >= restY - 3;
+        if (Math.abs(ang) > 0.01) Body.setAngle(body, ang * 0.85);
+        else Body.setAngle(body, 0);
+        if (onFloor) Body.setAngularVelocity(body, 0);
+
+        // Anti-float: only floor pills may sleep; anything airborne stays awake
+        if (body.isSleeping && !onFloor) {
+          Sleeping.set(body, false);
+        }
+
+      }
+
+      const el = pills[i];
+      if (!flatMode) {
+        if (!isDragged) el.style.zIndex = String(Math.round(50 - body.position.y / 100));
+        el.style.transform = `translate(${body.position.x}px,${body.position.y}px) rotate(${body.angle}rad) translate(${-s.w / 2}px,${-s.h / 2}px)`;
+      }
+    });
+    requestAnimationFrame(loop);
+  })();
+
+  function enterFlatMode() {
+    if (flatMode) return;
+    flatMode = true;
+    container.classList.add('flat-mode');
+    pills.forEach(p => { p.style.transform = ''; p.style.zIndex = ''; });
+  }
+
+  const clearBtn = container.querySelector('.pill-clear');
+  clearBtn?.addEventListener('click', () => {
+    pills.forEach(p => p.classList.remove('active'));
+    filterProjects(null);
+  });
+
+  function filterProjects(tags) {
+    const allTagged = document.querySelectorAll('[data-tags]');
+    allTagged.forEach(el => {
+      if (!tags) {
+        el.classList.remove('filtered-out');
+      } else {
+        const elTags = el.dataset.tags.split(' ');
+        el.classList.toggle('filtered-out', !tags.some(t => elTags.includes(t)));
+      }
+    });
+    // Show/hide section headings based on whether any items are visible
+    const worksSection = document.querySelector('.works');
+    const moreSection = document.querySelector('.more-work');
+    if (worksSection) {
+      const anyVisible = [...worksSection.querySelectorAll('[data-tags]')].some(el => !el.classList.contains('filtered-out'));
+      worksSection.style.display = anyVisible ? '' : 'none';
+    }
+    if (moreSection) {
+      const anyVisible = [...moreSection.querySelectorAll('[data-tags]')].some(el => !el.classList.contains('filtered-out'));
+      moreSection.style.display = anyVisible ? '' : 'none';
+    }
+  }
+})();
+</script>
 
 </body>
 </html>
