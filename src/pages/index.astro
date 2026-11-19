@@ -234,8 +234,17 @@ body {
   .hero-tag-pill { font-size: 14px; padding: 6px 14px; }
 }
 @media (max-width: 480px) {
-  .hero-sticker { display: none; }
-  .hero-row { display: block; }
+  .hero-row {
+    display: block;
+    position: relative;
+  }
+  .hero-sticker {
+    position: absolute;
+    right: 0;
+    bottom: 4px;
+    width: 56px;
+    height: 56px;
+  }
 }
 
 /* ── WORKS HEADER ── */
@@ -502,7 +511,20 @@ footer {
       flex-wrap: wrap;
       align-items: center;
       gap: 8px;
-      padding-top: 4px;
+      padding: 10px 0;
+    }
+    /* Pills living inside the nav */
+    nav.site-nav.has-filter-pills {
+      gap: 16px;
+      flex-wrap: nowrap;
+    }
+    nav.site-nav.has-filter-pills .hero-tags-physics {
+      flex: 1;
+      padding: 0;
+      margin: 0;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      min-width: 0;
     }
     .hero-tags-physics.flat-mode .hero-tag-pill {
       position: static;
@@ -571,7 +593,7 @@ footer {
 <section class="works" id="works">
 
   <!-- 01 - Bagel.AI -->
-  <article class="fade-in" data-tags="ai b2b desktop">
+  <article class="fade-in" data-tags="ai saas b2b desktop">
     <div class="project-meta">
       <div class="project-meta-left">
         <span class="mono">01</span>
@@ -625,7 +647,7 @@ footer {
   </article>
 
   <!-- 03 - HoneyBook AI -->
-  <article class="fade-in" data-tags="ai fintech saas b2b mobile desktop">
+  <article class="fade-in" data-tags="ai saas b2b mobile desktop">
     <div class="project-meta">
       <div class="project-meta-left">
         <span class="mono">03</span>
@@ -661,7 +683,7 @@ footer {
   </div>
 
   <!-- Melio -->
-  <a href="/melio" class="mini-project fade-in" data-tags="saas fintech b2b mobile desktop">
+  <a href="/melio" class="mini-project fade-in" data-tags="saas b2b mobile desktop">
     <div class="mini-thumb">
       <img src="/images/Melio-thumbnail.png" alt="Melio - Payments &amp; Onboarding">
     </div>
@@ -678,7 +700,7 @@ footer {
   </a>
 
   <!-- Deco -->
-  <a href="/deco" class="mini-project fade-in" data-tags="saas fintech b2c desktop">
+  <a href="/deco" class="mini-project fade-in" data-tags="saas b2c mobile desktop">
     <div class="mini-thumb">
       <img src="/images/Deco-thumnail.png" alt="Deco. - Visual Language &amp; Product Design">
     </div>
@@ -695,7 +717,7 @@ footer {
   </a>
 
   <!-- Riskified -->
-  <a href="/riskified" class="mini-project fade-in" data-tags="fintech b2b saas desktop">
+  <a href="/riskified" class="mini-project fade-in" data-tags="saas b2b desktop">
     <div class="mini-thumb">
       <img src="/images/Riskified-thumbnail.gif" alt="Riskified - Web App &amp; Data Visualization">
     </div>
@@ -778,7 +800,7 @@ footer {
     return;
   }
 
-  const engine = Engine.create({ gravity: { y: 8.0 }, enableSleeping: true });
+  const engine = Engine.create({ gravity: { y: 3.0 }, enableSleeping: true });
 
   const W = 60;
   const floorY = ch - 4;
@@ -965,6 +987,46 @@ footer {
     flatMode = true;
     container.classList.add('flat-mode');
     pills.forEach(p => { p.style.transform = ''; p.style.zIndex = ''; });
+
+    if (window.innerWidth <= 600) return; // mobile: no nav migration
+
+    const nav = document.querySelector('nav.site-nav');
+    const navLogo = nav?.querySelector('.nav-logo');
+    if (!nav || !navLogo) return;
+
+    // Placeholder keeps hero layout when pills move to nav
+    const placeholder = document.createElement('div');
+    let inNav = false;
+
+    function movePillsToNav() {
+      if (inNav) return;
+      inNav = true;
+      placeholder.style.height = container.offsetHeight + 'px';
+      container.replaceWith(placeholder);
+      navLogo.after(container);
+      nav.classList.add('has-filter-pills');
+      obs.disconnect();
+      obs.observe(placeholder); // now watch placeholder to know when to come back
+    }
+
+    function movePillsToHero() {
+      if (!inNav) return;
+      inNav = false;
+      placeholder.replaceWith(container);
+      nav.classList.remove('has-filter-pills');
+      obs.disconnect();
+      obs.observe(container); // watch container again
+    }
+
+    const obs = new IntersectionObserver(([entry]) => {
+      if (inNav) {
+        if (entry.isIntersecting) movePillsToHero();
+      } else {
+        if (!entry.isIntersecting) movePillsToNav();
+      }
+    }, { rootMargin: '-62px 0px 0px 0px', threshold: 0 });
+
+    obs.observe(container);
   }
 
   const clearBtn = container.querySelector('.pill-clear');
