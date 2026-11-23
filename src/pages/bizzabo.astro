@@ -350,7 +350,7 @@ body {
 .screen-img video {
   height: 750px;
   width: auto;
-  max-width: none;
+  max-width: 375px;
   display: block;
   border-radius: 0;
 }
@@ -493,10 +493,40 @@ body {
   .title-meta { flex-direction: column; gap: 8px; }
   .meta-row { grid-template-columns: 1fr; }
   .stat-row { grid-template-columns: 1fr; }
-  .screens-2up,
-  .screens-3up,
   .feat-split,
   .desktop-plus-mobile { grid-template-columns: 1fr; gap: 24px; }
+
+  /* Mobile screens: stack vertically, all same full width */
+  .screens-2up,
+  .screens-3up { flex-direction: column; gap: 24px; }
+  .screens-2up > *,
+  .screens-3up > * { width: 100% !important; flex-shrink: 1 !important; }
+  .screens-2up > * img,
+  .screens-3up > * img,
+  .screens-2up > * video,
+  .screens-3up > * video { width: 100% !important; height: auto !important; max-height: 750px; }
+  .screen-img { width: 100%; }
+  .screen-img img,
+  .screen-img video { width: 100% !important; height: auto !important; max-height: 750px; }
+  /* screens-col (10+11 stacked): full width on mobile */
+  .screens-col > * { width: 100% !important; }
+  .screens-col > * img,
+  .screens-col > * video { width: 100% !important; height: auto !important; max-height: 750px; }
+
+  /* Desktop frame: smaller radius */
+  .desktop-frame-wrap { border-radius: 10px; }
+
+  /* Field research images: stack */
+  .research-img-row { flex-direction: column; }
+
+  /* Feature avail row (08.mov + desktop): stack */
+  .feature-avail-row { flex-direction: column; }
+  .feature-avail-row > div { flex-shrink: 1 !important; }
+  .feature-avail-row video { width: 100% !important; height: auto !important; max-height: 750px; border-radius: 30px !important; border: 2px solid #000000; }
+
+  /* Feature 02 & 06 grids: stack, image below text */
+  .feature-02-grid,
+  .feature-06-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ── NEXT PROJECT ── */
@@ -590,17 +620,17 @@ body {
   </div>
   <p class="fig-cap">The attendee venue - community page</p>
 
-  <div style="display: flex; gap: 24px; align-items: flex-start; margin-top: 48px;">
-    <div class="screen-img" style="flex-shrink: 0; width: 375px;">
-      <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+  <div class="screens-3up" style="margin-top: 48px;">
+    <div class="screen-img">
+      <img src="/images/Bizzabo-01.1. Messages MVP.png" alt="" style="height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
       <div class="gallery_image_caption">Messages</div>
     </div>
-    <div class="screen-img" style="flex-shrink: 0; width: 375px;">
-      <img src="/images/Bizzabo-02.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+    <div class="screen-img">
+      <img src="/images/Bizzabo-02.png" alt="" style="height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
       <div class="gallery_image_caption">My meetings area</div>
     </div>
-    <div class="screen-img" style="flex-shrink: 0; width: 375px;">
-      <img src="/images/Bizzabo-02.1.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
+    <div class="screen-img">
+      <img src="/images/Bizzabo-02.1.png" alt="" style="height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;">
       <div class="gallery_image_caption">Schedule meeting flow</div>
     </div>
   </div>
@@ -635,7 +665,7 @@ body {
     </div>
   </div>
 
-  <div style="display: flex; gap: 16px; margin-top: 48px;">
+  <div class="research-img-row" style="display: flex; gap: 16px; margin-top: 48px;">
     <div class="desktop-frame-wrap" style="flex: 1;">
       <img src="/images/Bizzabo-Live event reasearch 01.png" alt="Field research - live event 1">
     </div>
@@ -768,7 +798,7 @@ body {
     </div>
 
     <div class="feature-block">
-      <div style="display: grid; grid-template-columns: 40fr 60fr; gap: 56px; align-items: center;">
+      <div class="feature-02-grid" style="display: grid; grid-template-columns: 40fr 60fr; gap: 56px; align-items: center;">
         <div>
           <div class="feature-num">Feature 02</div>
           <h4 class="feature-h">AI-assisted custom outreach</h4>
@@ -788,9 +818,9 @@ body {
       <p class="body-text">
         The system finds mutual availability and proposes meeting slots - no back-and-forth, no scheduling overhead.
       </p>
-      <div style="margin-top: 32px; display: flex; gap: 16px; align-items: flex-start;">
-        <div style="line-height: 0; flex-shrink: 0; border-radius: 35px; overflow: hidden;">
-          <video src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="height: 750px; width: auto; display: block;"></video>
+      <div class="feature-avail-row" style="margin-top: 32px; display: flex; gap: 16px; align-items: flex-start;">
+        <div style="display: flex; flex-shrink: 0;">
+          <video src="/images/Bizzabo-08.mov" autoplay loop muted playsinline style="height: 750px; width: auto; display: block; border-radius: 30px; border: 2px solid #000000;"></video>
         </div>
         <div style="flex: 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--rule);">
           <img src="/images/Bizzabo-07.png" alt="" style="width: 100%; height: auto; display: block;">
@@ -834,8 +864,10 @@ body {
         <img src="/images/Bizzabo-9.jpg" alt="Session page">
       </div>
       <div class="screens-3up">
-        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-10.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
-        <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-11.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
+        <div class="screens-col" style="display: flex; flex-direction: column; gap: 24px; flex-shrink: 0; width: 375px;">
+          <div style="line-height: 0; width: 100%;"><img src="/images/Bizzabo-10.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px;"></div>
+          <div style="line-height: 0; width: 100%;"><img src="/images/Bizzabo-11.png" alt="" style="width: 100%; height: auto; display: block; border-radius: 30px;"></div>
+        </div>
         <div style="width: 375px; flex-shrink: 0; line-height: 0;"><img src="/images/Bizzabo-12.png" alt="" style="width: 100%; height: 750px; width: auto; display: block; border-radius: 30px; border: 3px solid #000000;"></div>
       </div>
       <p class="fig-cap">Push notification → attendees wall → session impression</p>
@@ -873,7 +905,7 @@ body {
     </div>
 
     <div class="feature-block">
-      <div style="display: grid; grid-template-columns: 25fr 75fr; gap: 56px; align-items: start;">
+      <div class="feature-06-grid" style="display: grid; grid-template-columns: 25fr 75fr; gap: 56px; align-items: start;">
         <div>
           <div class="feature-num">Feature 06</div>
           <h4 class="feature-h">Close the loop</h4>
